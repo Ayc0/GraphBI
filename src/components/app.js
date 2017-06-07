@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Block from './block';
+import Block from './block/block';
+import BlockTitle from './block/blockTitle';
 
 const Container = styled.div`
   display: flex;
@@ -25,7 +26,10 @@ const RightColumn = styled.div`
 export default () =>
   <Container>
     <LeftColumn>
-      <Block>Hey !</Block>
+      <Block>
+        <BlockTitle>Hey!</BlockTitle>
+        <p>Plop</p>
+      </Block>
       <Block>Hey !</Block>
       <Block>Hey !</Block>
     </LeftColumn>
