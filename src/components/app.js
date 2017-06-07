@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Block from './block/block';
 import BlockTitle from './block/blockTitle';
 
+import Chart from './chart';
+
 const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -34,9 +36,6 @@ export default () =>
       <Block>Hey !</Block>
     </LeftColumn>
     <RightColumn>
-      <p>Yo</p>
-      <p>Yo</p>
-      <p>Yo</p>
-      <p>Yo</p>
+      <Chart />
     </RightColumn>
   </Container>;
