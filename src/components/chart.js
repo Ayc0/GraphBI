@@ -44,7 +44,7 @@ class StackedAreaChart extends Component {
         <CartesianGrid strokeDasharray="3 3" />
         <Tooltip />
         <Area
-          connectNulls={true}
+          connectNulls
           type="monotone"
           dataKey="uv"
           stroke="#8884d8"
@@ -52,7 +52,7 @@ class StackedAreaChart extends Component {
           fillOpacity={0.3}
         />
         <Area
-          connectNulls={true}
+          connectNulls
           type="monotone"
           dataKey="pv"
           stroke="#82ca9d"
@@ -60,7 +60,7 @@ class StackedAreaChart extends Component {
           fillOpacity={0.3}
         />
         <Area
-          connectNulls={true}
+          connectNulls
           type="monotone"
           dataKey="amt"
           stroke="#ffc658"
