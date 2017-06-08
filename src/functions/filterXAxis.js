@@ -1,10 +1,10 @@
-import _ from 'lodash';
+import { groupBy } from 'lodash';
 
 const filterXAxis = (json, xAxis) => {
-  const groupBy = _.groupBy(json, element => element[xAxis]);
-  return Object.keys(groupBy).map(key => ({
+  const groupedBy = groupBy(json, element => element[xAxis]);
+  return Object.keys(groupedBy).map(key => ({
     name: key,
-    values: groupBy[key],
+    values: groupedBy[key],
   }));
 };
 
