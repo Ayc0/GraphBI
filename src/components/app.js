@@ -8,6 +8,7 @@ import data from '../data/Projects.json';
 import Chart from './chart';
 
 import filterXAxis from '../functions/filterXAxis';
+import sumYAxis from '../functions/sumYAxis';
 
 console.log(data);
 
@@ -32,7 +33,9 @@ function getRevenuePerBrand(array) {
   return revenuePerBrand;
 }
 
-console.log(filterXAxis(values, 'Brand'));
+const first = filterXAxis(values, 'Brand');
+
+console.log(sumYAxis(first, ['Latitude', 'Longitude']));
 
 export default () =>
   (<Container>
