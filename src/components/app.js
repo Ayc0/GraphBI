@@ -12,26 +12,7 @@ import sumYAxis from '../functions/sumYAxis';
 
 console.log(json);
 
-// const columns = json[0];
 const values = json[1];
-
-// function getBrandAndRevenue(value) {
-//   const Brand = value.Brand ? value.Brand : 'None';
-//   const Revenue = value['Revenues (k€)'] ? value['Revenues (k€)'] : 0;
-//   return [Brand, Revenue];
-// }
-
-// function getRevenuePerBrand(array) {
-//   const brandAndRevenue = array.map(getBrandAndRevenue);
-//   const revenuePerBrand = {};
-//   brandAndRevenue.forEach((item) => {
-//     revenuePerBrand[item[0]] = revenuePerBrand[item[0]]
-//       ? item[1] + revenuePerBrand[item[0]]
-//       : item[1];
-//   });
-//   // console.log(revenuePerBrand);
-//   return revenuePerBrand;
-// }
 
 const first = filterXAxis(values, 'Brand');
 
