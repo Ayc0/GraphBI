@@ -8,6 +8,7 @@
     "lodash": "^4.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-select2-wrapper": "^1.0.4-beta5",
     "recharts": "^1.0.0-alpha.0",
     "styled-components": "^2.0.0"
   },

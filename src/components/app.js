@@ -3,7 +3,7 @@ import React from 'react';
 import { Container, LeftColumn, RightColumn } from '../styles/layout';
 import { Block, BlockTitle } from '../styles/block';
 
-import data from '../data/projects.json';
+import data from '../data/Projects.json';
 
 import Chart from './chart';
 
@@ -38,11 +38,17 @@ export default () =>
   (<Container>
     <LeftColumn>
       <Block>
-        <BlockTitle>Hey!</BlockTitle>
-        <p>Plop</p>
+        <BlockTitle>Y Axis :</BlockTitle>
+        <p>Sum of Revenue</p>
       </Block>
-      <Block>Hey !</Block>
-      <Block>Hey !</Block>
+      <Block>
+        <BlockTitle>X Axis :</BlockTitle>
+        <p>by Brand</p>
+      </Block>
+      <Block>
+        <BlockTitle>Type of graph :</BlockTitle>
+        <p>Linear</p>
+    </Block>
     </LeftColumn>
     <RightColumn>
       <Chart data={getRevenuePerBrand(values)} />
