@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import { Container, LeftColumn, RightColumn } from '../styles/layout';
-import { Block, BlockTitle } from '../styles/block';
+import { Container, LeftColumn, RightColumn } from "../styles/layout";
+import { Block, BlockTitle } from "../styles/block";
 
-import Chart from './chart';
+import Chart from "./chart";
 
 export default () =>
-  (<Container>
+  <Container>
     <LeftColumn>
       <Block>
         <BlockTitle>Hey!</BlockTitle>
@@ -18,4 +18,4 @@ export default () =>
     <RightColumn>
       <Chart />
     </RightColumn>
-  </Container>);
+  </Container>;
