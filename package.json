@@ -13,16 +13,18 @@
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
-    "eslint-config-prettier": "^2.1.1",
     "eslint-plugin-react": "^7.0.1",
     "prettier": "^1.4.2",
     "prettier-eslint": "^6.3.0",
+    "prettier-eslint-cli": "^4.0.4",
     "react-scripts": "1.0.7"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "lint": "eslint --ext .js ./src/",
+    "lint-fix": "eslint --ext .js ./src/ --fix",
     "eject": "react-scripts eject"
   }
 }

@@ -1,32 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
 
-import Block from './block/block';
-import BlockTitle from './block/blockTitle';
+import { Container, LeftColumn, RightColumn } from '../styles/layout';
+import { Block, BlockTitle } from '../styles/block';
 
 import Chart from './chart';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-`;
-
-const LeftColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-`;
-
-const RightColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 1em;
-  flex-grow: 1;
-`;
-
 export default () =>
-  <Container>
+  (<Container>
     <LeftColumn>
       <Block>
         <BlockTitle>Hey!</BlockTitle>
@@ -38,4 +18,4 @@ export default () =>
     <RightColumn>
       <Chart />
     </RightColumn>
-  </Container>;
+  </Container>);
