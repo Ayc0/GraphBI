@@ -36,8 +36,8 @@ class StackedAreaChart extends Component {
   render() {
     return (
       <AreaChart
-        width={50}
-        height={50}
+        width={600}
+        height={400}
         style={{ height: 'auto', width: '100%' }}
         data={this.state.data}
         margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
