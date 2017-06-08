@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   AreaChart,
   Area,
@@ -7,72 +7,37 @@ import {
   CartesianGrid,
   Tooltip,
 } from 'recharts';
-import update from 'immutability-helper';
 
-class StackedAreaChart extends Component {
-  constructor(props) {
-    super(props);
+const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 
-    this.state = {
-      data: [
-        { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
-        { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
-        { name: 'Page C', uv: 1246, pv: 9800, amt: 2290 },
-        { name: 'Page D', uv: 2780, pv: 3908, amt: 2000 },
-        { name: 'Page E', uv: 1890, amt: 2181 },
-        { name: 'Page F', uv: 2390, pv: 3800, amt: 2500 },
-        { name: 'Page G', uv: 3490, pv: 4300, amt: 2100 },
-      ],
-    };
-  }
-  componentDidMount() {
-    setTimeout(() => {
-      const data = update(this.state.data, {
-        0: { uv: { $set: 124 } },
-      });
-      this.setState({ data });
-    }, 2000);
-  }
-  render() {
-    return (
-      <AreaChart
-        width={600}
-        height={400}
-        style={{ height: 'auto', width: '100%' }}
-        data={this.state.data}
-        margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-      >
-        <XAxis dataKey="name" />
-        <YAxis />
-        <CartesianGrid strokeDasharray="3 3" />
-        <Tooltip />
-        <Area
-          stackId="a"
-          type="monotone"
-          dataKey="uv"
-          stroke="#8884d8"
-          fill="#8884d8"
-          fillOpacity={0.3}
-        />
-        <Area
-          stackId="a"
-          type="monotone"
-          dataKey="pv"
-          stroke="#82ca9d"
-          fill="#82ca9d"
-          fillOpacity={0.3}
-        />
-        <Area
-          stackId="a"
-          type="monotone"
-          dataKey="amt"
-          stroke="#ffc658"
-          fill="#ffc658"
-          fillOpacity={0.3}
-        />
-      </AreaChart>
-    );
-  }
-}
+const StackedAreaChart = ({ data }) =>
+  (<AreaChart
+    width={600}
+    height={400}
+    style={{ height: 'auto', width: '100%' }}
+    data={data}
+    margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+  >
+    <XAxis dataKey="name" />
+    <YAxis />
+    <CartesianGrid strokeDasharray="3 3" />
+    <Tooltip />
+    {Object.keys(data[0])
+      .filter(element => element !== 'name')
+      .map((element, id) => {
+        console.log(id, element);
+        return (
+          <Area
+            key={element}
+            type="monotone"
+            dataKey={element}
+            stroke={color[id]}
+            fill={color[id]}
+            fillOpacity={0.3}
+          />
+        );
+      })}
+
+  </AreaChart>);
 
 export default StackedAreaChart;
