@@ -5,6 +5,7 @@
   "dependencies": {
     "d3": "^4.9.1",
     "immutability-helper": "^2.2.2",
+    "lodash": "^4.17.4",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "recharts": "^1.0.0-alpha.0",
