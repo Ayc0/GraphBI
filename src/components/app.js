@@ -23,7 +23,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       options: options,
-      Y_selected_value: options[0],
+      Y_selected_value: [],
       X_selected_value: options[1]
     };
   }
@@ -37,10 +37,12 @@ export default class App extends Component {
             <p>Sum of</p>
             <Select
               name="Y-axis"
+              multi={true}
               value={this.state.Y_selected_value}
               options={options}
               onChange={e => {
-                this.setState({ Y_selected_value: e.label });
+                this.setState({ Y_selected_value: e });
+                console.log(this.state.Y_selected_value);
               }}
             />
           </Block>
@@ -63,9 +65,8 @@ export default class App extends Component {
         </LeftColumn>
         <RightColumn>
           <Chart
-            data={sumYAxis(filterXAxis(values, this.state.X_selected_value), [
-              this.state.Y_selected_value
-            ])}
+            data={sumYAxis(filterXAxis(values, this.state.X_selected_value),
+              this.state.Y_selected_value.map((option) => {return option.label}))}
           />
         </RightColumn>
       </Container>
