@@ -1,57 +1,74 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import { Container, LeftColumn, RightColumn } from '../styles/layout';
-import { Block, BlockTitle } from '../styles/block';
-import Select from 'react-select';
-import 'react-select/dist/react-select.css';
+import { Container, LeftColumn, RightColumn } from "../styles/layout";
+import { Block, BlockTitle } from "../styles/block";
+import Select from "react-select";
+import "react-select/dist/react-select.css";
 
-import json from '../data/projects.json';
+import json from "../data/projects.json";
 
-import Chart from './chart';
+import Chart from "./chart";
 
-import filterXAxis from '../functions/filterXAxis';
-import sumYAxis from '../functions/sumYAxis';
+import filterXAxis from "../functions/filterXAxis";
+import sumYAxis from "../functions/sumYAxis";
 
 const values = json[1];
 
-const options = json[0].map((column) => {return {"label": column.title, "value": column.title}});
-
-const first = filterXAxis(values, 'Brand');
+const options = json[0].map(column => {
+  return { label: column.title, value: column.title };
+});
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      'options': options,
-      'selected_value': options[0],
-    }
+      options: options,
+      Y_selected_value: options[0],
+      X_selected_value: options[1]
+    };
   }
 
   render() {
-    return (<Container>
-      <LeftColumn>
-        <Block>
-          <BlockTitle>Y Axis :</BlockTitle>
-          <p>Sum of Revenue</p>
-          <Select
-            name="form-field-name"
-            value={this.state.selected_value}
-            options={options}
-            onChange={(e) => {this.setState({'selected_value': e.label})}}
+    return (
+      <Container>
+        <LeftColumn>
+          <Block>
+            <BlockTitle>Y Axis :</BlockTitle>
+            <p>Sum of</p>
+            <Select
+              name="Y-axis"
+              value={this.state.Y_selected_value}
+              options={options}
+              onChange={e => {
+                this.setState({ Y_selected_value: e.label });
+              }}
+            />
+          </Block>
+          <Block>
+            <BlockTitle>X Axis :</BlockTitle>
+            <p>by</p>
+            <Select
+              name="X-axis"
+              value={this.state.X_selected_value}
+              options={options}
+              onChange={e => {
+                this.setState({ X_selected_value: e.label });
+              }}
+            />
+          </Block>
+          <Block>
+            <BlockTitle>Type of graph :</BlockTitle>
+            <p>Linear</p>
+          </Block>
+        </LeftColumn>
+        <RightColumn>
+          <Chart
+            data={sumYAxis(filterXAxis(values, this.state.X_selected_value), [
+              this.state.Y_selected_value
+            ])}
           />
-        </Block>
-        <Block>
-          <BlockTitle>X Axis :</BlockTitle>
-          <p>by Brand</p>
-        </Block>
-        <Block>
-          <BlockTitle>Type of graph :</BlockTitle>
-          <p>Linear</p>
-        </Block>
-      </LeftColumn>
-      <RightColumn>
-        <Chart data={sumYAxis(first, [this.state.selected_value])} />
-      </RightColumn>
-    </Container>)
+        </RightColumn>
+      </Container>
+    );
   }
 }
