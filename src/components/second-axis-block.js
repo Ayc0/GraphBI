@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
-import { Block, BlockTitle } from "../styles/block";
-import Select from "react-select";
-import "react-select/dist/react-select.css";
+import { Block, BlockTitle } from '../styles/block';
 
 class SecondAxisBlock extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected_value: this.props.options[1]
+      selected_value: this.props.options[1],
     };
   }
 
@@ -27,7 +27,7 @@ class SecondAxisBlock extends Component {
           name="X-axis"
           value={this.state.selected_value}
           options={this.props.options}
-          onChange={e => {
+          onChange={(e) => {
             this.onSelectChange(e.label);
           }}
         />

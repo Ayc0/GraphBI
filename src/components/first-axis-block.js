@@ -1,14 +1,14 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
-import { Block, BlockTitle } from "../styles/block";
-import Select from "react-select";
-import "react-select/dist/react-select.css";
+import { Block, BlockTitle } from '../styles/block';
 
 class FirstAxisBlock extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected_value: []
+      selected_value: [],
     };
   }
 

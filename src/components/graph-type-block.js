@@ -1,16 +1,12 @@
-import React, { Component } from "react";
+import React from 'react';
+import 'react-select/dist/react-select.css';
 
-import { Block, BlockTitle } from "../styles/block";
-import Select from "react-select";
-import "react-select/dist/react-select.css";
+import { Block, BlockTitle } from '../styles/block';
 
-const GraphTypeBlock = () => {
-  return (
-    <Block>
-      <BlockTitle>Type of graph :</BlockTitle>
-      <p>Linear</p>
-    </Block>
-  );
-};
+const GraphTypeBlock = () =>
+  (<Block>
+    <BlockTitle>Type of graph :</BlockTitle>
+    <p>Linear</p>
+  </Block>);
 
 export default GraphTypeBlock;
