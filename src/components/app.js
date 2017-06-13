@@ -6,11 +6,12 @@ import { Container, LeftColumn, RightColumn } from '../styles/layout';
 import GraphTypeBlock from './graph-type-block';
 import FirstAxisBlock from './first-axis-block';
 import SecondAxisBlock from './second-axis-block';
-import SimplePieChart from './piechart';
 
 import json from '../data/projects.json';
 
-import Chart from './chart';
+// Charts
+import Chart from './charts/chart';
+import SimplePieChart from './charts/piechart';
 
 import filterXAxis from '../functions/filterXAxis';
 import countYAxis from '../functions/countYAxis';
