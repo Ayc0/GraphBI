@@ -10,6 +10,7 @@ const Block = styled.div`
 const BlockTitle = styled.h2`
   color: #00a0ee;
   margin: 0;
+  margin-bottom: 0.6em;
   font-size: 16px;
 `;
 

@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
-const Container = styled.div`
+const Row = styled.div`
   display: flex;
   flex-direction: row;
   width: 100%;
 `;
+
+const Container = Row;
 
 const LeftColumn = styled.div`
   display: flex;
@@ -20,4 +22,4 @@ const RightColumn = styled.div`
   flex-grow: 1;
 `;
 
-export { Container, LeftColumn, RightColumn };
+export { Container, LeftColumn, RightColumn, Row };
