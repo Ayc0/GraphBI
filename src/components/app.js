@@ -4,8 +4,8 @@ import 'react-select/dist/react-select.css';
 
 import { Container, LeftColumn, RightColumn } from '../styles/layout';
 import GraphPicker from './graphPicker';
-import FirstAxisBlock from './first-axis-block';
-import SecondAxisBlock from './second-axis-block';
+import YAxisPicker from './yAxisPicker';
+import XAxisPicker from './xAxisPicker';
 
 import json from '../data/projects.json';
 
@@ -67,13 +67,13 @@ export default class App extends Component {
       <Container>
         <LeftColumn>
           <GraphPicker onGraphTypeChange={e => this.onGraphTypeChange(e)} />
-          <FirstAxisBlock
-            options={options}
-            onFirstAxisChange={e => this.onFirstAxisChange(e)}
-          />
-          <SecondAxisBlock
+          <XAxisPicker
             options={options}
             onSecondAxisChange={e => this.onSecondAxisChange(e)}
+          />
+          <YAxisPicker
+            options={options}
+            onFirstAxisChange={e => this.onFirstAxisChange(e)}
           />
         </LeftColumn>
         <RightColumn>

@@ -4,7 +4,7 @@ import 'react-select/dist/react-select.css';
 
 import { Block, BlockTitle } from '../styles/block';
 
-class FirstAxisBlock extends Component {
+class YAxisPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,4 +34,4 @@ class FirstAxisBlock extends Component {
   }
 }
 
-export default FirstAxisBlock;
+export default YAxisPicker;
