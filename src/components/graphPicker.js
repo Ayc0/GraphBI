@@ -4,9 +4,12 @@ import 'react-select/dist/react-select.css';
 
 import { Block, BlockTitle } from '../styles/block';
 
-const options = [{ value: 'Linear', label: 'Linear' }, { value: 'PieChart', label: 'PieChart' }];
+const options = [
+  { value: 'Linear', label: 'Linear' },
+  { value: 'PieChart', label: 'PieChart' },
+];
 
-class GraphTypeBlock extends Component {
+class GraphPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -34,4 +37,4 @@ class GraphTypeBlock extends Component {
   }
 }
 
-export default GraphTypeBlock;
+export default GraphPicker;

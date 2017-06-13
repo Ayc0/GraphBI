@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import 'react-select/dist/react-select.css';
 
 import { Container, LeftColumn, RightColumn } from '../styles/layout';
-import GraphTypeBlock from './graph-type-block';
+import GraphPicker from './graphPicker';
 import FirstAxisBlock from './first-axis-block';
 import SecondAxisBlock from './second-axis-block';
 
@@ -66,7 +66,7 @@ export default class App extends Component {
     return (
       <Container>
         <LeftColumn>
-          <GraphTypeBlock onGraphTypeChange={e => this.onGraphTypeChange(e)} />
+          <GraphPicker onGraphTypeChange={e => this.onGraphTypeChange(e)} />
           <FirstAxisBlock
             options={options}
             onFirstAxisChange={e => this.onFirstAxisChange(e)}
