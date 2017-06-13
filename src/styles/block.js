@@ -8,7 +8,7 @@ const Block = styled.div`
   box-shadow: 0px 0px 0px 0.5px rgba(47, 47, 47, 0.16);
 `;
 const BlockTitle = styled.h2`
-  color: #0198dd;
+  color: #00a0ee;
   margin: 0;
   font-size: 16px;
 `;
