@@ -50,7 +50,12 @@ export default class App extends Component {
 
   renderGraph(selection) {
     if (selection === 'PieChart') {
-      return <SimplePieChart />;
+      return <SimplePieChart
+        data={countYAxis(
+          filterXAxis(values, this.state.X_selected_value),
+          this.state.Y_selected_value.map(option => option.label),
+        )}
+      />;
     }
     return (
       <Chart

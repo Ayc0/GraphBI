@@ -28,6 +28,7 @@ class GraphPicker extends Component {
         <BlockTitle>Type of graph :</BlockTitle>
         <Select
           name="graph-type"
+          clearable={false}
           value={this.state.selected_value}
           options={options}
           onChange={e => this.onSelectChange(e.label)}

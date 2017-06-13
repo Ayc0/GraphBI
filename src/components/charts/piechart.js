@@ -20,13 +20,14 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 
 class SimplePieChart extends Component {
   render () {
+    console.log(this.props.data)
     return (
       <div>
         <h1>Hello</h1>
         <PieChart width={800} height={400}>
           <Pie
-            dataKey="value"
-            data={data}
+            dataKey="count"
+            data={this.props.data}
             cx={200}
             cy={200}
             fill="#8884d8"
