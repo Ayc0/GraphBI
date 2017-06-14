@@ -19,6 +19,7 @@ const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
   width: 30%;
+  min-width: 200px;
   max-width: 300px;
 `;
 

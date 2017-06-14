@@ -29,6 +29,7 @@ class GraphPicker extends Component {
   render() {
     return (
       <Block>
+<<<<<<< HEAD
         <BlockTitle>Graph type :</BlockTitle>
         <Line>
           {categories['1D'].map(graph =>
@@ -60,6 +61,16 @@ class GraphPicker extends Component {
             />),
           )}
         </Line>
+=======
+        <BlockTitle>Type of graph :</BlockTitle>
+        <Select
+          name="graph-type"
+          clearable={false}
+          value={this.state.selected_value}
+          options={options}
+          onChange={e => this.onSelectChange(e.label)}
+        />
+>>>>>>> 26deac5e2f9887ecba8baf717d55c2ac0cd6c86b
       </Block>
     );
   }

@@ -48,9 +48,23 @@ export default class App extends Component {
     this.setState({ X_selected_value: e });
   }
 
+  renderBlocks(selection) {
+    if (selection !== 'PieChart') {
+      return <YAxisPicker
+        options={options}
+        onFirstAxisChange={e => this.onFirstAxisChange(e)}
+      />
+    }
+  }
+
   renderGraph(selection) {
     if (selection === 'PieChart') {
-      return <SimplePieChart />;
+      return <SimplePieChart
+        data={countYAxis(
+          filterXAxis(values, this.state.X_selected_value),
+          this.state.Y_selected_value.map(option => option.label),
+        )}
+      />;
     }
     return (
       <Chart
@@ -71,10 +85,7 @@ export default class App extends Component {
             options={options}
             onSecondAxisChange={e => this.onSecondAxisChange(e)}
           />
-          <YAxisPicker
-            options={options}
-            onFirstAxisChange={e => this.onFirstAxisChange(e)}
-          />
+          {this.renderBlocks(this.state.graph_type)}
         </LeftColumn>
         <RightColumn>
           {this.renderGraph(this.state.graph_type)}
