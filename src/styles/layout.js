@@ -18,7 +18,7 @@ const Container = Row;
 const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 11em;
   min-width: 200px;
   max-width: 300px;
 `;
