@@ -8,6 +8,7 @@ const Row = styled.div`
 
 const Line = Row.extend`
   border-bottom: 1px dashed rgb(204, 204, 204);
+  flex-wrap: wrap;
   :last-child {
     border-bottom: 0;
   };
@@ -18,7 +19,7 @@ const Container = Row;
 const LeftColumn = styled.div`
   display: flex;
   flex-direction: column;
-  width: 11em;
+  width: 35%;
   min-width: 200px;
   max-width: 300px;
 `;

@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 const Img = styled.img`
-  height: ${({ size }) => size};
-  width: ${({ size }) => size};
   margin-right: 0.3em;
   padding: 3px;
   :last-child {
@@ -13,11 +11,23 @@ const Img = styled.img`
   :hover {
     cursor: pointer;
     background-color: #edf0f2;
+  };
+  @media (max-width: 576px) {
+    height: calc(50% - 16px);
+    width: calc(50% - 16px);
   }
+  @media (min-width: 768px) and (max-width: 991px) {
+    height: calc(33% - 16px);
+    width: calc(33% - 16px);
+  };
+  @media (min-width: 992px) {
+    height: calc(25% - 16px);
+    width: calc(25% - 16px);
+  };
 `;
 
 Img.defaultProps = {
-  size: '3.6em',
+  active: false,
 };
 
 export default Img;
