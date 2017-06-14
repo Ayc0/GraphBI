@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Row } from '../styles/layout';
+import { Line } from '../styles/layout';
 import { Block, BlockTitle } from '../styles/block';
 import Img from '../styles/img';
 
@@ -18,36 +18,77 @@ import stackAreaChart from '../images/stack-area-chart.svg';
 //   { value: 'PieChart', label: 'PieChart' },
 // ];
 
+const Graph = ({ src, onClick, active, alt }) =>
+  <Img src={src} alt={alt} onClick={onClick} active={active === alt} />;
+
 class GraphPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // selected_value: options[0],
+      selectedValue: 'pie chart',
     };
+
+    this.onSelect = this.onSelect.bind(this);
   }
 
-  onSelectChange(e) {
-    this.setState({ selected_value: e });
-    this.props.onGraphTypeChange(e);
+  onSelect(event) {
+    const alt = event.target.alt;
+    this.setState({ selectedValue: alt });
+    // this.props.onGraphTypeChange(alt);
   }
 
   render() {
     return (
       <Block>
-        <BlockTitle>Type of graph :</BlockTitle>
-        <Row>
-          <Img src={pieChart} alt="pie chart" />
-        </Row>
-        <Row>
-          <Img src={lineChart} alt="line chart" />
-          <Img src={barsChart} alt="bars chart" />
-          <Img src={areaChart} alt="area chart" />
-        </Row>
-        <Row>
-          <Img src={stackBarsChart} alt="bars chart" />
-          <Img src={multiBarsChart} alt="multi bars chart" />
-          <Img src={stackAreaChart} alt="stack area chart" />
-        </Row>
+        <BlockTitle>Graph type :</BlockTitle>
+        <Line>
+          <Graph
+            src={pieChart}
+            alt="pie chart"
+            onClick={this.onSelect}
+            active={this.state.selectedValue}
+          />
+        </Line>
+        <Line>
+          <Graph
+            src={lineChart}
+            alt="line chart"
+            onClick={this.onSelect}
+            active={this.state.selectedValue}
+          />
+          <Graph
+            src={barsChart}
+            alt="bars chart"
+            onClick={this.onSelect}
+            active={this.state.selectedValue}
+          />
+          <Graph
+            src={areaChart}
+            alt="area chart"
+            onClick={this.onSelect}
+            active={this.state.selectedValue}
+          />
+        </Line>
+        <Line>
+          <Graph
+            src={stackBarsChart}
+            alt="stack bars chart"
+            onClick={this.onSelect}
+            active={this.state.selectedValue}
+          />
+          <Graph
+            src={multiBarsChart}
+            alt="multi bars chart"
+            onClick={this.onSelect}
+            active={this.state.selectedValue}
+          />
+          <Graph
+            src={stackAreaChart}
+            alt="stack area chart"
+            onClick={this.onSelect}
+            active={this.state.selectedValue}
+          />
+        </Line>
       </Block>
     );
   }

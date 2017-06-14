@@ -6,6 +6,13 @@ const Row = styled.div`
   width: 100%;
 `;
 
+const Line = Row.extend`
+  border-bottom: 1px dashed rgb(204, 204, 204);
+  :last-child {
+    border-bottom: 0;
+  };
+`;
+
 const Container = Row;
 
 const LeftColumn = styled.div`
@@ -22,4 +29,4 @@ const RightColumn = styled.div`
   flex-grow: 1;
 `;
 
-export { Container, LeftColumn, RightColumn, Row };
+export { Container, LeftColumn, RightColumn, Row, Line };

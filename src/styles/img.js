@@ -3,11 +3,13 @@ import styled from 'styled-components';
 const Img = styled.img`
   height: ${({ size }) => size};
   width: ${({ size }) => size};
-  padding: 0.3em;
   margin-right: 0.3em;
+  padding: 3px;
   :last-child {
-    margin-right: 0;
+    margin-right: ${({ active }) => (active ? '4px' : '5px')};
   };
+  border: ${({ active }) => (active ? 'dashed 1px rgb(204, 204, 204)' : '')};
+  margin: ${({ active }) => (active ? '4px' : '5px')};
   :hover {
     cursor: pointer;
     background-color: #edf0f2;
