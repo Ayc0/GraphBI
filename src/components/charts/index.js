@@ -9,7 +9,7 @@ import stackAreaChart from '../../images/stack-area-chart.svg';
 
 // Graph components
 import PieChart from './piechart';
-import AreaChart from './chart';
+import AreaChart from './areachart';
 
 const graphs = {
   pieChart: { src: pieChart, alt: 'pie-chart', component: PieChart },

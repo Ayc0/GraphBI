@@ -10,7 +10,7 @@ import XAxisPicker from './xAxisPicker';
 import json from '../data/projects.json';
 
 // Charts
-import Chart from './charts/chart';
+import Chart from './charts/areachart';
 import SimplePieChart from './charts/piechart';
 
 import filterXAxis from '../functions/filterXAxis';
