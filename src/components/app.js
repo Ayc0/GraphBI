@@ -6,17 +6,9 @@ import { Container, LeftColumn, RightColumn } from '../styles/layout';
 import GraphPicker from './graphPicker';
 import YAxisPicker from './yAxisPicker';
 import XAxisPicker from './xAxisPicker';
+import Chart from './chart';
 
 import json from '../data/projects.json';
-
-// Charts
-import Chart from './charts/areachart';
-import SimplePieChart from './charts/piechart';
-
-import filterXAxis from '../functions/filterXAxis';
-import countYAxis from '../functions/countYAxis';
-// import sumYAxis from '../functions/sumYAxis';
-// import meanYAxis from '../functions/meanYAxis';
 
 const values = json[1];
 
@@ -50,33 +42,8 @@ export default class App extends Component {
 
   renderBlocks(selection) {
     if (selection !== 'pie-chart') {
-      return <YAxisPicker
-        options={options}
-        onFirstAxisChange={e => this.onFirstAxisChange(e)}
-      />
+      return <YAxisPicker options={options} onFirstAxisChange={e => this.onFirstAxisChange(e)} />;
     }
-  }
-
-  renderGraph(selection) {
-    if (selection === 'pie-chart') {
-      return <SimplePieChart
-        data={countYAxis(
-          filterXAxis(values, this.state.X_selected_value),
-          this.state.Y_selected_value.map(option => option.label),
-        )}
-      />;
-    }
-    else if (selection === 'area-chart') {
-      return <Chart
-        data={countYAxis(
-          filterXAxis(values, this.state.X_selected_value),
-          this.state.Y_selected_value.map(option => option.label),
-        )}
-      />;
-    }
-    return (
-      <h1>Sorry, the chart selected isn't available yet</h1>
-    );
   }
 
   render() {
@@ -84,16 +51,18 @@ export default class App extends Component {
       <Container>
         <LeftColumn>
           <GraphPicker onGraphTypeChange={e => this.onGraphTypeChange(e)} />
-          <XAxisPicker
-            options={options}
-            onSecondAxisChange={e => this.onSecondAxisChange(e)}
-          />
+          <XAxisPicker options={options} onSecondAxisChange={e => this.onSecondAxisChange(e)} />
           {this.renderBlocks(this.state.graph_type)}
         </LeftColumn>
         <RightColumn>
-          {this.renderGraph(this.state.graph_type)}
+          <Chart
+            graph_type={this.state.graph_type}
+            data={values}
+            Y_selected={this.state.Y_selected_value}
+            X_selected={this.state.X_selected_value}
+          />
         </RightColumn>
       </Container>
     );
   }
-};
+}
