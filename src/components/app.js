@@ -30,7 +30,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       options,
-      graph_type: 'Linear',
+      graph_type: 'area-chart',
       Y_selected_value: [],
       X_selected_value: options[1],
     };
@@ -66,13 +66,16 @@ export default class App extends Component {
         )}
       />;
     }
-    return (
-      <Chart
+    else if (selection === 'area-chart') {
+      return <Chart
         data={countYAxis(
           filterXAxis(values, this.state.X_selected_value),
           this.state.Y_selected_value.map(option => option.label),
         )}
-      />
+      />;
+    }
+    return (
+      <h1>Sorry, the chart selected isn't available yet</h1>
     );
   }
 
@@ -93,4 +96,4 @@ export default class App extends Component {
       </Container>
     );
   }
-}
+};
