@@ -34,6 +34,7 @@ class GraphPicker extends Component {
         <Line>
           {categories['1D'].map(graph =>
             (<Graph
+              key={graph.alt}
               src={graph.src}
               alt={graph.alt}
               onClick={this.onSelect}
@@ -44,6 +45,7 @@ class GraphPicker extends Component {
         <Line>
           {categories['2D'].map(graph =>
             (<Graph
+              key={graph.alt}
               src={graph.src}
               alt={graph.alt}
               onClick={this.onSelect}
@@ -54,6 +56,7 @@ class GraphPicker extends Component {
         <Line>
           {categories['3D'].map(graph =>
             (<Graph
+              key={graph.alt}
               src={graph.src}
               alt={graph.alt}
               onClick={this.onSelect}
