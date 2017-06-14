@@ -19,5 +19,6 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'no-confusing-arrow': 'off',
+    'no-mixed-operators': 'off',
   },
 };
