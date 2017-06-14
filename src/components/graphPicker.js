@@ -22,8 +22,9 @@ class GraphPicker extends Component {
 
   onSelect(event) {
     const alt = event.target.alt;
+    console.log("You selected", alt);
     this.setState({ selectedValue: alt });
-    // this.props.onGraphTypeChange(alt);
+    this.props.onGraphTypeChange(alt);
   }
 
   render() {

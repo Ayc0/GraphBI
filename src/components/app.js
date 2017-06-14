@@ -49,7 +49,7 @@ export default class App extends Component {
   }
 
   renderBlocks(selection) {
-    if (selection !== 'PieChart') {
+    if (selection !== 'pie-chart') {
       return <YAxisPicker
         options={options}
         onFirstAxisChange={e => this.onFirstAxisChange(e)}
@@ -58,7 +58,7 @@ export default class App extends Component {
   }
 
   renderGraph(selection) {
-    if (selection === 'PieChart') {
+    if (selection === 'pie-chart') {
       return <SimplePieChart
         data={countYAxis(
           filterXAxis(values, this.state.X_selected_value),
