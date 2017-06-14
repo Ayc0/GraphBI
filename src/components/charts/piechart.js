@@ -41,7 +41,7 @@ class SimplePieChart extends Component {
             label={this.renderCustomizedLabel}
           >
             {this.props.data.map((entry, index) =>
-              <Cell key={index} fill={color[index % color.length]} />,
+              <Cell key={entry} fill={color[index % color.length]} />,
             )}
           </Pie>
         </PieChart>

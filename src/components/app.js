@@ -20,43 +20,57 @@ const options = json[0].map(column => ({
 export default class App extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       options,
-      graph_type: 'area-chart',
+      graph_type: 'pie-chart',
       Y_selected_value: [],
       X_selected_value: options[1],
     };
+
+    this.onGraphTypeChange = this.onGraphTypeChange.bind(this);
+    this.onFirstAxisChange = this.onFirstAxisChange.bind(this);
+    this.onSecondAxisChange = this.onSecondAxisChange.bind(this);
   }
 
-  onGraphTypeChange(e) {
-    this.setState({ graph_type: e });
+  onGraphTypeChange(term) {
+    this.setState({ graph_type: term });
   }
 
-  onFirstAxisChange(e) {
-    this.setState({ Y_selected_value: e });
+  onFirstAxisChange(term) {
+    this.setState({ Y_selected_value: term });
   }
 
-  onSecondAxisChange(e) {
-    this.setState({ X_selected_value: e });
+  onSecondAxisChange(term) {
+    this.setState({ X_selected_value: term });
   }
 
   renderBlocks(selection) {
     if (selection !== 'pie-chart') {
-      return <YAxisPicker options={options} onFirstAxisChange={e => this.onFirstAxisChange(e)} />;
+      return (
+        <YAxisPicker
+          options={options}
+          onFirstAxisChange={e => this.onFirstAxisChange(e)}
+        />
+      );
     }
+    return null;
   }
 
   render() {
     return (
       <Container>
         <LeftColumn>
-          <GraphPicker onGraphTypeChange={e => this.onGraphTypeChange(e)} />
-          <XAxisPicker options={options} onSecondAxisChange={e => this.onSecondAxisChange(e)} />
+          <GraphPicker onGraphTypeChange={this.onGraphTypeChange} />
+          <XAxisPicker
+            options={options}
+            onSecondAxisChange={this.onSecondAxisChange}
+          />
           {this.renderBlocks(this.state.graph_type)}
         </LeftColumn>
         <RightColumn>
           <Chart
-            graph_type={this.state.graph_type}
+            graphType={this.state.graph_type}
             data={values}
             Y_selected={this.state.Y_selected_value}
             X_selected={this.state.X_selected_value}

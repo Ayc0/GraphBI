@@ -10,23 +10,28 @@ import countYAxis from '../functions/countYAxis';
 // import sumYAxis from '../functions/sumYAxis';
 // import meanYAxis from '../functions/meanYAxis';
 
-const RenderGraph = ({ graph_type, data, Y_selected, X_selected }) => {
-  switch (graph_type) {
+const RenderGraph = ({ graphType, data, Y_selected, X_selected }) => {
+  switch (graphType) {
     case 'pie-chart':
       return (
         <SimplePieChart
-          data={countYAxis(filterXAxis(data, X_selected), Y_selected.map(option => option.label))}
+          data={countYAxis(
+            filterXAxis(data, X_selected),
+            Y_selected.map(option => option.label),
+          )}
         />
       );
-      break;
     case 'area-chart':
       return (
         <Chart
-          data={countYAxis(filterXAxis(data, X_selected), Y_selected.map(option => option.label))}
+          data={countYAxis(
+            filterXAxis(data, X_selected),
+            Y_selected.map(option => option.label),
+          )}
         />
       );
-      break;
     default:
+      // eslint-disable-next-line
       return <h1>Sorry, the chart selected isn't available yet</h1>;
   }
 };
