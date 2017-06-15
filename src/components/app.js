@@ -22,10 +22,9 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      options,
       graph_type: 'pie-chart',
       Y_selected_value: [],
-      X_selected_value: options[1],
+      X_selected_value: '',
     };
 
     this.onGraphTypeChange = this.onGraphTypeChange.bind(this);

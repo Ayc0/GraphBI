@@ -8,13 +8,19 @@ class XAxisPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected_value: this.props.options[1],
+      selected_value: this.props.options[2],
     };
+
+    this.onSelectChange = this.onSelectChange.bind(this);
   }
 
-  onSelectChange(e) {
-    this.setState({ selected_value: e });
-    this.props.onSecondAxisChange(e);
+  componentWillMount() {
+    this.props.onSecondAxisChange(this.props.options[2].label);
+  }
+
+  onSelectChange(term) {
+    this.setState({ selected_value: term });
+    this.props.onSecondAxisChange(term);
   }
 
   render() {
@@ -27,9 +33,7 @@ class XAxisPicker extends Component {
           name="X-axis"
           value={this.state.selected_value}
           options={this.props.options}
-          onChange={(e) => {
-            this.onSelectChange(e.label);
-          }}
+          onChange={event => this.onSelectChange(event.label)}
         />
       </Block>
     );

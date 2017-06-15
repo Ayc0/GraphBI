@@ -13,13 +13,9 @@ import countYAxis from '../functions/countYAxis';
 const RenderGraph = ({ graphType, data, Y_selected, X_selected }) => {
   switch (graphType) {
     case 'pie-chart':
+      console.log(X_selected);
       return (
-        <SimplePieChart
-          data={countYAxis(
-            filterXAxis(data, X_selected),
-            Y_selected.map(option => option.label),
-          )}
-        />
+        <SimplePieChart data={countYAxis(filterXAxis(data, X_selected))} />
       );
     case 'area-chart':
       return (

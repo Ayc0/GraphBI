@@ -24,19 +24,16 @@ const StackedAreaChart = ({ data }) =>
       <Tooltip />
       {Object.keys(data[0] || {})
         .filter(element => element !== 'name')
-        .map((element, id) => {
-          console.log(id, element);
-          return (
-            <Area
-              key={element}
-              type="monotone"
-              dataKey={element}
-              stroke={color[id]}
-              fill={color[id]}
-              fillOpacity={0.3}
-            />
-          );
-        })}
+        .map((element, id) => (
+          <Area
+            key={element}
+            type="monotone"
+            dataKey={element}
+            stroke={color[id]}
+            fill={color[id]}
+            fillOpacity={0.3}
+          />
+          ))}
 
     </AreaChart>
   </ResponsiveContainer>);
