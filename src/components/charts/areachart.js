@@ -22,7 +22,7 @@ const StackedAreaChart = ({ data }) =>
       <YAxis />
       <CartesianGrid strokeDasharray="3 3" />
       <Tooltip />
-      {Object.keys(data[0])
+      {Object.keys(data[0] || {})
         .filter(element => element !== 'name')
         .map((element, id) => {
           console.log(id, element);
