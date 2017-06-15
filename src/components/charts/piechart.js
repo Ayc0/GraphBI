@@ -1,8 +1,22 @@
 import React, { Component } from 'react';
-import { PieChart, Pie, Cell } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 
 const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 const RADIAN = Math.PI / 180;
+
+class CustomTooltip extends Component {
+  render() {
+    if (this.props && this.props.payload.length > 0) {
+      const item = this.props.payload[0].payload;
+      return (
+        <div style={{color: '#2f4f4f', backgroundColor:'white', borderColor:'grey', border:'0.5px solid #d3d3d3', padding: 5}}>
+          {item.name} : {item.count}
+        </div>
+      );
+    }
+    return null
+  }
+};
 
 class SimplePieChart extends Component {
   constructor(props) {
@@ -44,6 +58,7 @@ class SimplePieChart extends Component {
               <Cell key={entry} fill={color[index % color.length]} />,
             )}
           </Pie>
+          <Tooltip content={<CustomTooltip/>} />
         </PieChart>
       </div>
     );
