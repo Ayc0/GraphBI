@@ -9,14 +9,22 @@ class CustomTooltip extends Component {
     if (this.props && this.props.payload.length > 0) {
       const item = this.props.payload[0].payload;
       return (
-        <div style={{color: '#2f4f4f', backgroundColor:'white', borderColor:'grey', border:'0.5px solid #d3d3d3', padding: 5}}>
+        <div
+          style={{
+            color: '#2f4f4f',
+            backgroundColor: 'white',
+            borderColor: 'grey',
+            border: '0.5px solid #d3d3d3',
+            padding: 5,
+          }}
+        >
           {item.name} : {item.count}
         </div>
       );
     }
-    return null
+    return null;
   }
-};
+}
 
 class SimplePieChart extends Component {
   constructor(props) {
@@ -58,7 +66,7 @@ class SimplePieChart extends Component {
               <Cell key={entry} fill={color[index % color.length]} />,
             )}
           </Pie>
-          <Tooltip content={<CustomTooltip/>} />
+          <Tooltip content={<CustomTooltip />} />
         </PieChart>
       </div>
     );

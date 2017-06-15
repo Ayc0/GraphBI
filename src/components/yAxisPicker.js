@@ -4,30 +4,44 @@ import 'react-select/dist/react-select.css';
 
 import { Block, BlockTitle } from '../styles/block';
 
+const funcOptions = [
+  { label: 'Number of projects', value: 'number' },
+  { label: 'Somme', value: 'sum' },
+];
+
 class YAxisPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected_value: [],
+      selected_value: this.props.options[1],
+      selected_function: funcOptions[0],
     };
   }
 
-  onSelectChange(e) {
+  onValueChange(e) {
     this.setState({ selected_value: e });
     this.props.onFirstAxisChange(e);
+  }
+
+  onFunctionChange(e) {
+    this.setState({ selected_function: e });
   }
 
   render() {
     return (
       <Block>
         <BlockTitle>Y Axis :</BlockTitle>
-        <p>Sum of</p>
         <Select
-          name="Y-axis"
-          multi
+          name="Y-axis-value"
           value={this.state.selected_value}
           options={this.props.options}
-          onChange={e => this.onSelectChange(e)}
+          onChange={e => this.onValueChange(e)}
+        />
+        <Select
+          name="Y-axis-function"
+          value={this.state.selected_function}
+          options={funcOptions}
+          onChange={e => this.onFunctionChange(e)}
         />
       </Block>
     );

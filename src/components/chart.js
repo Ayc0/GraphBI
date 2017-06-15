@@ -14,18 +14,9 @@ const RenderGraph = ({ graphType, data, Y_selected, X_selected }) => {
   switch (graphType) {
     case 'pie-chart':
       console.log(X_selected);
-      return (
-        <SimplePieChart data={countYAxis(filterXAxis(data, X_selected))} />
-      );
+      return <SimplePieChart data={countYAxis(filterXAxis(data, X_selected))} />;
     case 'area-chart':
-      return (
-        <Chart
-          data={countYAxis(
-            filterXAxis(data, X_selected),
-            Y_selected.map(option => option.label),
-          )}
-        />
-      );
+      return <Chart data={countYAxis(filterXAxis(data, X_selected), Y_selected)} />;
     default:
       // eslint-disable-next-line
       return <h1>Sorry, the chart selected isn't available yet</h1>;

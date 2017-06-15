@@ -23,7 +23,7 @@ export default class App extends Component {
 
     this.state = {
       graph_type: 'pie-chart',
-      Y_selected_value: [],
+      Y_selected_value: '',
       X_selected_value: '',
     };
 
