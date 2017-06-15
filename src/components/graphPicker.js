@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 import { Line } from '../styles/layout';
 import { Block, BlockTitle } from '../styles/block';
@@ -10,7 +10,7 @@ import { categories } from './charts/';
 const Graph = ({ src, onClick, active, alt }) =>
   <Img src={src} alt={alt} onClick={onClick} active={active === alt} />;
 
-class GraphPicker extends Component {
+class GraphPicker extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
