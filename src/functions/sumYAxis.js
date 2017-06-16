@@ -15,10 +15,9 @@ const sumYAxis = (json, keys) => {
           const elementInt = parseInt(element[key], 10);
           return isNaN(elementInt) ? 0 : elementInt;
         });
-      })
-    }
-    else {
-      out[id]['value'] = sumBy(field.values, (element) => {
+      });
+    } else {
+      out[id].value = sumBy(field.values, (element) => {
         const elementInt = parseInt(element[keys], 10);
         return isNaN(elementInt) ? 0 : elementInt;
       });

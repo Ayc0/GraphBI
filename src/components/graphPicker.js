@@ -13,52 +13,61 @@ const Graph = ({ src, onClick, active, alt }) =>
 class GraphPicker extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      selectedValue: categories['1D'][0],
-    };
 
-    this.onSelect = this.onSelect.bind(this);
+    const defaultCategory = categories[Object.keys(categories)[0]];
+
+    this.state = {
+      selectedCategory: defaultCategory.name,
+      selectedValue: defaultCategory.charts[this.props.nbOfDim][0].alt,
+    };
   }
 
-  onSelect(event) {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.nbOfDim !== this.props.nbOfDim) {
+      const alt = (categories[this.state.selectedCategory].charts[
+        nextProps.nbOfDim
+      ][0] || {}).alt;
+      this.setState({
+        selectedValue: alt,
+      });
+      this.props.onGraphTypeChange(alt);
+    }
+  }
+
+  onSelect = (event) => {
     const alt = event.target.alt;
-    console.log('You selected', alt);
     this.setState({ selectedValue: alt });
     this.props.onGraphTypeChange(alt);
-  }
+  };
+
+  onCategorySelect = (event) => {
+    const alt = event.target.alt;
+    this.setState({ selectedCategory: alt });
+  };
 
   render() {
     return (
       <Block>
         <BlockTitle>Graph type :</BlockTitle>
         <Line>
-          {categories['1D'].map(graph =>
+          {Object.keys(categories).map(category =>
             (<Graph
-              key={graph.alt}
-              src={graph.src}
-              alt={graph.alt}
-              onClick={this.onSelect}
-              active={this.state.selectedValue}
+              key={categories[category].name}
+              src={categories[category].icon}
+              alt={categories[category].name}
+              onClick={this.onCategorySelect}
+              active={this.state.selectedCategory}
             />),
           )}
         </Line>
         <Line>
-          {categories['2D'].map(graph =>
+          {categories[this.state.selectedCategory].charts[
+            this.props.nbOfDim
+          ].map(chart =>
             (<Graph
-              key={graph.alt}
-              src={graph.src}
-              alt={graph.alt}
-              onClick={this.onSelect}
-              active={this.state.selectedValue}
-            />),
-          )}
-        </Line>
-        <Line>
-          {categories['3D'].map(graph =>
-            (<Graph
-              key={graph.alt}
-              src={graph.src}
-              alt={graph.alt}
+              key={chart.alt}
+              src={chart.src}
+              alt={chart.alt}
               onClick={this.onSelect}
               active={this.state.selectedValue}
             />),
@@ -68,5 +77,10 @@ class GraphPicker extends PureComponent {
     );
   }
 }
+
+GraphPicker.defaultProps = {
+  onGraphTypeChange: () => {},
+  nbOfDim: 1,
+};
 
 export default GraphPicker;

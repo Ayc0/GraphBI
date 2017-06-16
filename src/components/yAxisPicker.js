@@ -23,18 +23,18 @@ class YAxisPicker extends Component {
     this.props.onFunctionChange(funcOptions[0].value);
   }
 
-  onValueChange(e) {
+  onValueChange = (e) => {
     this.setState({ selected_value: e });
     this.props.onFirstAxisChange(e);
-  }
+  };
 
-  onFunctionChange(e) {
+  onFunctionChange = (e) => {
     this.setState({ selected_function: e });
     this.props.onFunctionChange(e.value);
-  }
+  };
 
-  valueSelect(selected_function) {
-    if (selected_function !== 'number') {
+  valueSelect = (selectedFunction) => {
+    if (selectedFunction !== 'number') {
       return (
         <Select
           clearable={false}
@@ -45,7 +45,8 @@ class YAxisPicker extends Component {
         />
       );
     }
-  }
+    return null;
+  };
 
   render() {
     return (

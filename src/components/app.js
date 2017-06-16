@@ -28,47 +28,52 @@ export default class App extends Component {
       Y_selected_value: '',
       X_selected_value: '',
       selected_function: '',
+      nbOfDim: 1,
     };
-
-    this.onGraphTypeChange = this.onGraphTypeChange.bind(this);
-    this.onFirstAxisChange = this.onFirstAxisChange.bind(this);
-    this.onSecondAxisChange = this.onSecondAxisChange.bind(this);
   }
 
-  onGraphTypeChange(term) {
+  onGraphTypeChange = (term) => {
     this.setState({ graph_type: term });
-  }
+  };
 
-  onFirstAxisChange(term) {
+  onFirstAxisChange = (term) => {
     this.setState({ Y_selected_value: term });
-  }
+  };
 
-  onSecondAxisChange(term) {
+  onSecondAxisChange = (term) => {
     this.setState({ X_selected_value: term });
-  }
+  };
 
-  onFunctionChange(term) {
+  onFunctionChange = (term) => {
     this.setState({ selected_function: term });
-  }
+  };
 
-  renderBlocks(selection) {
-    return (
-      <YAxisPicker
-        options={options}
-        onFirstAxisChange={e => this.onFirstAxisChange(e)}
-        onFunctionChange={e => this.onFunctionChange(e)}
-      />
-    );
-  }
+  renderBlocks = () =>
+    (<YAxisPicker
+      options={options}
+      onFirstAxisChange={e => this.onFirstAxisChange(e)}
+      onFunctionChange={e => this.onFunctionChange(e)}
+    />);
 
   render() {
     return (
       <Container>
         <LeftColumn>
-          <GraphPicker onGraphTypeChange={this.onGraphTypeChange} />
-          <XAxisPicker options={options} onSecondAxisChange={this.onSecondAxisChange} />
+          <GraphPicker
+            onGraphTypeChange={this.onGraphTypeChange}
+            nbOfDim={this.state.nbOfDim}
+          />
+          <XAxisPicker
+            options={options}
+            onSecondAxisChange={this.onSecondAxisChange}
+          />
           {this.renderBlocks(this.state.graph_type)}
-          <Plus>+</Plus>
+          <Plus
+            onClick={() =>
+              this.setState(prevState => ({ nbOfDim: prevState.nbOfDim + 1 }))}
+          >
+            +
+          </Plus>
         </LeftColumn>
         <RightColumn>
           <Chart
