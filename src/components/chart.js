@@ -14,7 +14,6 @@ import meanYAxis from '../functions/meanYAxis';
 // with name being the label (X axis) and value the value (Y axis)
 
 const getCorrespondingData = (data, Y_selected, X_selected, function_selected) => {
-  console.log("data received in function is", data);
   const new_data = filterXAxis(data, X_selected);
   switch (function_selected) {
     case 'sum':
@@ -41,14 +40,15 @@ const getGraph = (graphType, data) => {
 };
 
 const RenderGraph = ({ graphType, data, Y_selected, X_selected, function_selected }) => {
+  const projetOrYValue = (function_selected === 'number') ? 'projects' : Y_selected;
   const newData = getCorrespondingData(data, Y_selected, X_selected, function_selected);
-  const title = <h1>{function_selected} of {Y_selected}, group by {X_selected}</h1>;
+  const title = <h1>{function_selected} of {projetOrYValue} by {X_selected}</h1>;
   return (
     <div>
       {title}
       {getGraph(graphType, newData)}
     </div>
-  )
+  );
 };
 
 export default RenderGraph;

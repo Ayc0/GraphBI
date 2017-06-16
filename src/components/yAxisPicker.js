@@ -33,10 +33,9 @@ class YAxisPicker extends Component {
     this.props.onFunctionChange(e.value);
   }
 
-  render() {
-    return (
-      <Block>
-        <BlockTitle>Y Axis :</BlockTitle>
+  valueSelect(selected_function) {
+    if (selected_function !== 'number') {
+      return (
         <Select
           clearable={false}
           name="Y-axis-value"
@@ -44,6 +43,14 @@ class YAxisPicker extends Component {
           options={this.props.options}
           onChange={e => this.onValueChange(e.label)}
         />
+      );
+    }
+  }
+
+  render() {
+    return (
+      <Block>
+        <BlockTitle>Y Axis :</BlockTitle>
         <Select
           clearable={false}
           name="Y-axis-function"
@@ -51,6 +58,7 @@ class YAxisPicker extends Component {
           options={funcOptions}
           onChange={e => this.onFunctionChange(e)}
         />
+        {this.valueSelect(this.state.selected_function.value)}
       </Block>
     );
   }
