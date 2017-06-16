@@ -40,11 +40,20 @@ const getGraph = (graphType, data) => {
 };
 
 const RenderGraph = ({ graphType, data, Y_selected, X_selected, function_selected }) => {
-  const projetOrYValue = (function_selected === 'number') ? 'projects' : Y_selected;
+  const projetOrYValue = function_selected === 'number' ? 'projects' : Y_selected;
   const newData = getCorrespondingData(data, Y_selected, X_selected, function_selected);
   const title = <h1>{function_selected} of {projetOrYValue} by {X_selected}</h1>;
   return (
-    <div style={{width: '100%', height: '75vh'}}>
+    <div
+      style={{
+        width: '100%',
+        height: '75vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       {title}
       {getGraph(graphType, newData)}
     </div>

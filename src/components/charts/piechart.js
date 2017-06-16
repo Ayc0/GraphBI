@@ -48,7 +48,7 @@ class SimplePieChart extends Component {
 
   render() {
     return (
-      <ResponsiveContainer>
+      <ResponsiveContainer width="70%">
         <PieChart>
           <Pie
             dataKey="value"
