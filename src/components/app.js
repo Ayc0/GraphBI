@@ -28,7 +28,7 @@ export default class App extends Component {
       YSelectedValue: '',
       XSelectedValue: '',
       selectedFunction: '',
-      nbOfDim: 1,
+      nbOfDim: 2,
     };
   }
 

@@ -80,7 +80,7 @@ class GraphPicker extends PureComponent {
 
 GraphPicker.defaultProps = {
   onGraphTypeChange: () => {},
-  nbOfDim: 1,
+  nbOfDim: 2,
 };
 
 export default GraphPicker;

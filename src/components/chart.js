@@ -55,16 +55,16 @@ const RenderGraph = ({
   );
   const title = <h1>{functionSelected} of {projetOrYValue} by {XSelected}</h1>;
   return (
-  <div
-  style={{
-    width: '100%',
-    height: '75vh',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  }}
-  >
+    <div
+      style={{
+        width: '100%',
+        height: '75vh',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
       {title}
       {getGraph(graphType, newData)}
     </div>

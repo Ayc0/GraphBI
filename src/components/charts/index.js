@@ -38,8 +38,7 @@ const categories = {
     name: 'pie',
     icon: pieChart,
     charts: {
-      1: [graphs.pieChart],
-      2: [],
+      2: [graphs.pieChart],
       3: [],
     },
   },
@@ -47,8 +46,7 @@ const categories = {
     name: 'line',
     icon: lineChart,
     charts: {
-      1: [graphs.lineChart],
-      2: [],
+      2: [graphs.lineChart],
       3: [],
     },
   },
@@ -56,7 +54,6 @@ const categories = {
     name: 'bar',
     icon: barsChart,
     charts: {
-      1: [],
       2: [graphs.barsChart],
       3: [graphs.stackBarsChart, graphs.multiBarsChart],
     },
@@ -65,7 +62,6 @@ const categories = {
     name: 'area',
     icon: stackAreaChart,
     charts: {
-      1: [],
       2: [graphs.areaChart],
       3: [graphs.stackAreaChart],
     },
