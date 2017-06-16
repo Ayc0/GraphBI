@@ -48,7 +48,6 @@ class SimplePieChart extends Component {
   render() {
     return (
       <div style={{ height: 'auto', width: '100%' }}>
-        <h1>PieChart</h1>
         <PieChart width={800} height={400}>
           <Pie
             dataKey="value"

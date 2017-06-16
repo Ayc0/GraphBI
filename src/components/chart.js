@@ -28,19 +28,27 @@ const getCorrespondingData = (data, Y_selected, X_selected, function_selected) =
   }
 };
 
-const RenderGraph = ({ graphType, data, Y_selected, X_selected, function_selected }) => {
-  console.log("Trying to render piechart with function", function_selected);
-  const new_data = getCorrespondingData(data, Y_selected, X_selected, function_selected);
-  console.log("Data used is", new_data);
+const getGraph = (graphType, data) => {
   switch (graphType) {
     case 'pie-chart':
-      return <SimplePieChart data={new_data} />;
+      return <SimplePieChart data={data} />;
     case 'area-chart':
-      return <Chart data={new_data} />;
+      return <Chart data={data} />;
     default:
       // eslint-disable-next-line
-      return <h1>Sorry, the chart selected isn't available yet</h1>;
+      return <h2>Sorry, the chart selected isn't available yet</h2>;
   }
+};
+
+const RenderGraph = ({ graphType, data, Y_selected, X_selected, function_selected }) => {
+  const newData = getCorrespondingData(data, Y_selected, X_selected, function_selected);
+  const title = <h1>{function_selected} of {Y_selected}, group by {X_selected}</h1>;
+  return (
+    <div>
+      {title}
+      {getGraph(graphType, newData)}
+    </div>
+  )
 };
 
 export default RenderGraph;
