@@ -24,28 +24,28 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      graph_type: 'pie-chart',
-      Y_selected_value: '',
-      X_selected_value: '',
-      selected_function: '',
+      graphType: 'pie-chart',
+      YSelectedValue: '',
+      XSelectedValue: '',
+      selectedFunction: '',
       nbOfDim: 1,
     };
   }
 
   onGraphTypeChange = (term) => {
-    this.setState({ graph_type: term });
+    this.setState({ graphType: term });
   };
 
   onFirstAxisChange = (term) => {
-    this.setState({ Y_selected_value: term });
+    this.setState({ YSelectedValue: term });
   };
 
   onSecondAxisChange = (term) => {
-    this.setState({ X_selected_value: term });
+    this.setState({ XSelectedValue: term });
   };
 
   onFunctionChange = (term) => {
-    this.setState({ selected_function: term });
+    this.setState({ selectedFunction: term });
   };
 
   renderBlocks = () =>
@@ -67,7 +67,7 @@ export default class App extends Component {
             options={options}
             onSecondAxisChange={this.onSecondAxisChange}
           />
-          {this.renderBlocks(this.state.graph_type)}
+          {this.renderBlocks(this.state.graphType)}
           <Plus
             onClick={() =>
               this.setState(prevState => ({ nbOfDim: prevState.nbOfDim + 1 }))}
@@ -77,11 +77,11 @@ export default class App extends Component {
         </LeftColumn>
         <RightColumn>
           <Chart
-            graphType={this.state.graph_type}
+            graphType={this.state.graphType}
             data={values}
-            Y_selected={this.state.Y_selected_value}
-            X_selected={this.state.X_selected_value}
-            function_selected={this.state.selected_function}
+            YSelected={this.state.YSelectedValue}
+            XSelected={this.state.XSelectedValue}
+            functionSelected={this.state.selectedFunction}
           />
         </RightColumn>
       </Container>

@@ -13,8 +13,8 @@ class YAxisPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected_value: this.props.options[1],
-      selected_function: funcOptions[0],
+      selectedValue: this.props.options[1],
+      selectedFunction: funcOptions[0],
     };
   }
 
@@ -24,12 +24,12 @@ class YAxisPicker extends Component {
   }
 
   onValueChange = (e) => {
-    this.setState({ selected_value: e });
+    this.setState({ selectedValue: e });
     this.props.onFirstAxisChange(e);
   };
 
   onFunctionChange = (e) => {
-    this.setState({ selected_function: e });
+    this.setState({ selectedFunction: e });
     this.props.onFunctionChange(e.value);
   };
 
@@ -39,7 +39,7 @@ class YAxisPicker extends Component {
         <Select
           clearable={false}
           name="Y-axis-value"
-          value={this.state.selected_value}
+          value={this.state.selectedValue}
           options={this.props.options}
           onChange={e => this.onValueChange(e.label)}
         />
@@ -55,11 +55,11 @@ class YAxisPicker extends Component {
         <Select
           clearable={false}
           name="Y-axis-function"
-          value={this.state.selected_function}
+          value={this.state.selectedFunction}
           options={funcOptions}
           onChange={e => this.onFunctionChange(e)}
         />
-        {this.valueSelect(this.state.selected_function.value)}
+        {this.valueSelect(this.state.selectedFunction.value)}
       </Block>
     );
   }
