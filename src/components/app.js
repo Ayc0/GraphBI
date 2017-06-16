@@ -25,6 +25,7 @@ export default class App extends Component {
       graph_type: 'pie-chart',
       Y_selected_value: '',
       X_selected_value: '',
+      selected_function: '',
     };
 
     this.onGraphTypeChange = this.onGraphTypeChange.bind(this);
@@ -44,16 +45,18 @@ export default class App extends Component {
     this.setState({ X_selected_value: term });
   }
 
+  onFunctionChange(term) {
+    this.setState({ selected_function: term });
+  }
+
   renderBlocks(selection) {
-    if (selection !== 'pie-chart') {
-      return (
-        <YAxisPicker
-          options={options}
-          onFirstAxisChange={e => this.onFirstAxisChange(e)}
-        />
-      );
-    }
-    return null;
+    return (
+      <YAxisPicker
+        options={options}
+        onFirstAxisChange={e => this.onFirstAxisChange(e)}
+        onFunctionChange={e => this.onFunctionChange(e)}
+      />
+    );
   }
 
   render() {
@@ -61,10 +64,7 @@ export default class App extends Component {
       <Container>
         <LeftColumn>
           <GraphPicker onGraphTypeChange={this.onGraphTypeChange} />
-          <XAxisPicker
-            options={options}
-            onSecondAxisChange={this.onSecondAxisChange}
-          />
+          <XAxisPicker options={options} onSecondAxisChange={this.onSecondAxisChange} />
           {this.renderBlocks(this.state.graph_type)}
         </LeftColumn>
         <RightColumn>
@@ -73,6 +73,7 @@ export default class App extends Component {
             data={values}
             Y_selected={this.state.Y_selected_value}
             X_selected={this.state.X_selected_value}
+            function_selected={this.state.selected_function}
           />
         </RightColumn>
       </Container>

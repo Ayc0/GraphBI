@@ -9,12 +9,20 @@ const sumYAxis = (json, keys) => {
   const out = [];
   json.forEach((field, id) => {
     out.push({ name: field.name });
-    keys.forEach((key) => {
-      out[id][key] = sumBy(field.values, (element) => {
-        const elementInt = parseInt(element[key], 10);
+    if (typeof keys === 'object') {
+      keys.forEach((key) => {
+        out[id][key] = sumBy(field.values, (element) => {
+          const elementInt = parseInt(element[key], 10);
+          return isNaN(elementInt) ? 0 : elementInt;
+        });
+      })
+    }
+    else {
+      out[id]['value'] = sumBy(field.values, (element) => {
+        const elementInt = parseInt(element[keys], 10);
         return isNaN(elementInt) ? 0 : elementInt;
       });
-    });
+    }
   });
   return out;
 };

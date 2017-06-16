@@ -51,7 +51,7 @@ class SimplePieChart extends Component {
         <h1>PieChart</h1>
         <PieChart width={800} height={400}>
           <Pie
-            dataKey="count"
+            dataKey="value"
             data={this.props.data}
             cx={200}
             cy={200}

@@ -7,16 +7,36 @@ import SimplePieChart from './charts/piechart';
 // Functions
 import filterXAxis from '../functions/filterXAxis';
 import countYAxis from '../functions/countYAxis';
-// import sumYAxis from '../functions/sumYAxis';
-// import meanYAxis from '../functions/meanYAxis';
+import sumYAxis from '../functions/sumYAxis';
+import meanYAxis from '../functions/meanYAxis';
 
-const RenderGraph = ({ graphType, data, Y_selected, X_selected }) => {
+// data should be a list of {name: string, value: number} elements
+// with name being the label (X axis) and value the value (Y axis)
+
+const getCorrespondingData = (data, Y_selected, X_selected, function_selected) => {
+  console.log("data received in function is", data);
+  const new_data = filterXAxis(data, X_selected);
+  switch (function_selected) {
+    case 'sum':
+      return sumYAxis(new_data, Y_selected);
+    case 'number':
+      return countYAxis(new_data);
+    case 'avg':
+      return meanYAxis(new_data, Y_selected);
+    default:
+      return countYAxis(new_data);
+  }
+};
+
+const RenderGraph = ({ graphType, data, Y_selected, X_selected, function_selected }) => {
+  console.log("Trying to render piechart with function", function_selected);
+  const new_data = getCorrespondingData(data, Y_selected, X_selected, function_selected);
+  console.log("Data used is", new_data);
   switch (graphType) {
     case 'pie-chart':
-      console.log(X_selected);
-      return <SimplePieChart data={countYAxis(filterXAxis(data, X_selected))} />;
+      return <SimplePieChart data={new_data} />;
     case 'area-chart':
-      return <Chart data={countYAxis(filterXAxis(data, X_selected), Y_selected)} />;
+      return <Chart data={new_data} />;
     default:
       // eslint-disable-next-line
       return <h1>Sorry, the chart selected isn't available yet</h1>;

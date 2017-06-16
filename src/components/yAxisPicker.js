@@ -25,6 +25,7 @@ class YAxisPicker extends Component {
 
   onFunctionChange(e) {
     this.setState({ selected_function: e });
+    this.props.onFunctionChange(e.value);
   }
 
   render() {
@@ -32,12 +33,14 @@ class YAxisPicker extends Component {
       <Block>
         <BlockTitle>Y Axis :</BlockTitle>
         <Select
+          clearable={false}
           name="Y-axis-value"
           value={this.state.selected_value}
           options={this.props.options}
-          onChange={e => this.onValueChange(e)}
+          onChange={e => this.onValueChange(e.label)}
         />
         <Select
+          clearable={false}
           name="Y-axis-function"
           value={this.state.selected_function}
           options={funcOptions}
