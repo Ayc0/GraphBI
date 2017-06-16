@@ -44,7 +44,7 @@ const RenderGraph = ({ graphType, data, Y_selected, X_selected, function_selecte
   const newData = getCorrespondingData(data, Y_selected, X_selected, function_selected);
   const title = <h1>{function_selected} of {projetOrYValue} by {X_selected}</h1>;
   return (
-    <div>
+    <div style={{width: '100%', height: '75vh'}}>
       {title}
       {getGraph(graphType, newData)}
     </div>
