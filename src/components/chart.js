@@ -13,17 +13,17 @@ import meanYAxis from '../functions/meanYAxis';
 // data should be a list of {name: string, value: number} elements
 // with name being the label (X axis) and value the value (Y axis)
 
-const getCorrespondingData = (data, Y_selected, X_selected, function_selected) => {
-  const new_data = filterXAxis(data, X_selected);
-  switch (function_selected) {
+const getCorrespondingData = (data, YSelected, XSelected, functionSelected) => {
+  const newData = filterXAxis(data, XSelected);
+  switch (functionSelected) {
     case 'sum':
-      return sumYAxis(new_data, Y_selected);
+      return sumYAxis(newData, YSelected);
     case 'number':
-      return countYAxis(new_data);
+      return countYAxis(newData);
     case 'avg':
-      return meanYAxis(new_data, Y_selected);
+      return meanYAxis(newData, YSelected);
     default:
-      return countYAxis(new_data);
+      return countYAxis(newData);
   }
 };
 
@@ -39,21 +39,32 @@ const getGraph = (graphType, data) => {
   }
 };
 
-const RenderGraph = ({ graphType, data, Y_selected, X_selected, function_selected }) => {
-  const projetOrYValue = function_selected === 'number' ? 'projects' : Y_selected;
-  const newData = getCorrespondingData(data, Y_selected, X_selected, function_selected);
-  const title = <h1>{function_selected} of {projetOrYValue} by {X_selected}</h1>;
+const RenderGraph = ({
+  graphType,
+  data,
+  YSelected,
+  XSelected,
+  functionSelected,
+}) => {
+  const projetOrYValue = functionSelected === 'number' ? 'projects' : YSelected;
+  const newData = getCorrespondingData(
+    data,
+    YSelected,
+    XSelected,
+    functionSelected,
+  );
+  const title = <h1>{functionSelected} of {projetOrYValue} by {XSelected}</h1>;
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '75vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
+  <div
+  style={{
+    width: '100%',
+    height: '75vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }}
+  >
       {title}
       {getGraph(graphType, newData)}
     </div>

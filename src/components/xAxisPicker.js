@@ -8,7 +8,7 @@ class XAxisPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected_value: this.props.options[2],
+      selectedValue: this.props.options[2],
     };
 
     this.onSelectChange = this.onSelectChange.bind(this);
@@ -19,7 +19,7 @@ class XAxisPicker extends Component {
   }
 
   onSelectChange(term) {
-    this.setState({ selected_value: term });
+    this.setState({ selectedValue: term });
     this.props.onSecondAxisChange(term);
   }
 
@@ -31,7 +31,7 @@ class XAxisPicker extends Component {
         <Select
           clearable={false}
           name="X-axis"
-          value={this.state.selected_value}
+          value={this.state.selectedValue}
           options={this.props.options}
           onChange={event => this.onSelectChange(event.label)}
         />

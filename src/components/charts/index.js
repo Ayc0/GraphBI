@@ -34,9 +34,42 @@ const graphs = {
 };
 
 const categories = {
-  '1D': [graphs.pieChart],
-  '2D': [graphs.lineChart, graphs.barsChart, graphs.areaChart],
-  '3D': [graphs.stackBarsChart, graphs.multiBarsChart, graphs.stackAreaChart],
+  pie: {
+    name: 'pie',
+    icon: pieChart,
+    charts: {
+      1: [graphs.pieChart],
+      2: [],
+      3: [],
+    },
+  },
+  line: {
+    name: 'line',
+    icon: lineChart,
+    charts: {
+      1: [graphs.lineChart],
+      2: [],
+      3: [],
+    },
+  },
+  bar: {
+    name: 'bar',
+    icon: barsChart,
+    charts: {
+      1: [],
+      2: [graphs.barsChart],
+      3: [graphs.stackBarsChart, graphs.multiBarsChart],
+    },
+  },
+  area: {
+    name: 'area',
+    icon: stackAreaChart,
+    charts: {
+      1: [],
+      2: [graphs.areaChart],
+      3: [graphs.stackAreaChart],
+    },
+  },
 };
 
 export { graphs, categories };

@@ -24,59 +24,64 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      graph_type: 'pie-chart',
-      Y_selected_value: '',
-      X_selected_value: '',
-      selected_function: '',
+      graphType: 'pie-chart',
+      YSelectedValue: '',
+      XSelectedValue: '',
+      selectedFunction: '',
+      nbOfDim: 1,
     };
-
-    this.onGraphTypeChange = this.onGraphTypeChange.bind(this);
-    this.onFirstAxisChange = this.onFirstAxisChange.bind(this);
-    this.onSecondAxisChange = this.onSecondAxisChange.bind(this);
   }
 
-  onGraphTypeChange(term) {
-    this.setState({ graph_type: term });
-  }
+  onGraphTypeChange = (term) => {
+    this.setState({ graphType: term });
+  };
 
-  onFirstAxisChange(term) {
-    this.setState({ Y_selected_value: term });
-  }
+  onFirstAxisChange = (term) => {
+    this.setState({ YSelectedValue: term });
+  };
 
-  onSecondAxisChange(term) {
-    this.setState({ X_selected_value: term });
-  }
+  onSecondAxisChange = (term) => {
+    this.setState({ XSelectedValue: term });
+  };
 
-  onFunctionChange(term) {
-    this.setState({ selected_function: term });
-  }
+  onFunctionChange = (term) => {
+    this.setState({ selectedFunction: term });
+  };
 
-  renderBlocks(selection) {
-    return (
-      <YAxisPicker
-        options={options}
-        onFirstAxisChange={e => this.onFirstAxisChange(e)}
-        onFunctionChange={e => this.onFunctionChange(e)}
-      />
-    );
-  }
+  renderBlocks = () =>
+    (<YAxisPicker
+      options={options}
+      onFirstAxisChange={e => this.onFirstAxisChange(e)}
+      onFunctionChange={e => this.onFunctionChange(e)}
+    />);
 
   render() {
     return (
       <Container>
         <LeftColumn>
-          <GraphPicker onGraphTypeChange={this.onGraphTypeChange} />
-          <XAxisPicker options={options} onSecondAxisChange={this.onSecondAxisChange} />
-          {this.renderBlocks(this.state.graph_type)}
-          <Plus>+</Plus>
+          <GraphPicker
+            onGraphTypeChange={this.onGraphTypeChange}
+            nbOfDim={this.state.nbOfDim}
+          />
+          <XAxisPicker
+            options={options}
+            onSecondAxisChange={this.onSecondAxisChange}
+          />
+          {this.renderBlocks(this.state.graphType)}
+          <Plus
+            onClick={() =>
+              this.setState(prevState => ({ nbOfDim: prevState.nbOfDim + 1 }))}
+          >
+            +
+          </Plus>
         </LeftColumn>
         <RightColumn>
           <Chart
-            graphType={this.state.graph_type}
+            graphType={this.state.graphType}
             data={values}
-            Y_selected={this.state.Y_selected_value}
-            X_selected={this.state.X_selected_value}
-            function_selected={this.state.selected_function}
+            YSelected={this.state.YSelectedValue}
+            XSelected={this.state.XSelectedValue}
+            functionSelected={this.state.selectedFunction}
           />
         </RightColumn>
       </Container>
