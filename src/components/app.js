@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import 'react-select/dist/react-select.css';
 
 import { Container, LeftColumn, RightColumn } from '../styles/layout';
+import Plus from '../styles/plus';
+
 import GraphPicker from './graphPicker';
 import YAxisPicker from './yAxisPicker';
 import XAxisPicker from './xAxisPicker';
@@ -66,6 +68,7 @@ export default class App extends Component {
           <GraphPicker onGraphTypeChange={this.onGraphTypeChange} />
           <XAxisPicker options={options} onSecondAxisChange={this.onSecondAxisChange} />
           {this.renderBlocks(this.state.graph_type)}
+          <Plus>+</Plus>
         </LeftColumn>
         <RightColumn>
           <Chart
