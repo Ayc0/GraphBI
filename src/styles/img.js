@@ -12,17 +12,17 @@ const Img = styled.img`
     cursor: pointer;
     background-color: #edf0f2;
   };
+
+  height: calc(25% - 16px);
+  width: calc(25% - 16px);
+
   @media (max-width: 576px) {
     height: calc(50% - 16px);
     width: calc(50% - 16px);
-  }
-  @media (min-width: 768px) and (max-width: 991px) {
+  };
+  @media (min-width: 577px) and (max-width: 750px) {
     height: calc(33% - 16px);
     width: calc(33% - 16px);
-  };
-  @media (min-width: 992px) {
-    height: calc(25% - 16px);
-    width: calc(25% - 16px);
   };
 `;
 
