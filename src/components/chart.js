@@ -29,25 +29,36 @@ const getCorrespondingData = (data, YSelected, XSelected, functionSelected) => {
   }
 };
 
-const getGraph = (graphType, data) => {
+const getGraph = (graphType, data, XSelected) => {
   switch (graphType) {
     case 'pie-chart':
-      return <SimplePieChart data={data} />;
+      return <SimplePieChart data={data} XSelected={XSelected} />;
     case 'area-chart':
-      return <Chart data={data} />;
+      return <Chart data={data} XSelected={XSelected} />;
     case 'bar-chart':
-      return <SimpleBarChart data={data} />;
+      return <SimpleBarChart data={data} XSelected={XSelected} />;
     case 'line-chart':
-      return <SimpleLineChart data={data} />;
+      return <SimpleLineChart data={data} XSelected={XSelected} />;
     default:
       // eslint-disable-next-line
       return <h2>Sorry, the chart selected isn't available yet</h2>;
   }
 };
 
-const RenderGraph = ({ graphType, data, YSelected, XSelected, functionSelected }) => {
+const RenderGraph = ({
+  graphType,
+  data,
+  YSelected,
+  XSelected,
+  functionSelected,
+}) => {
   const projetOrYValue = functionSelected === 'number' ? 'projects' : YSelected;
-  const newData = getCorrespondingData(data, YSelected, XSelected, functionSelected);
+  const newData = getCorrespondingData(
+    data,
+    YSelected,
+    XSelected,
+    functionSelected,
+  );
   const title = <h1>{functionSelected} of {projetOrYValue} by {XSelected}</h1>;
   return (
     <div
@@ -61,7 +72,7 @@ const RenderGraph = ({ graphType, data, YSelected, XSelected, functionSelected }
       }}
     >
       {title}
-      {getGraph(graphType, newData)}
+      {getGraph(graphType, newData, XSelected)}
     </div>
   );
 };

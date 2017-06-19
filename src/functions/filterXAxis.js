@@ -5,7 +5,7 @@ import weekConverter from './weekConverter';
 
 import data from '../data/projects.json';
 
-const numberLabels = data[0]
+export const numberLabels = data[0]
   .filter(column => column.type === 'number')
   .map(column => column.title);
 

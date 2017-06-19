@@ -9,14 +9,13 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+import { checkType, checkDomain, checkTickFormater } from './xAxis';
+
+// import dateFormatter from '../../functions/dateFormatter';
+// labelFormatter={dateFormatter}
 const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 
-const dateFormatter = (tick) => {
-  const date = new Date(tick);
-  return date.toLocaleDateString();
-};
-
-const StackedAreaChart = ({ data }) =>
+const StackedAreaChart = ({ data, XSelected }) =>
   (<ResponsiveContainer>
     <AreaChart
       style={{ height: 'auto', width: '100%' }}
@@ -25,13 +24,13 @@ const StackedAreaChart = ({ data }) =>
     >
       <XAxis
         dataKey="name"
-        type="number"
-        domain={['dataMin', 'dataMax']}
-        tickFormatter={dateFormatter}
+        type={checkType(XSelected)}
+        domain={checkDomain(XSelected)}
+        tickFormatter={checkTickFormater(XSelected)}
       />
       <YAxis />
       <CartesianGrid strokeDasharray="3 3" />
-      <Tooltip labelFormatter={dateFormatter} />
+      <Tooltip />
       {Object.keys(data[0] || {})
         .filter(element => element !== 'name')
         .map((element, id) =>
