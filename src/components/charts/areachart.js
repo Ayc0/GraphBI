@@ -18,22 +18,23 @@ const StackedAreaChart = ({ data }) =>
       data={data}
       margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
     >
-      <XAxis dataKey="name" />
+      <XAxis dataKey="name" type="number" domain={['dataMin', 'dataMax']} />
       <YAxis />
       <CartesianGrid strokeDasharray="3 3" />
       <Tooltip />
       {Object.keys(data[0] || {})
         .filter(element => element !== 'name')
-        .map((element, id) => (
-          <Area
+        .map((element, id) =>
+          (<Area
+            connectNulls
             key={element}
             type="monotone"
             dataKey={element}
             stroke={color[id]}
             fill={color[id]}
             fillOpacity={0.3}
-          />
-          ))}
+          />),
+        )}
 
     </AreaChart>
   </ResponsiveContainer>);
