@@ -29,7 +29,7 @@ const graphs = {
   stackAreaChart: {
     src: stackAreaChart,
     alt: 'stack-area-chart',
-    component: () => {},
+    component: AreaChart,
   },
 };
 

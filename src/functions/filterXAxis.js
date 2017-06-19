@@ -10,28 +10,23 @@ import weekConverter from './weekConverter';
 // and values regroups the elements of the JSON containing the associate label
 
 const filterXAxis = (json, xAxis) => {
-  if (xAxis === 'World availabilty date') {
-    const newJson = json.map((element) => {
-      const newElement = { ...element };
-      newElement['World availabilty date'] = weekConverter(
-        element['World availabilty date'],
-      );
-      return {
-        name: newElement['World availabilty date'],
-        values: [element],
-      };
-    });
-    const out = sortBy(newJson.filter(element => element.name !== -1), [
-      'name',
-    ]);
-    console.log(out);
-    return out;
-  }
   const groupedBy = groupBy(json, element => element[xAxis]);
   const out = Object.keys(groupedBy).map(key => ({
     name: key,
     values: groupedBy[key],
   }));
+  if (xAxis === 'World availabilty date') {
+    return sortBy(
+      out
+        .map((element) => {
+          const newElement = { ...element };
+          newElement.name = weekConverter(element.name);
+          return newElement;
+        })
+        .filter(element => !isNaN(element.name)),
+      ['name'],
+    );
+  }
   return out.filter(element => element.name !== 'undefined');
 };
 

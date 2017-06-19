@@ -11,6 +11,11 @@ import {
 
 const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 
+const dateFormatter = (tick) => {
+  const date = new Date(tick);
+  return date.toLocaleDateString();
+};
+
 const StackedAreaChart = ({ data }) =>
   (<ResponsiveContainer>
     <AreaChart
@@ -18,10 +23,15 @@ const StackedAreaChart = ({ data }) =>
       data={data}
       margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
     >
-      <XAxis dataKey="name" type="number" domain={['dataMin', 'dataMax']} />
+      <XAxis
+        dataKey="name"
+        type="number"
+        domain={['dataMin', 'dataMax']}
+        tickFormatter={dateFormatter}
+      />
       <YAxis />
       <CartesianGrid strokeDasharray="3 3" />
-      <Tooltip />
+      <Tooltip labelFormatter={dateFormatter} />
       {Object.keys(data[0] || {})
         .filter(element => element !== 'name')
         .map((element, id) =>
