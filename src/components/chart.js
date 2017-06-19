@@ -4,6 +4,7 @@ import React from 'react';
 import Chart from './charts/areachart';
 import SimplePieChart from './charts/piechart';
 import SimpleBarChart from './charts/barchart';
+import SimpleLineChart from './charts/linechart';
 
 // Functions
 import filterXAxis from '../functions/filterXAxis';
@@ -36,26 +37,17 @@ const getGraph = (graphType, data) => {
       return <Chart data={data} />;
     case 'bar-chart':
       return <SimpleBarChart data={data} />;
+    case 'line-chart':
+      return <SimpleLineChart data={data} />;
     default:
       // eslint-disable-next-line
       return <h2>Sorry, the chart selected isn't available yet</h2>;
   }
 };
 
-const RenderGraph = ({
-  graphType,
-  data,
-  YSelected,
-  XSelected,
-  functionSelected,
-}) => {
+const RenderGraph = ({ graphType, data, YSelected, XSelected, functionSelected }) => {
   const projetOrYValue = functionSelected === 'number' ? 'projects' : YSelected;
-  const newData = getCorrespondingData(
-    data,
-    YSelected,
-    XSelected,
-    functionSelected,
-  );
+  const newData = getCorrespondingData(data, YSelected, XSelected, functionSelected);
   const title = <h1>{functionSelected} of {projetOrYValue} by {XSelected}</h1>;
   return (
     <div
