@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import 'react-select/dist/react-select.css';
 
 import { Container, LeftColumn, RightColumn } from '../styles/layout';
-import Plus from '../styles/plus';
 
 import GraphPicker from './graphPicker';
 import YAxisPicker from './yAxisPicker';
@@ -72,12 +71,6 @@ export default class App extends Component {
           />
           <XAxisPicker options={options} onXAxisChange={this.onXAxisChange} />
           {this.renderBlocks(this.state.graphType)}
-          <Plus
-            onClick={() =>
-              this.setState(prevState => ({ nbOfDim: prevState.nbOfDim + 1 }))}
-          >
-            +
-          </Plus>
         </LeftColumn>
         <RightColumn>
           <Chart
