@@ -27,22 +27,27 @@ class GraphPicker extends PureComponent {
       const alt = (categories[this.state.selectedCategory].charts[
         nextProps.nbOfDim
       ][0] || {}).alt;
-      this.setState({
-        selectedValue: alt,
-      });
-      this.props.onGraphTypeChange(alt);
+      this.onSelectGraph(alt);
     }
   }
 
-  onSelect = (event) => {
-    const alt = event.target.alt;
+  onSelectGraph = (alt) => {
     this.setState({ selectedValue: alt });
     this.props.onGraphTypeChange(alt);
   };
 
+  onSelect = (event) => {
+    const alt = event.target.alt;
+    this.onSelectGraph(alt);
+  };
+
   onCategorySelect = (event) => {
     const alt = event.target.alt;
-    this.setState({ selectedCategory: alt });
+    const graphAlt = categories[alt].charts[this.props.nbOfDim][0].alt;
+    this.setState({
+      selectedCategory: alt,
+    });
+    this.onSelectGraph(graphAlt);
   };
 
   render() {
