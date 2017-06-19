@@ -10,11 +10,12 @@ import stackAreaChart from '../../images/stack-area-chart.svg';
 // Graph components
 import PieChart from './piechart';
 import AreaChart from './areachart';
+import BarChart from './barchart';
 
 const graphs = {
   pieChart: { src: pieChart, alt: 'pie-chart', component: PieChart },
   lineChart: { src: lineChart, alt: 'line-chart', component: () => {} },
-  barsChart: { src: barsChart, alt: 'bars-chart', component: () => {} },
+  barsChart: { src: barsChart, alt: 'bar-chart', component: BarChart },
   areaChart: { src: areaChart, alt: 'area-chart', component: AreaChart },
   stackBarsChart: {
     src: stackBarsChart,

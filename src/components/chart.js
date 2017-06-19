@@ -3,6 +3,7 @@ import React from 'react';
 // Charts
 import Chart from './charts/areachart';
 import SimplePieChart from './charts/piechart';
+import SimpleBarChart from './charts/barchart';
 
 // Functions
 import filterXAxis from '../functions/filterXAxis';
@@ -33,6 +34,8 @@ const getGraph = (graphType, data) => {
       return <SimplePieChart data={data} />;
     case 'area-chart':
       return <Chart data={data} />;
+    case 'bar-chart':
+      return <SimpleBarChart data={data} />;
     default:
       // eslint-disable-next-line
       return <h2>Sorry, the chart selected isn't available yet</h2>;
