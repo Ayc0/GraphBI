@@ -15,12 +15,12 @@ class XAxisPicker extends Component {
   }
 
   componentWillMount() {
-    this.props.onSecondAxisChange(this.props.options[2].label);
+    this.props.onXAxisChange(this.props.options[2].label);
   }
 
   onSelectChange(term) {
     this.setState({ selectedValue: term });
-    this.props.onSecondAxisChange(term);
+    this.props.onXAxisChange(term);
   }
 
   render() {

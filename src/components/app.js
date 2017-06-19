@@ -40,7 +40,7 @@ export default class App extends Component {
     this.setState({ YSelectedValue: term });
   };
 
-  onSecondAxisChange = (term) => {
+  onXAxisChange = (term) => {
     this.setState({ XSelectedValue: term });
   };
 
@@ -63,10 +63,7 @@ export default class App extends Component {
             onGraphTypeChange={this.onGraphTypeChange}
             nbOfDim={this.state.nbOfDim}
           />
-          <XAxisPicker
-            options={options}
-            onSecondAxisChange={this.onSecondAxisChange}
-          />
+          <XAxisPicker options={options} onXAxisChange={this.onXAxisChange} />
           {this.renderBlocks(this.state.graphType)}
           <Plus
             onClick={() =>
