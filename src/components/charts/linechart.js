@@ -9,16 +9,23 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+import { checkType, checkDomain, checkTickFormater } from './xAxis';
+
 const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 
-const SimpleLineChart = ({ data }) =>
+const SimpleLineChart = ({ data, XSelected }) =>
   (<ResponsiveContainer>
     <LineChart
       style={{ height: 'auto', width: '100%' }}
       data={data}
       margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
     >
-      <XAxis dataKey="name" domain={['dataMin', 'dataMax']} />
+      <XAxis
+        dataKey="name"
+        type={checkType(XSelected)}
+        domain={checkDomain(XSelected)}
+        tickFormatter={checkTickFormater(XSelected)}
+      />
       <YAxis />
       <CartesianGrid strokeDasharray="3 3" />
       <Tooltip />
