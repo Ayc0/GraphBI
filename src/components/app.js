@@ -19,6 +19,18 @@ const options = json[0].map(column => ({
   value: column.title,
 }));
 
+const optionsNumber = json[0]
+  .filter((column) => {
+    if (column.type === 'number') {
+      return column;
+    }
+    return null;
+  })
+  .map(column => ({
+    label: column.title,
+    value: column.title,
+  }));
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +62,7 @@ export default class App extends Component {
 
   renderBlocks = () =>
     (<YAxisPicker
-      options={options}
+      options={optionsNumber}
       onFirstAxisChange={e => this.onFirstAxisChange(e)}
       onFunctionChange={e => this.onFunctionChange(e)}
     />);
@@ -59,16 +71,10 @@ export default class App extends Component {
     return (
       <Container>
         <LeftColumn>
-          <GraphPicker
-            onGraphTypeChange={this.onGraphTypeChange}
-            nbOfDim={this.state.nbOfDim}
-          />
+          <GraphPicker onGraphTypeChange={this.onGraphTypeChange} nbOfDim={this.state.nbOfDim} />
           <XAxisPicker options={options} onXAxisChange={this.onXAxisChange} />
           {this.renderBlocks(this.state.graphType)}
-          <Plus
-            onClick={() =>
-              this.setState(prevState => ({ nbOfDim: prevState.nbOfDim + 1 }))}
-          >
+          <Plus onClick={() => this.setState(prevState => ({ nbOfDim: prevState.nbOfDim + 1 }))}>
             +
           </Plus>
         </LeftColumn>
