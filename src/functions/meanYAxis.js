@@ -1,4 +1,4 @@
-import { meanBy } from 'lodash';
+import meanBy from 'lodash/meanBy';
 
 // INPUT : a JSON that went through filterXAxis and a list of columns labels
 // OUTPUT : a list the same length as the JSON input, with {'name': '', 'key1': x, 'key2': x, ...}

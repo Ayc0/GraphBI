@@ -1,4 +1,4 @@
-import { groupBy } from 'lodash';
+import groupBy from 'lodash/groupBy';
 
 // INPUT : a JSON and the label of the columns used as an abscissa
 // OUTPUT : a list of {name: '', values: [...]} elements
