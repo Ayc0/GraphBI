@@ -5,6 +5,7 @@ import Chart from './charts/areachart';
 import SimplePieChart from './charts/piechart';
 import SimpleBarChart from './charts/barchart';
 import SimpleLineChart from './charts/linechart';
+import ComposedChart from './charts/composedchart';
 
 // Functions
 import filterXAxis from '../functions/filterXAxis';
@@ -39,6 +40,8 @@ const getGraph = (graphType, data, XSelected) => {
       return <SimpleBarChart data={data} XSelected={XSelected} />;
     case 'line-chart':
       return <SimpleLineChart data={data} XSelected={XSelected} />;
+    case 'composed-chart':
+      return <ComposedChart data={data} XSelected={XSelected} />;
     default:
       // eslint-disable-next-line
       return <h2>Sorry, the chart selected isn't available yet</h2>;

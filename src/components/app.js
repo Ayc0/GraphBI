@@ -18,19 +18,17 @@ const options = json[0].map(column => ({
   value: column.title,
 }));
 
-const optionsNumber = json[0]
-  .filter(column => column.type === 'number')
-  .map(column => ({
-    label: column.title,
-    value: column.title,
-  }));
+const optionsNumber = json[0].filter(column => column.type === 'number').map(column => ({
+  label: column.title,
+  value: column.title,
+}));
 
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      graphType: 'pie-chart',
+      graphType: 'composed-chart',
       YSelectedValue: '',
       XSelectedValue: '',
       selectedFunction: '',
@@ -65,12 +63,16 @@ export default class App extends Component {
     return (
       <Container>
         <LeftColumn>
-          <GraphPicker
-            onGraphTypeChange={this.onGraphTypeChange}
-            nbOfDim={this.state.nbOfDim}
-          />
+          <GraphPicker onGraphTypeChange={this.onGraphTypeChange} nbOfDim={this.state.nbOfDim} />
           <XAxisPicker options={options} onXAxisChange={this.onXAxisChange} />
           {this.renderBlocks(this.state.graphType)}
+          <img
+            src={require('../images/composed-chart.png')}
+            alt="composed-chart"
+            width="75"
+            height="75"
+            onClick={() => this.onGraphTypeChange('composed-chart')}
+          />
         </LeftColumn>
         <RightColumn>
           <Chart
