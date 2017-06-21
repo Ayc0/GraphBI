@@ -1,55 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 // Charts
 import Chart from './charts/areachart';
-import SimplePieChart from './charts/piechart';
-import SimpleBarChart from './charts/barchart';
+import PieChart from './charts/piechart';
+import BarChart from './charts/barchart';
 import SimpleLineChart from './charts/linechart';
 import ComposedChart from './charts/composedchart';
 
-// Functions
-import filterXAxis from '../functions/filterXAxis';
-import countYAxis from '../functions/countYAxis';
-import sumYAxis from '../functions/sumYAxis';
-import meanYAxis from '../functions/meanYAxis';
-
-// data should be a list of {name: string, value: number} elements
-// with name being the label (X axis) and value the value (Y axis)
-
-const getCorrespondingData = (data, YSelected, XSelected, functionSelected) => {
-  const newData = filterXAxis(data, XSelected);
-  switch (functionSelected) {
-    case 'sum':
-      return sumYAxis(newData, YSelected);
-    case 'number':
-      return countYAxis(newData);
-    case 'avg':
-      return meanYAxis(newData, YSelected);
-    default:
-      return countYAxis(newData);
-  }
-};
+import getCorrespondingData from '../functions/getCorrespondingData';
 
 const getGraph = (graphType, data, XSelected, YSelected) => {
-  console.log('chart', YSelected);
   switch (graphType) {
     case 'pie-chart':
       return (
-        <SimplePieChart
-          data={data}
-          XSelected={XSelected}
-          YSelected={YSelected}
-        />
+        <PieChart data={data} XSelected={XSelected} YSelected={YSelected} />
       );
     case 'area-chart':
       return <Chart data={data} XSelected={XSelected} YSelected={YSelected} />;
     case 'bar-chart':
       return (
-        <SimpleBarChart
-          data={data}
-          XSelected={XSelected}
-          YSelected={YSelected}
-        />
+        <BarChart data={data} XSelected={XSelected} YSelected={YSelected} />
       );
     case 'line-chart':
       return (
@@ -73,36 +43,67 @@ const getGraph = (graphType, data, XSelected, YSelected) => {
   }
 };
 
-const RenderGraph = ({
-  graphType,
-  data,
-  YSelected,
-  XSelected,
-  functionSelected,
-}) => {
-  const projetOrYValue = functionSelected === 'number' ? 'projects' : YSelected;
-  const newData = getCorrespondingData(
-    data,
-    YSelected,
-    XSelected,
-    functionSelected,
-  );
-  const title = <h1>{functionSelected} of {projetOrYValue} by {XSelected}</h1>;
-  return (
-    <div
-      style={{
-        width: '100%',
-        height: '75vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      {title}
-      {getGraph(graphType, newData, XSelected, YSelected)}
-    </div>
-  );
-};
+class RenderGraph extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      data: getCorrespondingData(
+        this.props.data,
+        this.props.YSelected,
+        this.props.XSelected,
+        this.props.functionSelected,
+      ),
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (
+      nextProps.YSelected !== this.props.YSelected ||
+      nextProps.XSelected !== this.props.XSelected ||
+      nextProps.data !== this.props.data ||
+      nextProps.XSelected !== this.props.XSelected
+    ) {
+      this.setState({
+        data: getCorrespondingData(
+          nextProps.data,
+          nextProps.YSelected,
+          nextProps.XSelected,
+          nextProps.functionSelected,
+        ),
+      });
+    }
+  }
+
+  render() {
+    const projetOrYValue = this.props.functionSelected === 'number'
+      ? 'projects'
+      : this.props.YSelected;
+
+    return (
+      <div
+        style={{
+          width: '100%',
+          height: '75vh',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <h1>
+          {this.props.functionSelected} of {projetOrYValue} by
+          {' '}{this.props.XSelected}
+        </h1>
+        {getGraph(
+          this.props.graphType,
+          this.state.data,
+          this.props.XSelected,
+          this.props.YSelected,
+        )}
+      </div>
+    );
+  }
+}
 
 export default RenderGraph;
