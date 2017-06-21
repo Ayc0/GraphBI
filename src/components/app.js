@@ -3,9 +3,14 @@ import React, { Component } from 'react';
 import { Container, LeftColumn, RightColumn } from '../styles/layout';
 
 import GraphPicker from './graphPicker';
+<<<<<<< HEAD
 import YAxisPicker from './yAxisPicker';
 import YAxisPickerMulti from './yAxisPickerMulti';
+=======
+>>>>>>> feat: add placeholder for filter
 import XAxisPicker from './xAxisPicker';
+import ComparePicker from './comparePicker';
+import YAxisPicker from './yAxisPicker';
 import Chart from './chart';
 
 import json from '../data/projects.json';
@@ -24,12 +29,22 @@ const optionsNumber = json[0].filter(column => column.type === 'number').map(col
   value: column.title,
 }));
 
+const optionsCategory = json[0]
+  .filter(column => column.type === 'category')
+  .map(column => ({ label: column.title, value: column.title }));
+
 export default class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+<<<<<<< HEAD
       graphType: 'composed-chart',
+=======
+      graphType: '',
+      YSelectedValue: '',
+      YSelectedValueList: [],
+>>>>>>> feat: add placeholder for filter
       XSelectedValue: '',
       YSelectedValue: '',
       selectedFunction: '',
@@ -107,6 +122,7 @@ export default class App extends Component {
         <LeftColumn>
           {this.renderGraphPicker()}
           <XAxisPicker options={options} onXAxisChange={this.onXAxisChange} />
+<<<<<<< HEAD
           {this.renderBlocks()}
           <button
             onClick={() => {
@@ -124,6 +140,13 @@ export default class App extends Component {
           >
             Click here to return to unique graph
           </button>
+=======
+          <ComparePicker onCompareChange={() => {}} options={optionsCategory} />
+          {this.renderBlocks(this.state.graphType)}
+          <div onClick={() => this.onGraphTypeChange('composed-chart')}>
+            <img src={multiIcon} alt="composed-chart" width="75" height="75" />
+          </div>
+>>>>>>> feat: add placeholder for filter
         </LeftColumn>
         <RightColumn>
           <Chart
