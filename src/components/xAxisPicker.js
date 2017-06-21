@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
 
 import { Block, BlockTitle } from '../styles/block';
 
@@ -10,18 +9,16 @@ class XAxisPicker extends Component {
     this.state = {
       selectedValue: this.props.options[2],
     };
-
-    this.onSelectChange = this.onSelectChange.bind(this);
   }
 
   componentWillMount() {
     this.props.onXAxisChange(this.props.options[2].label);
   }
 
-  onSelectChange(term) {
+  onSelectChange = (term) => {
     this.setState({ selectedValue: term });
     this.props.onXAxisChange(term);
-  }
+  };
 
   render() {
     return (

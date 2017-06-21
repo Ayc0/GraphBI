@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import 'react-select/dist/react-select.css';
-
 import { Container, LeftColumn, RightColumn } from '../styles/layout';
 
 import GraphPicker from './graphPicker';
