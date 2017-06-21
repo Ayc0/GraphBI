@@ -11,6 +11,8 @@ import Chart from './chart';
 
 import json from '../data/projects.json';
 
+import multiIcon from '../images/composed-chart.png';
+
 const values = json[1];
 
 const options = json[0].map(column => ({
@@ -18,10 +20,12 @@ const options = json[0].map(column => ({
   value: column.title,
 }));
 
-const optionsNumber = json[0].filter(column => column.type === 'number').map(column => ({
-  label: column.title,
-  value: column.title,
-}));
+const optionsNumber = json[0]
+  .filter(column => column.type === 'number')
+  .map(column => ({
+    label: column.title,
+    value: column.title,
+  }));
 
 export default class App extends Component {
   constructor(props) {
@@ -64,16 +68,15 @@ export default class App extends Component {
     return (
       <Container>
         <LeftColumn>
-          <GraphPicker onGraphTypeChange={this.onGraphTypeChange} nbOfDim={this.state.nbOfDim} />
+          <GraphPicker
+            onGraphTypeChange={this.onGraphTypeChange}
+            nbOfDim={this.state.nbOfDim}
+          />
           <XAxisPicker options={options} onXAxisChange={this.onXAxisChange} />
           {this.renderBlocks(this.state.graphType)}
-          <img
-            src={require('../images/composed-chart.png')}
-            alt="composed-chart"
-            width="75"
-            height="75"
-            onClick={() => this.onGraphTypeChange('composed-chart')}
-          />
+          <div onClick={() => this.onGraphTypeChange('composed-chart')}>
+            <img src={multiIcon} alt="composed-chart" width="75" height="75" />
+          </div>
         </LeftColumn>
         <RightColumn>
           <Chart
