@@ -30,18 +30,19 @@ const getCorrespondingData = (data, YSelected, XSelected, functionSelected) => {
   }
 };
 
-const getGraph = (graphType, data, XSelected) => {
+const getGraph = (graphType, data, XSelected, YSelected) => {
+  console.log("chart", YSelected);
   switch (graphType) {
     case 'pie-chart':
-      return <SimplePieChart data={data} XSelected={XSelected} />;
+      return <SimplePieChart data={data} XSelected={XSelected} YSelected={YSelected} />;
     case 'area-chart':
-      return <Chart data={data} XSelected={XSelected} />;
+      return <Chart data={data} XSelected={XSelected} YSelected={YSelected} />;
     case 'bar-chart':
-      return <SimpleBarChart data={data} XSelected={XSelected} />;
+      return <SimpleBarChart data={data} XSelected={XSelected} YSelected={YSelected} />;
     case 'line-chart':
-      return <SimpleLineChart data={data} XSelected={XSelected} />;
+      return <SimpleLineChart data={data} XSelected={XSelected} YSelected={YSelected} />;
     case 'composed-chart':
-      return <ComposedChart data={data} XSelected={XSelected} />;
+      return <ComposedChart data={data} XSelected={XSelected} YSelected={YSelected} />;
     default:
       // eslint-disable-next-line
       return <h2>Sorry, the chart selected isn't available yet</h2>;
@@ -75,7 +76,7 @@ const RenderGraph = ({
       }}
     >
       {title}
-      {getGraph(graphType, newData, XSelected)}
+      {getGraph(graphType, newData, XSelected, YSelected)}
     </div>
   );
 };

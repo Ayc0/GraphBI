@@ -30,6 +30,7 @@ export default class App extends Component {
     this.state = {
       graphType: 'composed-chart',
       YSelectedValue: '',
+      YSelectedValueList: [],
       XSelectedValue: '',
       selectedFunction: '',
       nbOfDim: 2,
@@ -40,7 +41,7 @@ export default class App extends Component {
     this.setState({ graphType: term });
   };
 
-  onFirstAxisChange = (term) => {
+  onYAxisChange = (term) => {
     this.setState({ YSelectedValue: term });
   };
 
@@ -55,7 +56,7 @@ export default class App extends Component {
   renderBlocks = () =>
     (<YAxisPicker
       options={optionsNumber}
-      onFirstAxisChange={e => this.onFirstAxisChange(e)}
+      onYAxisChange={e => this.onYAxisChange(e)}
       onFunctionChange={e => this.onFunctionChange(e)}
     />);
 

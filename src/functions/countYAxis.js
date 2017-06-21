@@ -5,7 +5,7 @@
 const countYAxis = json =>
   json.map(element => ({
     name: element.name,
-    value: element.values.length,
+    count: element.values.length,
   }));
 
 export default countYAxis;

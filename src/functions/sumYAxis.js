@@ -17,12 +17,13 @@ const sumYAxis = (json, keys) => {
         });
       });
     } else {
-      out[id].value = sumBy(field.values, (element) => {
+      out[id][keys] = sumBy(field.values, (element) => {
         const elementInt = parseInt(element[keys], 10);
         return isNaN(elementInt) ? 0 : elementInt;
       });
     }
   });
+  console.log(out);
   return out;
 };
 
