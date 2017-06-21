@@ -22,6 +22,10 @@ class GraphPicker extends PureComponent {
     };
   }
 
+  componentWillMount() {
+    this.props.onGraphTypeChange(this.state.selectedValue);
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.nbOfDim !== this.props.nbOfDim) {
       const alt = (categories[this.state.selectedCategory].charts[
