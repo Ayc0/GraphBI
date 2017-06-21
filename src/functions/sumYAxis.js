@@ -1,10 +1,11 @@
 import sumBy from 'lodash/sumBy';
 
 // INPUT : a JSON that went through filterXAxis and a list of columns labels
-// OUTPUT : a list the same length as the JSON input, with {'name': '', 'key1': x, 'key2': x, ...}
+// OUTPUT : a list the same length as the JSON input, with {'name': '', key: x}
 // where name is the same as in the JSON input
-// and each key is the sum of the value of each key (ex: sum of revenues per brand)
+// and x is the sum of the value of the key (ex: average of revenues per brand)
 
+/*
 const sumYAxis = (json, keys) => {
   const out = [];
   json.forEach((field, id) => {
@@ -23,7 +24,21 @@ const sumYAxis = (json, keys) => {
       });
     }
   });
-  console.log(out);
+  return out;
+};
+*/
+
+const sumYAxis = (json, key) => {
+  const out = [];
+  json.forEach((field) => {
+    out.push({
+      name: field.name,
+      [key]: sumBy(field.values, (element) => {
+        const elementInt = parseInt(element[key], 10);
+        return isNaN(elementInt) ? 0 : elementInt;
+      }),
+    });
+  });
   return out;
 };
 
