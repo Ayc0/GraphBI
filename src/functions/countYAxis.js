@@ -2,10 +2,15 @@
 // OUTPUT : list containing {name: '', count: x} elements
 // With key being the number of occurrences of 'name' in the JSON
 
-const countYAxis = (json, key = 'count') =>
-  json.map(element => ({
-    name: element.name,
-    [key]: element.values.length,
-  }));
+const countYAxis = (json, values = ['values']) =>
+  json.map((element) => {
+    const out = {
+      name: element.name,
+    };
+    values.forEach((value) => {
+      out[value] = element[value].length;
+    });
+    return out;
+  });
 
 export default countYAxis;

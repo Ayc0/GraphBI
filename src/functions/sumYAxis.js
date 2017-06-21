@@ -28,15 +28,17 @@ const sumYAxis = (json, keys) => {
 };
 */
 
-const sumYAxis = (json, key) => {
+const sumYAxis = (json, key, values = ['values']) => {
   const out = [];
-  json.forEach((field) => {
+  json.forEach((field, index) => {
     out.push({
       name: field.name,
-      [key]: sumBy(field.values, (element) => {
+    });
+    values.forEach((value) => {
+      out[index][value] = sumBy(field[value], (element) => {
         const elementInt = parseInt(element[key], 10);
         return isNaN(elementInt) ? 0 : elementInt;
-      }),
+      });
     });
   });
   return out;

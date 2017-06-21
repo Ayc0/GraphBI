@@ -21,15 +21,17 @@ const meanYAxis = (json, keys) => {
 };
 */
 
-const meanYAxis = (json, key) => {
+const meanYAxis = (json, key, values = ['values']) => {
   const out = [];
-  json.forEach((field) => {
+  json.forEach((field, index) => {
     out.push({
       name: field.name,
-      [key]: meanBy(field.values, (element) => {
+    });
+    values.forEach((value) => {
+      out[index][value] = meanBy(field[value], (element) => {
         const elementInt = parseInt(element[key], 10);
         return isNaN(elementInt) ? 0 : elementInt;
-      }),
+      });
     });
   });
   return out;

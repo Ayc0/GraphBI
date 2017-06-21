@@ -46,7 +46,7 @@ class SimplePieChart extends Component {
       <ResponsiveContainer width="70%">
         <PieChart>
           <Pie
-            dataKey={this.props.data[0].count ? 'count' : this.props.YSelected}
+            dataKey="values"
             data={this.props.data}
             labelLine={false}
             label={this.renderCustomizedLabel}
