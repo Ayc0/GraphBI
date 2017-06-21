@@ -14,10 +14,7 @@ const CustomTooltip = ({ payload }) =>
       padding: 5,
     }}
   >
-    {
-      (payload[0] || { payload: { payload: { name: '' } } }).payload.payload
-        .name
-    } :
+    {(payload[0] || { payload: { payload: { name: '' } } }).payload.payload.name} :
     {' '}{(payload[0] || {}).value}
   </div>);
 
@@ -45,7 +42,6 @@ class SimplePieChart extends Component {
   }
 
   render() {
-    console.log(this.props.data[0].count);
     return (
       <ResponsiveContainer width="70%">
         <PieChart>
