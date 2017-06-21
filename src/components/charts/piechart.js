@@ -13,24 +13,11 @@ const ToolTip = styled.div`
 `;
 
 const CustomTooltip = ({ payload }) =>
-<<<<<<< HEAD
-  (<div
-    style={{
-      color: '#2f4f4f',
-      backgroundColor: 'white',
-      borderColor: 'grey',
-      border: '0.5px solid #d3d3d3',
-      padding: 5,
-    }}
-  >
-    {(payload[0] || { payload: { payload: { name: '' } } }).payload.payload.name} :
-=======
   (<ToolTip>
     {
       (payload[0] || { payload: { payload: { name: '' } } }).payload.payload
         .name
     } :
->>>>>>> refactor(style): proprify styles
     {' '}{(payload[0] || {}).value}
   </ToolTip>);
 
