@@ -28,7 +28,7 @@ const SimpleBarChart = ({ data, XSelected }) =>
       />
       <YAxis />
       <CartesianGrid strokeDasharray="3 3" />
-      <Tooltip />
+      <Tooltip labelFormatter={checkTickFormater(XSelected)} />
       {Object.keys(data[0] || {})
         .filter(element => element !== 'name')
         .map((element, id) =>

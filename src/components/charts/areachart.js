@@ -12,7 +12,7 @@ import {
 import { checkType, checkDomain, checkTickFormater } from './xAxis';
 
 // import dateFormatter from '../../functions/dateFormatter';
-// labelFormatter={dateFormatter}
+
 const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 
 const StackedAreaChart = ({ data, XSelected }) =>
@@ -30,7 +30,7 @@ const StackedAreaChart = ({ data, XSelected }) =>
       />
       <YAxis />
       <CartesianGrid strokeDasharray="3 3" />
-      <Tooltip />
+      <Tooltip labelFormatter={checkTickFormater(XSelected)} />
       {Object.keys(data[0] || {})
         .filter(element => element !== 'name')
         .map((element, id) =>
