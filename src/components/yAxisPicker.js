@@ -6,6 +6,7 @@ import { Block, BlockTitle } from '../styles/block';
 const funcOptions = [
   { label: 'Number of projects', value: 'number' },
   { label: 'Somme', value: 'sum' },
+  { label: 'Moyenne', value: 'avg' },
 ];
 
 class YAxisPicker extends Component {
