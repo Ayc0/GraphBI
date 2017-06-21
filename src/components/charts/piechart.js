@@ -1,10 +1,19 @@
 import React, { Component } from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import styled from 'styled-components';
 
 const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 const RADIAN = Math.PI / 180;
 
+const ToolTip = styled.div`
+  color: #2f4f4f;
+  background-color: white;
+  border: 1px solid #cccccc;
+  padding: 10px;
+`;
+
 const CustomTooltip = ({ payload }) =>
+<<<<<<< HEAD
   (<div
     style={{
       color: '#2f4f4f',
@@ -15,8 +24,15 @@ const CustomTooltip = ({ payload }) =>
     }}
   >
     {(payload[0] || { payload: { payload: { name: '' } } }).payload.payload.name} :
+=======
+  (<ToolTip>
+    {
+      (payload[0] || { payload: { payload: { name: '' } } }).payload.payload
+        .name
+    } :
+>>>>>>> refactor(style): proprify styles
     {' '}{(payload[0] || {}).value}
-  </div>);
+  </ToolTip>);
 
 class SimplePieChart extends Component {
   constructor(props) {

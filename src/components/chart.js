@@ -9,6 +9,8 @@ import ComposedChart from './charts/composedchart';
 
 import getCorrespondingData from '../functions/getCorrespondingData';
 
+import GraphWrapper from '../styles/graphWrapper';
+
 const getGraph = (graphType, data, XSelected, YSelected) => {
   switch (graphType) {
     case 'pie-chart':
@@ -81,16 +83,7 @@ class RenderGraph extends Component {
       : this.props.YSelected;
 
     return (
-      <div
-        style={{
-          width: '100%',
-          height: '75vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
+      <GraphWrapper>
         <h1>
           {this.props.functionSelected} of {projetOrYValue} by
           {' '}{this.props.XSelected}
@@ -101,7 +94,7 @@ class RenderGraph extends Component {
           this.props.XSelected,
           this.props.YSelected,
         )}
-      </div>
+      </GraphWrapper>
     );
   }
 }

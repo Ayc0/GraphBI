@@ -15,11 +15,7 @@ const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 
 const SimpleLineChart = ({ data, XSelected }) =>
   (<ResponsiveContainer>
-    <LineChart
-      style={{ height: 'auto', width: '100%' }}
-      data={data}
-      margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-    >
+    <LineChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
       <XAxis
         dataKey="name"
         type={checkType(XSelected)}
