@@ -21,7 +21,11 @@ const graphs = {
   lineChart: { src: lineChart, alt: 'line-chart', component: LineChart },
   barsChart: { src: barsChart, alt: 'bar-chart', component: BarChart },
   areaChart: { src: areaChart, alt: 'area-chart', component: AreaChart },
-  composedChart: { src: composedChart, alt: 'composed-chart', component: ComposedChart },
+  composedChart: {
+    src: composedChart,
+    alt: 'composed-chart',
+    component: ComposedChart,
+  },
   stackBarsChart: {
     src: stackBarsChart,
     alt: 'stack-bars-chart',
@@ -30,12 +34,12 @@ const graphs = {
   multiBarsChart: {
     src: multiBarsChart,
     alt: 'multi-bars-chart',
-    component: ErrorMessage,
+    component: BarChart,
   },
   stackAreaChart: {
     src: stackAreaChart,
     alt: 'stack-area-chart',
-    component: ErrorMessage,
+    component: AreaChart,
   },
 };
 
@@ -61,7 +65,7 @@ const categories = {
     icon: barsChart,
     charts: {
       2: [graphs.barsChart],
-      3: [graphs.stackBarsChart, graphs.multiBarsChart],
+      3: [graphs.multiBarsChart, graphs.stackBarsChart],
     },
   },
   area: {
