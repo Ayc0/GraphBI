@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { graphs } from './charts/index';
+import ErrorMessage from './charts/errorchart';
 
 import getCorrespondingData from '../functions/getCorrespondingData';
 
@@ -14,7 +15,7 @@ const getGraph = (graphType, data, XSelected, YSelected, YSelected2) => {
       <Graph data={data} XSelected={XSelected} YSelected={YSelected} YSelected2={YSelected2} />
     );
   }
-  return <h2>Sorry, the chart selected isn&quot;t available yet</h2>;
+  return <ErrorMessage />;
 };
 
 class RenderGraph extends Component {
