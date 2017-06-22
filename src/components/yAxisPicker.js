@@ -52,7 +52,7 @@ class YAxisPicker extends Component {
   render() {
     return (
       <Block>
-        <BlockTitle>Y Axis :</BlockTitle>
+        <BlockTitle>Y Axis:</BlockTitle>
         <Select
           clearable={false}
           name="Y-axis-function"

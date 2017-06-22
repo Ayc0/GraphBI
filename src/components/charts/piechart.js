@@ -45,7 +45,6 @@ class SimplePieChart extends Component {
   }
 
   render() {
-    console.log(this.props.data[0].count);
     return (
       <ResponsiveContainer width="70%">
         <PieChart>
