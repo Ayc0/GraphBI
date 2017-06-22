@@ -12,7 +12,7 @@ class ComparePicker extends Component {
   }
 
   componentWillMount() {
-    this.props.onCompareChange(this.props.options[2].label);
+    this.props.onCompareChange(this.state.selectedValue);
   }
 
   onSelectChange = (term) => {
@@ -35,7 +35,7 @@ class ComparePicker extends Component {
             },
             ...this.props.options,
           ]}
-          onChange={event => this.onSelectChange(event.label)}
+          onChange={event => this.onSelectChange(event.value)}
         />
       </Block>
     );

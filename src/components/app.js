@@ -21,6 +21,7 @@ export default class App extends Component {
       XSelectedValue: '',
       selectedFunction: '',
       nbOfDim: 2,
+      compareBy: '',
     };
   }
 
@@ -40,6 +41,10 @@ export default class App extends Component {
     this.setState({ selectedFunction: term });
   };
 
+  onCompareChange = (term) => {
+    this.setState({ compareBy: term, nbOfDim: term === '' ? 2 : 3 });
+  };
+
   renderBlocks = () =>
     (<YAxisPicker
       options={optionsNumber}
@@ -48,12 +53,19 @@ export default class App extends Component {
     />);
 
   render() {
+    console.log(this.state.compareBy);
     return (
       <Container>
         <LeftColumn>
-          <GraphPicker onGraphTypeChange={this.onGraphTypeChange} nbOfDim={this.state.nbOfDim} />
+          <GraphPicker
+            onGraphTypeChange={this.onGraphTypeChange}
+            nbOfDim={this.state.nbOfDim}
+          />
           <XAxisPicker options={options} onXAxisChange={this.onXAxisChange} />
-          <ComparePicker onCompareChange={() => {}} options={optionsCategory} />
+          <ComparePicker
+            onCompareChange={this.onCompareChange}
+            options={optionsCategory}
+          />
           {this.renderBlocks(this.state.graphType)}
         </LeftColumn>
         <RightColumn>
