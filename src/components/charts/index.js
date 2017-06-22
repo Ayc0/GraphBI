@@ -13,9 +13,10 @@ import PieChart from './piechart';
 import AreaChart from './areachart';
 import StackAreaChart from './stackareachart';
 import BarChart from './barchart';
+import StackBarChart from './stackbarchart';
 import LineChart from './linechart';
 import ComposedChart from './composedchart';
-import ErrorMessage from './errorchart';
+// import ErrorMessage from './errorchart';
 
 const graphs = {
   pieChart: { src: pieChart, alt: 'pie-chart', component: PieChart },
@@ -30,7 +31,7 @@ const graphs = {
   stackBarsChart: {
     src: stackBarsChart,
     alt: 'stack-bars-chart',
-    component: ErrorMessage,
+    component: StackBarChart,
   },
   multiBarsChart: {
     src: multiBarsChart,
