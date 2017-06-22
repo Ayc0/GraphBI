@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import styled from 'styled-components';
 
+import legend from './legend';
 import color from './colors';
 
 const RADIAN = Math.PI / 180;
@@ -30,34 +31,20 @@ export default class extends Component {
     innerRadius,
     outerRadius,
     percent,
-    index,
   }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const xName = cx + 1.4 * radius * Math.cos(-midAngle * RADIAN);
-    const yName = cy + 1.4 * radius * Math.sin(-midAngle * RADIAN);
-    const xPercent = cx + radius * Math.cos(-midAngle * RADIAN);
-    const yPercent = cy + radius * Math.sin(-midAngle * RADIAN);
+    const xPercent = cx + 1.3 * radius * Math.cos(-midAngle * RADIAN);
+    const yPercent = cy + 1.3 * radius * Math.sin(-midAngle * RADIAN);
     return (
-      <g>
-        <text
-          x={xName}
-          y={yName}
-          fill="white"
-          textAnchor="middle"
-          dominantBaseline="central"
-        >
-          {this.props.data[index].name}
-        </text>
-        <text
-          x={xPercent}
-          y={yPercent}
-          fill="white"
-          textAnchor="middle"
-          dominantBaseline="central"
-        >
-          {parseInt(percent * 100, 10)}%
-        </text>
-      </g>
+      <text
+        x={xPercent}
+        y={yPercent}
+        fill="white"
+        textAnchor="middle"
+        dominantBaseline="central"
+      >
+        {parseInt(percent * 100, 10)}%
+      </text>
     );
   };
 
@@ -76,6 +63,7 @@ export default class extends Component {
             )}
           </Pie>
           <Tooltip content={<CustomTooltip />} />
+          {legend}
         </PieChart>
       </ResponsiveContainer>
     );

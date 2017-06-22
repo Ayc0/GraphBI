@@ -9,6 +9,7 @@ import {
 } from 'recharts';
 
 import xAxis, { checkTickFormater } from './xAxis';
+import legend from './legend';
 import color from './colors';
 
 export default ({ data, XSelected }) =>
@@ -18,6 +19,7 @@ export default ({ data, XSelected }) =>
       <YAxis />
       <CartesianGrid strokeDasharray="3 3" />
       <Tooltip labelFormatter={checkTickFormater(XSelected)} />
+      {legend}
       {Object.keys(data[0] || {})
         .filter(element => element !== 'name')
         .map((element, id) =>
