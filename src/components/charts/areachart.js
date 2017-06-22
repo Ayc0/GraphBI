@@ -11,11 +11,9 @@ import {
 
 import { checkType, checkDomain, checkTickFormater } from './xAxis';
 
-// import dateFormatter from '../../functions/dateFormatter';
-
 const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 
-const StackedAreaChart = ({ data, XSelected }) =>
+export default ({ data, XSelected }) =>
   (<ResponsiveContainer>
     <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
       <XAxis
@@ -43,5 +41,3 @@ const StackedAreaChart = ({ data, XSelected }) =>
 
     </AreaChart>
   </ResponsiveContainer>);
-
-export default StackedAreaChart;

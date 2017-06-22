@@ -17,7 +17,7 @@ import { checkType, checkDomain, checkTickFormater } from './xAxis';
 // labelFormatter={dateFormatter}
 const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 
-const SimpleComposedChart = ({
+export default ({
   data,
   XSelected,
   YSelected,
@@ -25,48 +25,52 @@ const SimpleComposedChart = ({
   YSelected2,
   functionSelected2,
 }) => {
-  const label1 = functionSelected === 'number' ? 'number' : `${functionSelected}_${YSelected}`;
-  const label2 = functionSelected2 === 'number' ? 'number' : `${functionSelected2}_${YSelected2}`;
-  return (<ResponsiveContainer>
-    <ComposedChart
-      width={600}
-      height={400}
-      data={data}
-      margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-    >
-      <XAxis
-        dataKey="name"
-        type={checkType(XSelected)}
-        domain={checkDomain(XSelected)}
-        tickFormatter={checkTickFormater(XSelected)}
-      />
-      <YAxis />
-      <Tooltip />
-      <CartesianGrid stroke="#f5f5f5" />
-      {Object.keys(data[0] || {})
-        .filter(element => element === label1)
-        .map((element, id) =>
-          (<Bar
-            key={`bar${element}`}
-            dataKey={label1}
-            fill={color[id]}
-            fillOpacity={0.3}
-            stroke={color[id]}
-          />),
-        )}
-      {Object.keys(data[0] || {})
-        .filter(element => element === label2)
-        .map((element, id) =>
-          (<Line
-            type="monotone"
-            key={`line${element}`}
-            dataKey={label2}
-            fillOpacity={0.3}
-            stroke={color[id + 2]}
-          />),
-        )}
-    </ComposedChart>
-  </ResponsiveContainer>);
+  const label1 = functionSelected === 'number'
+    ? 'number'
+    : `${functionSelected}_${YSelected}`;
+  const label2 = functionSelected2 === 'number'
+    ? 'number'
+    : `${functionSelected2}_${YSelected2}`;
+  return (
+    <ResponsiveContainer>
+      <ComposedChart
+        width={600}
+        height={400}
+        data={data}
+        margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+      >
+        <XAxis
+          dataKey="name"
+          type={checkType(XSelected)}
+          domain={checkDomain(XSelected)}
+          tickFormatter={checkTickFormater(XSelected)}
+        />
+        <YAxis />
+        <Tooltip />
+        <CartesianGrid stroke="#f5f5f5" />
+        {Object.keys(data[0] || {})
+          .filter(element => element === label1)
+          .map((element, id) =>
+            (<Bar
+              key={`bar${element}`}
+              dataKey={label1}
+              fill={color[id]}
+              fillOpacity={0.3}
+              stroke={color[id]}
+            />),
+          )}
+        {Object.keys(data[0] || {})
+          .filter(element => element === label2)
+          .map((element, id) =>
+            (<Line
+              type="monotone"
+              key={`line${element}`}
+              dataKey={label2}
+              fillOpacity={0.3}
+              stroke={color[id + 2]}
+            />),
+          )}
+      </ComposedChart>
+    </ResponsiveContainer>
+  );
 };
-
-export default SimpleComposedChart;

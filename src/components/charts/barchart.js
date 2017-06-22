@@ -13,7 +13,7 @@ import { checkType, checkDomain, checkTickFormater } from './xAxis';
 
 const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 
-const SimpleBarChart = ({ data, XSelected }) =>
+export default ({ data, XSelected }) =>
   (<ResponsiveContainer>
     <BarChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
       <XAxis
@@ -38,5 +38,3 @@ const SimpleBarChart = ({ data, XSelected }) =>
         )}
     </BarChart>
   </ResponsiveContainer>);
-
-export default SimpleBarChart;

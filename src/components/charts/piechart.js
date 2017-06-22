@@ -21,13 +21,8 @@ const CustomTooltip = ({ payload }) =>
     {' '}{(payload[0] || {}).value}
   </ToolTip>);
 
-class SimplePieChart extends Component {
-  constructor(props) {
-    super(props);
-    this.renderCustomizedLabel = this.renderCustomizedLabel.bind(this);
-  }
-
-  renderCustomizedLabel({
+export default class extends Component {
+  renderCustomizedLabel = ({
     cx,
     cy,
     midAngle,
@@ -35,7 +30,7 @@ class SimplePieChart extends Component {
     outerRadius,
     percent,
     index,
-  }) {
+  }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     const xName = cx + 1.4 * radius * Math.cos(-midAngle * RADIAN);
     const yName = cy + 1.4 * radius * Math.sin(-midAngle * RADIAN);
@@ -63,7 +58,7 @@ class SimplePieChart extends Component {
         </text>
       </g>
     );
-  }
+  };
 
   render() {
     return (
@@ -85,5 +80,3 @@ class SimplePieChart extends Component {
     );
   }
 }
-
-export default SimplePieChart;

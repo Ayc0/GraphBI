@@ -11,6 +11,7 @@ import stackAreaChart from '../../images/stack-area-chart.svg';
 // Graph components
 import PieChart from './piechart';
 import AreaChart from './areachart';
+import StackAreaChart from './stackareachart';
 import BarChart from './barchart';
 import LineChart from './linechart';
 import ComposedChart from './composedchart';
@@ -39,7 +40,7 @@ const graphs = {
   stackAreaChart: {
     src: stackAreaChart,
     alt: 'stack-area-chart',
-    component: AreaChart,
+    component: StackAreaChart,
   },
 };
 

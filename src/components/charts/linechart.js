@@ -13,7 +13,7 @@ import { checkType, checkDomain, checkTickFormater } from './xAxis';
 
 const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 
-const SimpleLineChart = ({ data, XSelected }) =>
+export default ({ data, XSelected }) =>
   (<ResponsiveContainer>
     <LineChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
       <XAxis
@@ -39,5 +39,3 @@ const SimpleLineChart = ({ data, XSelected }) =>
         )}
     </LineChart>
   </ResponsiveContainer>);
-
-export default SimpleLineChart;
