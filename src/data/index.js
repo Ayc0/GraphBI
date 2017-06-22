@@ -13,6 +13,10 @@ export const numberLabels = columns
   .filter(column => column.type === 'number')
   .map(column => column.title);
 
+export const dateLabels = columns
+  .filter(column => column.type === 'date')
+  .map(column => column.title);
+
 export const optionsNumber = numberLabels.map(label => ({
   label,
   value: label,
