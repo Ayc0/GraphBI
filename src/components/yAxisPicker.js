@@ -12,15 +12,16 @@ const funcOptions = [
 class YAxisPicker extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      selectedValue: this.props.options[1],
-      selectedFunction: funcOptions[0],
+      selectedValue: (this.props.options[1] || {}).value,
+      selectedFunction: funcOptions[0].value,
     };
   }
 
-  componentWillMount() {
-    // this.props.onYAxisChange(this.props.options[1].label);
-    this.props.onFunctionChange(funcOptions[0].value);
+  componentDidMount() {
+    this.props.onYAxisChange(this.state.selectedValue);
+    this.props.onFunctionChange(this.state.selectedFunction);
   }
 
   onValueChange = (e) => {
@@ -29,7 +30,7 @@ class YAxisPicker extends Component {
   };
 
   onFunctionChange = (e) => {
-    this.setState({ selectedFunction: e });
+    this.setState({ selectedFunction: e.value });
     this.props.onFunctionChange(e.value);
   };
 
@@ -59,7 +60,7 @@ class YAxisPicker extends Component {
           options={funcOptions}
           onChange={e => this.onFunctionChange(e)}
         />
-        {this.valueSelect(this.state.selectedFunction.value)}
+        {this.valueSelect(this.state.selectedFunction)}
       </Block>
     );
   }

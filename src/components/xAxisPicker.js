@@ -7,12 +7,12 @@ class XAxisPicker extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedValue: this.props.options[2],
+      selectedValue: this.props.options[4].value,
     };
   }
 
   componentWillMount() {
-    this.props.onXAxisChange(this.props.options[2].label);
+    this.props.onXAxisChange(this.state.selectedValue);
   }
 
   onSelectChange = (term) => {
@@ -23,8 +23,7 @@ class XAxisPicker extends Component {
   render() {
     return (
       <Block>
-        <BlockTitle>X Axis :</BlockTitle>
-        <p>by</p>
+        <BlockTitle>X Axis:</BlockTitle>
         <Select
           clearable={false}
           name="X-axis"
