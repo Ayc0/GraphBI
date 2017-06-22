@@ -69,13 +69,15 @@ class RenderGraph extends Component {
       nextProps.XSelected !== this.props.XSelected ||
       nextProps.functionSelected !== this.props.functionSelected ||
       nextProps.YSelected2 !== this.props.YSelected2 ||
-      nextProps.functionSelected2 !== this.props.functionSelected2
+      nextProps.functionSelected2 !== this.props.functionSelected2 ||
+      nextProps.compareBy !== this.props.compareBy
     ) {
       this.setState({
         data: getCorrespondingData(
           nextProps.data,
-          nextProps.YSelected,
           nextProps.XSelected,
+          nextProps.compareBy,
+          nextProps.YSelected,
           nextProps.functionSelected,
           nextProps.YSelected2,
           nextProps.functionSelected2,

@@ -8,8 +8,11 @@ import meanYAxis from '../functions/meanYAxis';
 // data should be a list of {name: string, value: number} elements
 // with name being the label (X axis) and value the value (Y axis)
 
-export default (data, YSelected, XSelected, functionSelected) => {
-  const [newData, values] = compareData(filterXAxis(data, XSelected), '');
+export default (data, XSelected, compareBy, YSelected, functionSelected) => {
+  const [newData, values] = compareData(
+    filterXAxis(data, XSelected),
+    compareBy,
+  );
   switch (functionSelected) {
     case 'sum':
       return sumYAxis(newData, YSelected, values);

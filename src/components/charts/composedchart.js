@@ -17,27 +17,24 @@ import { checkType, checkDomain, checkTickFormater } from './xAxis';
 // labelFormatter={dateFormatter}
 const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 
-const SimpleComposedChart = ({ data, XSelected }) => {
-  console.log('data', data);
-  console.log('XSelected', XSelected);
-  return (
-    <ResponsiveContainer>
-      <ComposedChart
-        width={600}
-        height={400}
-        data={data}
-        margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-      >
-        <XAxis
-          dataKey="name"
-          type={checkType(XSelected)}
-          domain={checkDomain(XSelected)}
-          tickFormatter={checkTickFormater(XSelected)}
-        />
-        <YAxis />
-        <Tooltip />
-        <CartesianGrid stroke="#f5f5f5" />
-        {Object.keys(data[0] || {})
+const SimpleComposedChart = ({ data, XSelected }) => (
+  <ResponsiveContainer>
+    <ComposedChart
+      width={600}
+      height={400}
+      data={data}
+      margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+    >
+      <XAxis
+        dataKey="name"
+        type={checkType(XSelected)}
+        domain={checkDomain(XSelected)}
+        tickFormatter={checkTickFormater(XSelected)}
+      />
+      <YAxis />
+      <Tooltip />
+      <CartesianGrid stroke="#f5f5f5" />
+      {Object.keys(data[0] || {})
           .filter(element => element !== 'name')
           .map((element, id) =>
             (<Bar
@@ -48,7 +45,7 @@ const SimpleComposedChart = ({ data, XSelected }) => {
               stroke={color[id]}
             />),
           )}
-        {Object.keys(data[0] || {})
+      {Object.keys(data[0] || {})
           .filter(element => element !== 'name')
           .map((element, id) =>
             (<Line
@@ -59,9 +56,8 @@ const SimpleComposedChart = ({ data, XSelected }) => {
               stroke={color[id + 2]}
             />),
           )}
-      </ComposedChart>
-    </ResponsiveContainer>
+    </ComposedChart>
+  </ResponsiveContainer>
   );
-};
 
 export default SimpleComposedChart;

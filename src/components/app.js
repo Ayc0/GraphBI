@@ -107,6 +107,7 @@ export default class App extends Component {
             functionSelected={this.state.selectedFunction}
             YSelected2={this.state.YSelectedValue2}
             functionSelected2={this.state.selectedFunction2}
+            compareBy={this.state.compareBy}
           />
         </RightColumn>
       </Container>
