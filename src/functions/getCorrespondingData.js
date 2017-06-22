@@ -19,16 +19,29 @@ export default (
 ) => {
   if (graphType === 'composed-chart') {
     const newData = filterXAxis(data, XSelected);
-    return composedFunction(newData, YSelected, functionSelected, YSelected2, functionSelected2);
+    return composedFunction(
+      newData,
+      YSelected,
+      functionSelected,
+      YSelected2,
+      functionSelected2,
+    );
   }
-  const [newData, values] = compareData(filterXAxis(data, XSelected), compareBy);
+  const [newData, values] = compareData(
+    filterXAxis(data, XSelected),
+    compareBy,
+  );
   const out = [];
   newData.forEach((field, index) => {
     out.push({
       name: field.name,
     });
     values.forEach((value) => {
-      out[index][value] = correspondingFunction(functionSelected, field, YSelected);
+      out[index][value] = correspondingFunction(
+        functionSelected,
+        field,
+        YSelected,
+      );
     });
   });
   return out;

@@ -41,7 +41,6 @@ class SimplePieChart extends Component {
     const yName = cy + 1.4 * radius * Math.sin(-midAngle * RADIAN);
     const xPercent = cx + radius * Math.cos(-midAngle * RADIAN);
     const yPercent = cy + radius * Math.sin(-midAngle * RADIAN);
-    console.log(this.props.data[index]);
     return (
       <g>
         <text
