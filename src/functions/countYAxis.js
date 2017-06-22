@@ -8,7 +8,7 @@ const countYAxis = (json, values = ['values']) =>
       name: element.name,
     };
     values.forEach((value) => {
-      out[value] = element[value].length;
+      out[value] = (element[value] || []).length;
     });
     return out;
   });

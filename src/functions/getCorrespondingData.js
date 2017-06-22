@@ -1,5 +1,6 @@
 // Functions
 import filterXAxis from '../functions/filterXAxis';
+import compareData from '../functions/compareData';
 import countYAxis from '../functions/countYAxis';
 import sumYAxis from '../functions/sumYAxis';
 import meanYAxis from '../functions/meanYAxis';
@@ -8,15 +9,15 @@ import meanYAxis from '../functions/meanYAxis';
 // with name being the label (X axis) and value the value (Y axis)
 
 export default (data, YSelected, XSelected, functionSelected) => {
-  const newData = filterXAxis(data, XSelected);
+  const [newData, values] = compareData(filterXAxis(data, XSelected), '');
   switch (functionSelected) {
     case 'sum':
-      return sumYAxis(newData, YSelected);
+      return sumYAxis(newData, YSelected, values);
     case 'number':
-      return countYAxis(newData);
+      return countYAxis(newData, values);
     case 'avg':
-      return meanYAxis(newData, YSelected);
+      return meanYAxis(newData, YSelected, values);
     default:
-      return countYAxis(newData);
+      return countYAxis(newData, values);
   }
 };

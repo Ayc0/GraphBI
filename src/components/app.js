@@ -84,7 +84,6 @@ export default class App extends Component {
   };
 
   render() {
-    console.log(this.state.compareBy);
     return (
       <Container>
         <LeftColumn>
