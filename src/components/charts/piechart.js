@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import styled from 'styled-components';
 
-const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
+import color from './colors';
+
 const RADIAN = Math.PI / 180;
 
 const ToolTip = styled.div`

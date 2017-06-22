@@ -10,8 +10,7 @@ import {
 } from 'recharts';
 
 import { checkType, checkDomain, checkTickFormater } from './xAxis';
-
-const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
+import color from './colors';
 
 export default ({ data, XSelected }) =>
   (<ResponsiveContainer>
@@ -35,7 +34,6 @@ export default ({ data, XSelected }) =>
             dataKey={element}
             stroke={color[id]}
             fill={color[id]}
-            fillOpacity={0.3}
           />),
         )}
 
