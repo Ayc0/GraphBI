@@ -17,8 +17,17 @@ import { checkType, checkDomain, checkTickFormater } from './xAxis';
 // labelFormatter={dateFormatter}
 const color = ['#01b8aa', '#374649', '#f2c80f', '#fd625e', '#5f6b6d'];
 
-const SimpleComposedChart = ({ data, XSelected }) => (
-  <ResponsiveContainer>
+const SimpleComposedChart = ({
+  data,
+  XSelected,
+  YSelected,
+  functionSelected,
+  YSelected2,
+  functionSelected2,
+}) => {
+  const label1 = functionSelected === 'number' ? 'number' : `${functionSelected}_${YSelected}`;
+  const label2 = functionSelected2 === 'number' ? 'number' : `${functionSelected2}_${YSelected2}`;
+  return (<ResponsiveContainer>
     <ComposedChart
       width={600}
       height={400}
@@ -35,29 +44,29 @@ const SimpleComposedChart = ({ data, XSelected }) => (
       <Tooltip />
       <CartesianGrid stroke="#f5f5f5" />
       {Object.keys(data[0] || {})
-          .filter(element => element !== 'name')
-          .map((element, id) =>
-            (<Bar
-              key={`bar${element}`}
-              dataKey={element}
-              fill={color[id]}
-              fillOpacity={0.3}
-              stroke={color[id]}
-            />),
-          )}
+        .filter(element => element === label1)
+        .map((element, id) =>
+          (<Bar
+            key={`bar${element}`}
+            dataKey={label1}
+            fill={color[id]}
+            fillOpacity={0.3}
+            stroke={color[id]}
+          />),
+        )}
       {Object.keys(data[0] || {})
-          .filter(element => element !== 'name')
-          .map((element, id) =>
-            (<Line
-              type="monotone"
-              key={`line${element}`}
-              dataKey={element}
-              fillOpacity={0.3}
-              stroke={color[id + 2]}
-            />),
-          )}
+        .filter(element => element === label2)
+        .map((element, id) =>
+          (<Line
+            type="monotone"
+            key={`line${element}`}
+            dataKey={label2}
+            fillOpacity={0.3}
+            stroke={color[id + 2]}
+          />),
+        )}
     </ComposedChart>
-  </ResponsiveContainer>
-  );
+  </ResponsiveContainer>);
+};
 
 export default SimpleComposedChart;
