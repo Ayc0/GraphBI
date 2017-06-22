@@ -45,12 +45,34 @@ export default class App extends Component {
     this.setState({ compareBy: term, nbOfDim: term === '' ? 2 : 3 });
   };
 
-  renderBlocks = () =>
-    (<YAxisPicker
-      options={optionsNumber}
-      onYAxisChange={e => this.onYAxisChange(e)}
-      onFunctionChange={e => this.onFunctionChange(e)}
-    />);
+  renderBlocks = () => {
+    if (this.state.graphType === 'composed-chart') {
+      return (
+        <div>
+          <YAxisPicker
+            title="First set of data"
+            options={optionsNumber}
+            onYAxisChange={e => this.onYAxisChange(e)}
+            onFunctionChange={e => this.onFunctionChange(e)}
+          />
+          <YAxisPicker
+            title="Second set of data"
+            options={optionsNumber}
+            onYAxisChange={e => this.onYAxisChange(e)}
+            onFunctionChange={e => this.onFunctionChange(e)}
+          />
+        </div>
+      );
+    }
+    return (
+      <YAxisPicker
+        title="Y Axis"
+        options={optionsNumber}
+        onYAxisChange={e => this.onYAxisChange(e)}
+        onFunctionChange={e => this.onFunctionChange(e)}
+      />
+    );
+  };
 
   render() {
     console.log(this.state.compareBy);
