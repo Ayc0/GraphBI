@@ -83,20 +83,21 @@ export default class App extends Component {
     );
   };
 
+  renderComparePicker() {
+    if (this.state.graphType === 'composed-chart') {
+      return null;
+    }
+    return <ComparePicker onCompareChange={this.onCompareChange} options={optionsCategory} />;
+  }
+
   render() {
     return (
       <Container>
         <LeftColumn>
-          <GraphPicker
-            onGraphTypeChange={this.onGraphTypeChange}
-            nbOfDim={this.state.nbOfDim}
-          />
+          <GraphPicker onGraphTypeChange={this.onGraphTypeChange} nbOfDim={this.state.nbOfDim} />
           <XAxisPicker options={options} onXAxisChange={this.onXAxisChange} />
-          <ComparePicker
-            onCompareChange={this.onCompareChange}
-            options={optionsCategory}
-          />
-          {this.renderBlocks(this.state.graphType)}
+          {this.renderComparePicker()}
+          {this.renderBlocks()}
         </LeftColumn>
         <RightColumn>
           <Chart
