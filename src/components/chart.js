@@ -1,49 +1,20 @@
 import React, { Component } from 'react';
 
-// Charts
-import Chart from './charts/areachart';
-import PieChart from './charts/piechart';
-import BarChart from './charts/barchart';
-import SimpleLineChart from './charts/linechart';
-import ComposedChart from './charts/composedchart';
+import { graphs } from './charts/index';
 
 import getCorrespondingData from '../functions/getCorrespondingData';
 
 import GraphWrapper from '../styles/graphWrapper';
 
 const getGraph = (graphType, data, XSelected, YSelected, YSelected2) => {
-  switch (graphType) {
-    case 'pie-chart':
-      return (
-        <PieChart data={data} XSelected={XSelected} YSelected={YSelected} />
-      );
-    case 'area-chart':
-      return <Chart data={data} XSelected={XSelected} YSelected={YSelected} />;
-    case 'bar-chart':
-      return (
-        <BarChart data={data} XSelected={XSelected} YSelected={YSelected} />
-      );
-    case 'line-chart':
-      return (
-        <SimpleLineChart
-          data={data}
-          XSelected={XSelected}
-          YSelected={YSelected}
-        />
-      );
-    case 'composed-chart':
-      return (
-        <ComposedChart
-          data={data}
-          XSelected={XSelected}
-          YSelected={YSelected}
-          YSelected2={YSelected2}
-        />
-      );
-    default:
-      // eslint-disable-next-line
-      return <h2>Sorry, the chart selected isn't available yet</h2>;
+  const out = Object.values(graphs).filter(({ alt }) => alt === graphType);
+  if (out.length > 0) {
+    const Graph = out[0].component;
+    return (
+      <Graph data={data} XSelected={XSelected} YSelected={YSelected} YSelected2={YSelected2} />
+    );
   }
+  return <h2>Sorry, the chart selected isn&quot;t available yet</h2>;
 };
 
 class RenderGraph extends Component {
