@@ -41,6 +41,7 @@ export default (
         functionSelected,
         field,
         YSelected,
+        value,
       );
     });
   });
