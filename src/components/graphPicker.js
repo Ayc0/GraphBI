@@ -18,7 +18,7 @@ class GraphPicker extends PureComponent {
 
     this.state = {
       selectedCategory: defaultCategory.name,
-      selectedValue: defaultCategory.charts[this.props.nbOfDim][0].alt,
+      selectedValue: (defaultCategory.charts[this.props.nbOfDim][0] || {}).alt,
     };
   }
 
@@ -47,7 +47,7 @@ class GraphPicker extends PureComponent {
 
   onCategorySelect = (event) => {
     const alt = event.target.alt;
-    const graphAlt = categories[alt].charts[this.props.nbOfDim][0].alt;
+    const graphAlt = (categories[alt].charts[this.props.nbOfDim][0] || {}).alt;
     this.setState({
       selectedCategory: alt,
     });
