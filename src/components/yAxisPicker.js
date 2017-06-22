@@ -19,7 +19,7 @@ class YAxisPicker extends Component {
   }
 
   componentWillMount() {
-    this.props.onYAxisChange(this.props.options[1].label);
+    // this.props.onYAxisChange(this.props.options[1].label);
     this.props.onFunctionChange(funcOptions[0].value);
   }
 
