@@ -3,11 +3,7 @@ import sortBy from 'lodash/sortBy';
 
 import weekConverter from './weekConverter';
 
-import data from '../data/projects.json';
-
-export const numberLabels = data[0]
-  .filter(column => column.type === 'number')
-  .map(column => column.title);
+import { numberLabels } from '../data/';
 
 // INPUT : a JSON and the label of the columns used as an abscissa
 // OUTPUT : a list of {name: '', values: [...]} elements

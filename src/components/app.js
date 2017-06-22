@@ -9,27 +9,9 @@ import XAxisPicker from './xAxisPicker';
 import ComparePicker from './comparePicker';
 import Chart from './chart';
 
-import json from '../data/projects.json';
-
 import multiIcon from '../images/composed-chart.png';
 
-const values = json[1];
-
-const options = json[0].map(column => ({
-  label: column.title,
-  value: column.title,
-}));
-
-const optionsNumber = json[0]
-  .filter(column => column.type === 'number')
-  .map(column => ({
-    label: column.title,
-    value: column.title,
-  }));
-
-const optionsCategory = json[0]
-  .filter(column => column.type === 'category')
-  .map(column => ({ label: column.title, value: column.title }));
+import { values, options, optionsNumber, optionsCategory } from '../data/';
 
 export default class App extends Component {
   constructor(props) {

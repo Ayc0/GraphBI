@@ -1,5 +1,5 @@
 import dateFormatter from '../../functions/dateFormatter';
-import { numberLabels } from '../../functions/filterXAxis';
+import { numberLabels } from '../../data/';
 
 const checkType = xAxis =>
   numberLabels.includes(xAxis) || xAxis === 'World availabilty date'
