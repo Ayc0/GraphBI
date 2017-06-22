@@ -27,20 +27,42 @@ class SimplePieChart extends Component {
     this.renderCustomizedLabel = this.renderCustomizedLabel.bind(this);
   }
 
-  renderCustomizedLabel({ cx, cy, midAngle, innerRadius, outerRadius, index }) {
+  renderCustomizedLabel({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    index,
+  }) {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + 2.3 * radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + 2.3 * radius * Math.sin(-midAngle * RADIAN);
+    const xName = cx + 1.4 * radius * Math.cos(-midAngle * RADIAN);
+    const yName = cy + 1.4 * radius * Math.sin(-midAngle * RADIAN);
+    const xPercent = cx + radius * Math.cos(-midAngle * RADIAN);
+    const yPercent = cy + radius * Math.sin(-midAngle * RADIAN);
+    console.log(this.props.data[index]);
     return (
-      <text
-        x={x}
-        y={y}
-        fill="grey"
-        textAnchor={x > cx ? 'start' : 'end'}
-        dominantBaseline="central"
-      >
-        {this.props.data[index].name}
-      </text>
+      <g>
+        <text
+          x={xName}
+          y={yName}
+          fill="white"
+          textAnchor="middle"
+          dominantBaseline="central"
+        >
+          {this.props.data[index].name}
+        </text>
+        <text
+          x={xPercent}
+          y={yPercent}
+          fill="white"
+          textAnchor="middle"
+          dominantBaseline="central"
+        >
+          {parseInt(percent * 100, 10)}%
+        </text>
+      </g>
     );
   }
 
