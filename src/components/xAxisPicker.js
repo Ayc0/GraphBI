@@ -6,8 +6,9 @@ import { Block, BlockTitle } from '../styles/block';
 class XAxisPicker extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      selectedValue: this.props.options[4].value,
+      selectedValue: this.props.options[18].value,
     };
   }
 
