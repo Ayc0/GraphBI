@@ -11,7 +11,7 @@ import getCorrespondingData from '../functions/getCorrespondingData';
 
 import GraphWrapper from '../styles/graphWrapper';
 
-const getGraph = (graphType, data, XSelected, YSelected) => {
+const getGraph = (graphType, data, XSelected, YSelected, YSelected2) => {
   switch (graphType) {
     case 'pie-chart':
       return (
@@ -37,6 +37,7 @@ const getGraph = (graphType, data, XSelected, YSelected) => {
           data={data}
           XSelected={XSelected}
           YSelected={YSelected}
+          YSelected2={YSelected2}
         />
       );
     default:
@@ -55,16 +56,20 @@ class RenderGraph extends Component {
         this.props.YSelected,
         this.props.XSelected,
         this.props.functionSelected,
+        this.props.YSelected2,
+        this.props.functionSelected2,
       ),
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (
+      nextProps.data !== this.props.data ||
       nextProps.YSelected !== this.props.YSelected ||
       nextProps.XSelected !== this.props.XSelected ||
-      nextProps.data !== this.props.data ||
-      nextProps.XSelected !== this.props.XSelected
+      nextProps.functionSelected !== this.props.functionSelected ||
+      nextProps.YSelected2 !== this.props.YSelected2 ||
+      nextProps.functionSelected2 !== this.props.functionSelected2
     ) {
       this.setState({
         data: getCorrespondingData(
@@ -72,6 +77,8 @@ class RenderGraph extends Component {
           nextProps.YSelected,
           nextProps.XSelected,
           nextProps.functionSelected,
+          nextProps.YSelected2,
+          nextProps.functionSelected2,
         ),
       });
     }
@@ -93,6 +100,7 @@ class RenderGraph extends Component {
           this.state.data,
           this.props.XSelected,
           this.props.YSelected,
+          this.props.YSelected2,
         )}
       </GraphWrapper>
     );

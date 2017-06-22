@@ -17,9 +17,10 @@ export default class App extends Component {
     this.state = {
       graphType: '',
       YSelectedValue: '',
-      YSelectedValueList: [],
+      YSelectedValue2: '',
       XSelectedValue: '',
       selectedFunction: '',
+      selectedFunction2: '',
       nbOfDim: 2,
       compareBy: '',
     };
@@ -33,12 +34,20 @@ export default class App extends Component {
     this.setState({ YSelectedValue: term });
   };
 
+  onYAxisChange2 = (term) => {
+    this.setState({ YSelectedValue2: term });
+  };
+
   onXAxisChange = (term) => {
     this.setState({ XSelectedValue: term });
   };
 
   onFunctionChange = (term) => {
     this.setState({ selectedFunction: term });
+  };
+
+  onFunctionChange2 = (term) => {
+    this.setState({ selectedFunction2: term });
   };
 
   onCompareChange = (term) => {
@@ -58,8 +67,8 @@ export default class App extends Component {
           <YAxisPicker
             title="Second set of data"
             options={optionsNumber}
-            onYAxisChange={e => this.onYAxisChange(e)}
-            onFunctionChange={e => this.onFunctionChange(e)}
+            onYAxisChange={e => this.onYAxisChange2(e)}
+            onFunctionChange={e => this.onFunctionChange2(e)}
           />
         </div>
       );
@@ -97,6 +106,8 @@ export default class App extends Component {
             YSelected={this.state.YSelectedValue}
             XSelected={this.state.XSelectedValue}
             functionSelected={this.state.selectedFunction}
+            YSelected2={this.state.YSelectedValue2}
+            functionSelected2={this.state.selectedFunction2}
           />
         </RightColumn>
       </Container>

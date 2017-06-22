@@ -1,4 +1,4 @@
-import json from '../data/deliverables.json';
+import json from '../data/projects.json';
 
 export const values = json[1];
 
