@@ -6,7 +6,9 @@ import areaChart from '../../images/area-chart.svg';
 import composedChart from '../../images/composed-chart.svg';
 import stackBarsChart from '../../images/stack-bars-chart.svg';
 import multiBarsChart from '../../images/multi-bars-chart.svg';
+import percentBarsChart from '../../images/percent-bars-chart.svg';
 import stackAreaChart from '../../images/stack-area-chart.svg';
+import percentAreaChart from '../../images/percent-area-chart.svg';
 
 // Graph components
 import PieChart from './piechart';
@@ -34,7 +36,7 @@ const graphs = {
     component: StackBarChart,
   },
   percentBarsChart: {
-    src: stackBarsChart,
+    src: percentBarsChart,
     alt: 'percent-bars-chart',
     component: StackBarChart,
   },
@@ -49,7 +51,7 @@ const graphs = {
     component: StackAreaChart,
   },
   percentAreaChart: {
-    src: stackAreaChart,
+    src: percentAreaChart,
     alt: 'percent-area-chart',
     component: StackAreaChart,
   },
@@ -77,7 +79,11 @@ const categories = {
     icon: barsChart,
     charts: {
       2: [graphs.barsChart],
-      3: [graphs.multiBarsChart, graphs.stackBarsChart, graphs.percentBarsChart],
+      3: [
+        graphs.multiBarsChart,
+        graphs.stackBarsChart,
+        graphs.percentBarsChart,
+      ],
     },
   },
   area: {
