@@ -33,6 +33,11 @@ const graphs = {
     alt: 'stack-bars-chart',
     component: StackBarChart,
   },
+  percentBarsChart: {
+    src: stackBarsChart,
+    alt: 'percent-bars-chart',
+    component: StackBarChart,
+  },
   multiBarsChart: {
     src: multiBarsChart,
     alt: 'multi-bars-chart',
@@ -41,6 +46,11 @@ const graphs = {
   stackAreaChart: {
     src: stackAreaChart,
     alt: 'stack-area-chart',
+    component: StackAreaChart,
+  },
+  percentAreaChart: {
+    src: stackAreaChart,
+    alt: 'percent-area-chart',
     component: StackAreaChart,
   },
 };
@@ -67,7 +77,7 @@ const categories = {
     icon: barsChart,
     charts: {
       2: [graphs.barsChart],
-      3: [graphs.multiBarsChart, graphs.stackBarsChart],
+      3: [graphs.multiBarsChart, graphs.stackBarsChart, graphs.percentBarsChart],
     },
   },
   area: {
@@ -75,7 +85,7 @@ const categories = {
     icon: stackAreaChart,
     charts: {
       2: [graphs.areaChart],
-      3: [graphs.stackAreaChart],
+      3: [graphs.stackAreaChart, graphs.percentAreaChart],
     },
   },
   composed: {
