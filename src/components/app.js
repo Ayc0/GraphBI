@@ -27,7 +27,9 @@ export default class App extends Component {
   }
 
   onGraphTypeChange = (term) => {
-    this.setState({ graphType: term });
+    if (term) {
+      this.setState({ graphType: term });
+    }
   };
 
   onYAxisChange = (term) => {
