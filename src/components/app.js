@@ -23,7 +23,6 @@ export default class App extends Component {
       selectedFunction2: '',
       nbOfDim: 2,
       compareBy: '',
-      cumuled: true,
     };
   }
 

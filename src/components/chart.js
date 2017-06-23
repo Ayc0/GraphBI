@@ -60,7 +60,8 @@ class RenderGraph extends Component {
       nextProps.functionSelected2 !== this.props.functionSelected2 ||
       nextProps.compareBy !== this.props.compareBy ||
       nextProps.graphType === 'composed-chart' ||
-      this.props.graphType === 'composed-chart'
+      this.props.graphType === 'composed-chart' ||
+      this.props.graphType.includes('percent') !== nextProps.graphType.includes('percent')
     ) {
       this.setState({
         data: getCorrespondingData(

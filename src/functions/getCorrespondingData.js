@@ -19,31 +19,25 @@ export default (
 ) => {
   if (graphType === 'composed-chart') {
     const newData = filterXAxis(data, XSelected);
-    return composedFunction(
-      newData,
-      YSelected,
-      functionSelected,
-      YSelected2,
-      functionSelected2,
-    );
+    return composedFunction(newData, YSelected, functionSelected, YSelected2, functionSelected2);
   }
-  const [newData, values] = compareData(
-    filterXAxis(data, XSelected),
-    compareBy,
-  );
+  const [newData, values] = compareData(filterXAxis(data, XSelected), compareBy);
   const out = [];
+  const total = {};
   newData.forEach((field, index) => {
     out.push({
       name: field.name,
     });
+    total[index] = 0;
     values.forEach((value) => {
-      out[index][value] = correspondingFunction(
-        functionSelected,
-        field,
-        YSelected,
-        value,
-      );
+      out[index][value] = correspondingFunction(functionSelected, field, YSelected, value);
+      total[index] += out[index][value];
     });
+    if (graphType.includes('percent')) {
+      values.forEach((value) => {
+        out[index][value] = total[index] === 0 ? 0 : out[index][value] * 100 / total[index];
+      });
+    }
   });
   return out;
 };
