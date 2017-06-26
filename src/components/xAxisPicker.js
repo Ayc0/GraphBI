@@ -8,7 +8,7 @@ class XAxisPicker extends Component {
     super(props);
 
     this.state = {
-      selectedValue: this.props.options[18].value,
+      selectedValue: this.props.options[4].value,
     };
   }
 
