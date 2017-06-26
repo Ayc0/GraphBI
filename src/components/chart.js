@@ -46,6 +46,7 @@ class RenderGraph extends Component {
         this.props.functionSelected,
         this.props.YSelected2,
         this.props.functionSelected2,
+        this.props.timelapse,
       ),
     };
   }
@@ -59,6 +60,7 @@ class RenderGraph extends Component {
       nextProps.YSelected2 !== this.props.YSelected2 ||
       nextProps.functionSelected2 !== this.props.functionSelected2 ||
       nextProps.compareBy !== this.props.compareBy ||
+      nextProps.timelapse !== this.props.timelapse ||
       ((nextProps.graphType === 'composed-chart' ||
         this.props.graphType === 'composed-chart' ||
         this.props.graphType.includes('percent') ||
@@ -75,6 +77,7 @@ class RenderGraph extends Component {
           nextProps.functionSelected,
           nextProps.YSelected2,
           nextProps.functionSelected2,
+          nextProps.timelapse,
         ),
       });
     }

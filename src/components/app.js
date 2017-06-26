@@ -23,6 +23,7 @@ export default class App extends Component {
       selectedFunction2: '',
       nbOfDim: 2,
       compareBy: '',
+      timelapse: 'month',
     };
   }
 
@@ -54,6 +55,10 @@ export default class App extends Component {
 
   onCompareChange = (term) => {
     this.setState({ compareBy: term, nbOfDim: term === '' ? 2 : 3 });
+  };
+
+  onTimelapseChange = (term) => {
+    this.setState({ timelapse: term });
   };
 
   renderBlocks = () => {
@@ -97,7 +102,11 @@ export default class App extends Component {
       <Container>
         <LeftColumn>
           <GraphPicker onGraphTypeChange={this.onGraphTypeChange} nbOfDim={this.state.nbOfDim} />
-          <XAxisPicker options={options} onXAxisChange={this.onXAxisChange} />
+          <XAxisPicker
+            options={options}
+            onXAxisChange={this.onXAxisChange}
+            onTimelapseChange={e => this.onTimelapseChange(e)}
+          />
           {this.renderComparePicker()}
           {this.renderBlocks()}
         </LeftColumn>
@@ -111,6 +120,7 @@ export default class App extends Component {
             YSelected2={this.state.YSelectedValue2}
             functionSelected2={this.state.selectedFunction2}
             compareBy={this.state.compareBy}
+            timelapse={this.state.timelapse}
           />
         </RightColumn>
       </Container>

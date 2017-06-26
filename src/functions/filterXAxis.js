@@ -18,8 +18,7 @@ const toNumber = (string) => {
   return isNaN(nb) ? 0 : nb;
 };
 
-const filterXAxis = (json, xAxis) => {
-  const timelapse = 'month';
+const filterXAxis = (json, xAxis, timelapse) => {
   const groupedBy = dateLabels.includes(xAxis)
     ? groupBy(json, element => dateFormatter(toNumber(element[xAxis]), timelapse))
     : groupBy(json, element => element[xAxis]);

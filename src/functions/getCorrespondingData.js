@@ -16,6 +16,7 @@ export default (
   functionSelected,
   YSelected2,
   functionSelected2,
+  timelapse,
 ) => {
   if (graphType === 'composed-chart') {
     const newData = filterXAxis(data, XSelected);
@@ -28,7 +29,7 @@ export default (
     );
   }
   const [newData, values] = compareData(
-    filterXAxis(data, XSelected),
+    filterXAxis(data, XSelected, timelapse),
     compareBy,
   );
   const out = [];
