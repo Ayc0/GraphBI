@@ -53,7 +53,11 @@ export default class extends Component {
       <ResponsiveContainer width="70%">
         <PieChart>
           <Pie
-            dataKey="values"
+            dataKey={
+              Object.keys(this.props.data[0]).filter(
+                element => element !== 'name',
+              )[0]
+            }
             data={this.props.data}
             labelLine={false}
             label={this.renderCustomizedLabel}
