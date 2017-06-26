@@ -2,8 +2,10 @@ import groupBy from 'lodash/groupBy';
 import sortBy from 'lodash/sortBy';
 
 import weekConverter from './weekConverter';
+import dateFormatter from './dateFormatter';
+import { fillAllYears, fillAllMonths } from './dateFiller';
 
-import { numberLabels } from '../data/';
+import { numberLabels, dateLabels } from '../data/';
 
 // INPUT : a JSON and the label of the columns used as an abscissa
 // OUTPUT : a list of {name: '', values: [...]} elements
@@ -17,7 +19,16 @@ const toNumber = (string) => {
 };
 
 const filterXAxis = (json, xAxis) => {
-  const groupedBy = groupBy(json, element => element[xAxis]);
+  const timelapse = 'month';
+  const groupedBy = dateLabels.includes(xAxis)
+    ? groupBy(json, element => dateFormatter(toNumber(element[xAxis]), timelapse))
+    : groupBy(json, element => element[xAxis]);
+  if (dateLabels.includes(xAxis) && timelapse === 'year') {
+    fillAllYears(groupedBy);
+  }
+  if (dateLabels.includes(xAxis) && timelapse === 'month') {
+    fillAllMonths(groupedBy);
+  }
   const out = Object.keys(groupedBy).map(key => ({
     name: key,
     values: groupedBy[key],
@@ -31,6 +42,15 @@ const filterXAxis = (json, xAxis) => {
           return newElement;
         })
         .filter(element => !isNaN(element.name)),
+      ['name'],
+    );
+  }
+  if (dateLabels.includes(xAxis)) {
+    return sortBy(
+      out.filter(element => element.name !== 'undefined').map(element => ({
+        name: element.name,
+        values: element.values,
+      })),
       ['name'],
     );
   }
