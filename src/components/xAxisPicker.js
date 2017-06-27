@@ -6,8 +6,12 @@ import { Block, BlockTitle } from '../styles/block';
 import { dateLabels } from '../data';
 
 const dateOptions = [
-  { label: 'group by month', value: 'month' },
   { label: 'group by year', value: 'year' },
+  { label: 'group by semester', value: 'semester' },
+  { label: 'group by trimester', value: 'trimester' },
+  { label: 'group by month', value: 'month' },
+  { label: 'group by week', value: 'week' },
+  { label: 'group by day', value: 'day' },
 ];
 
 class XAxisPicker extends Component {
@@ -16,7 +20,7 @@ class XAxisPicker extends Component {
 
     this.state = {
       selectedValue: this.props.options[4].value,
-      selectedDateOption: dateOptions[0].value,
+      selectedDateOption: 'month',
       dateSelected: false,
     };
   }
