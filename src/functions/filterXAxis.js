@@ -3,7 +3,6 @@ import sortBy from 'lodash/sortBy';
 
 import weekConverter from './weekConverter';
 import dateGroupBy from './dateGroupBy';
-import { fillAllYears, fillAllMonths } from './dateFiller';
 
 import { numberLabels, dateLabels } from '../data/';
 
@@ -22,12 +21,6 @@ const filterXAxis = (json, xAxis, timelapse) => {
   const groupedBy = dateLabels.includes(xAxis)
     ? groupBy(json, element => dateGroupBy(toNumber(element[xAxis]), timelapse))
     : groupBy(json, element => element[xAxis]);
-  if (dateLabels.includes(xAxis) && timelapse === 'year') {
-    fillAllYears(groupedBy);
-  }
-  if (dateLabels.includes(xAxis) && timelapse === 'month') {
-    fillAllMonths(groupedBy);
-  }
   const out = Object.keys(groupedBy).map(key => ({
     name: key,
     values: groupedBy[key],
@@ -46,7 +39,7 @@ const filterXAxis = (json, xAxis, timelapse) => {
   }
   if (dateLabels.includes(xAxis)) {
     return sortBy(
-      out.filter(element => !element.name.includes('1970')).map(element => ({
+      out.filter(element => element.name > 0).map(element => ({
         name: element.name,
         values: element.values,
       })),
