@@ -6,8 +6,8 @@ import { Block, BlockTitle } from '../styles/block';
 import { dateLabels } from '../data';
 
 const dateOptions = [
-  { label: 'grouper par mois', value: 'month' },
-  { label: 'grouper par année', value: 'year' },
+  { label: 'group by month', value: 'month' },
+  { label: 'group by year', value: 'year' },
 ];
 
 class XAxisPicker extends Component {

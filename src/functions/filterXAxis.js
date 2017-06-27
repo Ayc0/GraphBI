@@ -2,7 +2,7 @@ import groupBy from 'lodash/groupBy';
 import sortBy from 'lodash/sortBy';
 
 import weekConverter from './weekConverter';
-import dateFormatter from './dateFormatter';
+import dateGroupBy from './dateGroupBy';
 import { fillAllYears, fillAllMonths } from './dateFiller';
 
 import { numberLabels, dateLabels } from '../data/';
@@ -20,7 +20,7 @@ const toNumber = (string) => {
 
 const filterXAxis = (json, xAxis, timelapse) => {
   const groupedBy = dateLabels.includes(xAxis)
-    ? groupBy(json, element => dateFormatter(toNumber(element[xAxis]), timelapse))
+    ? groupBy(json, element => dateGroupBy(toNumber(element[xAxis]), timelapse))
     : groupBy(json, element => element[xAxis]);
   if (dateLabels.includes(xAxis) && timelapse === 'year') {
     fillAllYears(groupedBy);

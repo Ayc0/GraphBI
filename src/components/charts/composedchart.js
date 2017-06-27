@@ -21,6 +21,7 @@ export default ({
   functionSelected,
   YSelected2,
   functionSelected2,
+  timelapse,
 }) => {
   const label1 = functionSelected === 'number' ? 'number' : `${functionSelected}_${YSelected}`;
   const label2 = functionSelected2 === 'number' ? 'number' : `${functionSelected2}_${YSelected2}`;
@@ -35,7 +36,7 @@ export default ({
         {xAxis(XSelected)}
         <YAxis yAxisId="left" dataKey={label1} />
         <YAxis yAxisId="right" dataKey={label2} orientation="right" />
-        <Tooltip labelFormatter={checkTickFormater(XSelected)} />
+        <Tooltip labelFormatter={checkTickFormater(XSelected, timelapse)} />
         {legend}
         <CartesianGrid stroke="#f5f5f5" />
         {Object.keys(data[0] || {})

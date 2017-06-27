@@ -15,6 +15,7 @@ const getGraph = (
   functionSelected,
   YSelected2,
   functionSelected2,
+  timelapse,
 ) => {
   const out = Object.values(graphs).filter(({ alt }) => alt === graphType);
   if (out.length > 0) {
@@ -27,6 +28,7 @@ const getGraph = (
         functionSelected={functionSelected}
         YSelected2={YSelected2}
         functionSelected2={functionSelected2}
+        timelapse={timelapse}
       />
     );
   }
@@ -102,6 +104,7 @@ class RenderGraph extends Component {
           this.props.functionSelected,
           this.props.YSelected2,
           this.props.functionSelected2,
+          this.props.timelapse,
         )}
       </GraphWrapper>
     );
