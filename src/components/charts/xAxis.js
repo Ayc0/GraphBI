@@ -5,10 +5,10 @@ import dateDisplayer from '../../functions/dateDisplayer';
 import { numberLabels, dateLabels } from '../../data/';
 
 const checkType = xAxis =>
-  numberLabels.includes(xAxis) || xAxis === 'World availabilty date' ? 'number' : 'category';
+  numberLabels.includes(xAxis) || dateLabels.includes(xAxis) ? 'number' : 'category';
 
 const checkDomain = xAxis =>
-  numberLabels.includes(xAxis) || xAxis === 'World availabilty date'
+  numberLabels.includes(xAxis) || dateLabels.includes(xAxis)
     ? ['dataMin', 'dataMax']
     : null;
 

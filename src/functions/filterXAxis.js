@@ -40,7 +40,7 @@ const filterXAxis = (json, xAxis, timelapse) => {
   if (dateLabels.includes(xAxis)) {
     return sortBy(
       out.filter(element => element.name > 0).map(element => ({
-        name: element.name,
+        name: toNumber(element.name),
         values: element.values,
       })),
       ['name'],
