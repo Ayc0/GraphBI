@@ -23,8 +23,12 @@ export default ({
   functionSelected2,
   timelapse,
 }) => {
-  const label1 = functionSelected === 'number' ? 'number' : `${functionSelected}_${YSelected}`;
-  const label2 = functionSelected2 === 'number' ? 'number' : `${functionSelected2}_${YSelected2}`;
+  const label1 = functionSelected === 'number'
+    ? 'number'
+    : `${functionSelected}_${YSelected}`;
+  const label2 = functionSelected2 === 'number'
+    ? 'number'
+    : `${functionSelected2}_${YSelected2}`;
   return (
     <ResponsiveContainer>
       <ComposedChart
@@ -38,7 +42,7 @@ export default ({
         <YAxis yAxisId="right" dataKey={label2} orientation="right" />
         <Tooltip labelFormatter={checkTickFormater(XSelected, timelapse)} />
         {legend}
-        <CartesianGrid stroke="#f5f5f5" />
+        <CartesianGrid strokeDasharray="3 3" />
         {Object.keys(data[0] || {})
           .filter(element => element === label1)
           .map((element, id) =>
@@ -46,7 +50,6 @@ export default ({
               key={`bar${element}`}
               dataKey={label1}
               fill={color[id]}
-              fillOpacity={0.3}
               stroke={color[id]}
               yAxisId="left"
             />),
@@ -58,7 +61,6 @@ export default ({
               type="monotone"
               key={`line${element}`}
               dataKey={label2}
-              fillOpacity={0.3}
               stroke={color[id + 2]}
               yAxisId="right"
             />),
