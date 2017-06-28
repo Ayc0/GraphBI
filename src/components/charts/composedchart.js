@@ -41,7 +41,7 @@ export default ({
         <YAxis yAxisId="left" dataKey={label1} />
         <YAxis yAxisId="right" dataKey={label2} orientation="right" />
         <Tooltip labelFormatter={checkTickFormater(XSelected, timelapse)} />
-        {legend()}
+        {legend}
         <CartesianGrid strokeDasharray="3 3" />
         {Object.keys(data[0] || {})
           .filter(element => element === label1)

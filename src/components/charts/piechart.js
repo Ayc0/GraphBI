@@ -67,7 +67,7 @@ export default class extends Component {
             )}
           </Pie>
           <Tooltip content={<CustomTooltip />} />
-          {legend()}
+          {legend}
         </PieChart>
       </ResponsiveContainer>
     );

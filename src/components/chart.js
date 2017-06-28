@@ -41,7 +41,12 @@ class RenderGraph extends Component {
 
     this.state = {
       data: getCorrespondingData(this.props),
+      disabled: [],
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('onToggleLegend', this.onToggleLegend);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -62,9 +67,37 @@ class RenderGraph extends Component {
     ) {
       this.setState({
         data: getCorrespondingData(nextProps),
+        disabled: [],
       });
     }
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('onToggleLegend', this.onToggleLegend);
+  }
+
+  onToggleLegend = (event) => {
+    const detail = event.detail;
+    if (this.state.disabled.includes(detail)) {
+      this.setState((prevState) => {
+        const disabled = prevState.disabled.filter(
+          element => element !== detail,
+        );
+        return {
+          data: getCorrespondingData(this.props, disabled),
+          disabled,
+        };
+      });
+    } else {
+      this.setState((prevState) => {
+        const disabled = [...prevState.disabled, detail];
+        return {
+          data: getCorrespondingData(this.props, disabled),
+          disabled,
+        };
+      });
+    }
+  };
 
   render() {
     const projetOrYValue = this.props.functionSelected === 'number'
