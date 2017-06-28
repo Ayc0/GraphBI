@@ -1,3 +1,13 @@
+const getMonthTrimester = (originalMonth) => {
+  if (originalMonth < 5) {
+    return 1;
+  }
+  if (originalMonth > 8) {
+    return 9;
+  }
+  return 5;
+};
+
 export default (tick, timelapse) => {
   const date = new Date(tick * 1000);
   switch (timelapse) {
@@ -6,11 +16,11 @@ export default (tick, timelapse) => {
       return firstDayOfYear.getTime();
     }
     case 'semester': {
-      const firstDayOfSemester = new Date(date.getFullYear(), Math.floor(date.getMonth() / 6));
+      const firstDayOfSemester = new Date(date.getFullYear(), date.getMonth() < 7 ? 1 : 7);
       return firstDayOfSemester.getTime();
     }
     case 'trimester': {
-      const firstDayOfTrimester = new Date(date.getFullYear(), Math.floor(date.getMonth() / 4));
+      const firstDayOfTrimester = new Date(date.getFullYear(), getMonthTrimester(date.getMonth()));
       return firstDayOfTrimester.getTime();
     }
     case 'month': {

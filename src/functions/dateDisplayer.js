@@ -15,10 +15,12 @@ export default (tick, timelapse) => {
       return year;
     }
     case 'semester': {
-      return `${month}${numberAdj(month)} semester of ${year}`;
+      const semester = Math.floor((month - 1) / 6 + 1);
+      return `${semester}${numberAdj(semester)} semester of ${year}`;
     }
     case 'trimester': {
-      return `${month}${numberAdj(month)} trimester of ${year}`;
+      const trimester = Math.floor((month - 1) / 4 + 1);
+      return `${trimester}${numberAdj(trimester)} trimester of ${year}`;
     }
     case 'month': {
       return `${monthNumbers(month)}/${year}`;
