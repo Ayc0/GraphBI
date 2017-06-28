@@ -6,21 +6,21 @@
     "d3": "^4.9.1",
     "immutability-helper": "^2.2.2",
     "lodash": "^4.17.4",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-scripts": "^1.0.8",
     "react-select": "^1.0.0-rc.5",
-    "recharts": "^1.0.0-alpha.0",
-    "styled-components": "^2.0.0"
+    "recharts": "^1.0.0-alpha.1",
+    "styled-components": "^2.1.0"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
-    "eslint-plugin-react": "^7.0.1",
-    "husky": "^0.13.4",
-    "prettier": "^1.4.2",
-    "prettier-eslint": "^6.3.0",
-    "prettier-eslint-cli": "^4.0.4",
-    "react-scripts": "1.0.7",
+    "eslint-plugin-react": "^7.1.0",
+    "husky": "^0.14.1",
+    "prettier": "^1.5.2",
+    "prettier-eslint": "^6.4.1",
+    "prettier-eslint-cli": "^4.1.1",
     "validate-commit-msg": "^2.12.2"
   },
   "scripts": {

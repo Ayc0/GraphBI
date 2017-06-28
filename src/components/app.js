@@ -91,7 +91,7 @@ export default class App extends Component {
     );
   };
 
-  renderComparePicker() {
+  renderComparePicker = () => {
     if (this.state.graphType === 'composed-chart') {
       return null;
     }
@@ -101,7 +101,7 @@ export default class App extends Component {
         options={optionsCategory}
       />
     );
-  }
+  };
 
   render() {
     return (
