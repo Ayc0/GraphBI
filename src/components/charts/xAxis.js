@@ -5,13 +5,16 @@ import dateDisplayer from '../../functions/dateDisplayer';
 import { numberLabels, dateLabels } from '../../data/';
 
 const checkType = xAxis =>
-  numberLabels.includes(xAxis) || dateLabels.includes(xAxis) ? 'number' : 'category';
+  numberLabels.includes(xAxis) || dateLabels.includes(xAxis)
+    ? 'number'
+    : 'category';
 
 const checkDomain = (xAxis, timelapse) => {
   if (numberLabels.includes(xAxis)) {
     return ['dataMin', 'dataMax'];
   }
   if (dateLabels.includes(xAxis)) {
+    // fix padding left and right for dates
     switch (timelapse) {
       case 'year': {
         const time = new Date(1971, 0, 1).getTime();
@@ -50,11 +53,10 @@ const checkTickFormater = (xAxis, timelapse) =>
 
 export { checkType, checkDomain, checkTickFormater };
 
-export default (xAxis, timelapse) => (
-  <XAxis
+export default (xAxis, timelapse) =>
+  (<XAxis
     dataKey="name"
     type={checkType(xAxis)}
     domain={checkDomain(xAxis, timelapse)}
     tickFormatter={checkTickFormater(xAxis, timelapse)}
-  />
-  );
+  />);

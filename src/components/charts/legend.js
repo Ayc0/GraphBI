@@ -12,6 +12,6 @@ export default (
     iconType="circle"
     iconSize={12}
     height={28}
-    onClick={e => onClick(e.value)}
+    onClick={event => onClick(event.value)}
   />
 );
