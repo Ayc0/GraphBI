@@ -45,13 +45,17 @@ export default (
 
     if (values.length === 1 && values[0] === 'values') {
       // si on n'a pas fait de compare, toutes les données sont sous le nom de 'values'
-      out[index][XSelected] = correspondingFunction(
-        functionSelected,
-        field,
-        YSelected,
-        'values',
-      );
-      total[index] += out[index][XSelected];
+      if (disabled.includes(out[index].name)) {
+        out[index][XSelected] = 0;
+      } else {
+        out[index][XSelected] = correspondingFunction(
+          functionSelected,
+          field,
+          YSelected,
+          'values',
+        );
+        total[index] += out[index][XSelected];
+      }
     } else {
       // sinon, il y a plusieurs champs
       values.forEach((value) => {
