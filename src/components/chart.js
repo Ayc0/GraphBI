@@ -47,6 +47,20 @@ class RenderGraph extends Component {
 
   componentDidMount() {
     window.addEventListener('onToggleLegend', this.onToggleLegend);
+
+    const limitDay = 7;
+    const limitTimestamp = limitDay * 1000; //* 24 * 3600 * 1000;
+    const storedData = localStorage.getItem('state');
+    if (storedData !== null) {
+      const { date, state } = JSON.parse(atob(localStorage.getItem('state')));
+      if (Date.now - date > limitTimestamp) {
+        localStorage.removeItem('state');
+      } else {
+        const event = new CustomEvent('onDataLoad', { detail: state });
+        console.log(state);
+        window.dispatchEvent(event);
+      }
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -70,6 +84,28 @@ class RenderGraph extends Component {
         disabled: [],
       });
     }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem(
+      'state',
+      btoa(
+        JSON.stringify({
+          date: Date.now(),
+          state: {
+            XSelected: nextProps.XSelected,
+            YSelected: nextProps.YSelected,
+            YSelected2: nextProps.YSelected2,
+            compareBy: nextProps.compareBy,
+            functionSelected: nextProps.functionSelected,
+            functionSelected2: nextProps.functionSelected2,
+            graphType: nextProps.graphType,
+            timelapse: nextProps.timelapse,
+            disabled: nextState.disabled,
+          },
+        }),
+      ),
+    );
   }
 
   componentWillUnmount() {

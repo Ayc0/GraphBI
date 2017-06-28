@@ -14,7 +14,7 @@ class YAxisPicker extends Component {
     super(props);
 
     this.state = {
-      selectedValue: (this.props.options[1] || {}).value,
+      selectedValue: (this.props.options[1] || {}).value || '',
       selectedFunction: funcOptions[0].value,
     };
   }
@@ -22,16 +22,34 @@ class YAxisPicker extends Component {
   componentDidMount() {
     this.props.onYAxisChange(this.state.selectedValue);
     this.props.onFunctionChange(this.state.selectedFunction);
+    window.addEventListener('onDataLoad', this.onDataLoad);
   }
 
-  onValueChange = (e) => {
-    this.setState({ selectedValue: e });
-    this.props.onYAxisChange(e);
+  componentWillUnmount() {
+    window.removeEventListener('onDataLoad', this.onDataLoad);
+  }
+
+  onDataLoad = (event) => {
+    const {
+      functionSelected,
+      YSelected,
+      functionSelected2,
+      YSelected2,
+    } = event.detail;
+    this.onFunctionChange(
+      this.props.second ? functionSelected2 : functionSelected,
+    );
+    this.onValueChange(this.props.second ? YSelected2 : YSelected);
   };
 
-  onFunctionChange = (e) => {
-    this.setState({ selectedFunction: e.value });
-    this.props.onFunctionChange(e.value);
+  onValueChange = (term) => {
+    this.setState({ selectedValue: term });
+    this.props.onYAxisChange(term);
+  };
+
+  onFunctionChange = (term) => {
+    this.setState({ selectedFunction: term });
+    this.props.onFunctionChange(term);
   };
 
   valueSelect = (selectedFunction) => {
@@ -58,7 +76,7 @@ class YAxisPicker extends Component {
           name="Y-axis-function"
           value={this.state.selectedFunction}
           options={funcOptions}
-          onChange={e => this.onFunctionChange(e)}
+          onChange={event => this.onFunctionChange(event.value)}
         />
         {this.valueSelect(this.state.selectedFunction)}
       </Block>

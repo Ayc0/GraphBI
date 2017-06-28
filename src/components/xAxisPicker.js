@@ -29,6 +29,20 @@ class XAxisPicker extends Component {
     this.props.onXAxisChange(this.state.selectedValue);
   }
 
+  componentDidMount() {
+    window.addEventListener('onDataLoad', this.onDataLoad);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('onDataLoad', this.onDataLoad);
+  }
+
+  onDataLoad = (event) => {
+    const { XSelected, timelapse } = event.detail;
+    this.onSelectChange(XSelected);
+    this.onDateChange(timelapse);
+  };
+
   onSelectChange = (term) => {
     this.setState({ selectedValue: term });
     this.props.onXAxisChange(term);

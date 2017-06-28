@@ -15,6 +15,19 @@ class ComparePicker extends Component {
     this.props.onCompareChange(this.state.selectedValue);
   }
 
+  componentDidMount() {
+    window.addEventListener('onDataLoad', this.onDataLoad);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('onDataLoad', this.onDataLoad);
+  }
+
+  onDataLoad = (event) => {
+    const { compareBy } = event.detail;
+    this.onSelectChange(compareBy);
+  };
+
   onSelectChange = (term) => {
     this.setState({ selectedValue: term });
     this.props.onCompareChange(term);

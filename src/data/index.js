@@ -1,6 +1,7 @@
 // import projects from '../data/projects.json';
 import deliverables from '../data/deliverables.json';
 
+// const json = projects;
 const json = deliverables;
 
 export const values = json[1];

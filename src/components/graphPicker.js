@@ -26,6 +26,10 @@ class GraphPicker extends PureComponent {
     this.props.onGraphTypeChange(this.state.selectedValue);
   }
 
+  componentDidMount() {
+    window.addEventListener('onDataLoad', this.onDataLoad);
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.nbOfDim !== this.props.nbOfDim) {
       const alt = (categories[this.state.selectedCategory].charts[
@@ -34,6 +38,26 @@ class GraphPicker extends PureComponent {
       this.onSelectGraph(alt);
     }
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('onDataLoad', this.onDataLoad);
+  }
+
+  onDataLoad = (event) => {
+    const { graphType, compareBy } = event.detail;
+    let selectedCategory = '';
+    if (compareBy === '') {
+      selectedCategory = Object.values(categories).filter(category =>
+        category.charts[2].map(chart => chart.alt).includes(graphType),
+      )[0].name;
+    } else {
+      selectedCategory = Object.values(categories).filter(category =>
+        category.charts[3].map(chart => chart.alt).includes(graphType),
+      )[0].name;
+    }
+    this.setState(() => ({ selectedCategory }));
+    setTimeout(() => this.onSelectGraph(graphType), 10); // delay to avoid problem when loading
+  };
 
   onSelectGraph = (alt) => {
     this.setState({ selectedValue: alt });

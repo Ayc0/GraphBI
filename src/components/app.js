@@ -30,37 +30,35 @@ export default class App extends Component {
   }
 
   onGraphTypeChange = (term) => {
-    if (term) {
-      this.setState({ graphType: term });
-    }
+    this.setState({ graphType: term || '' });
   };
 
   onYAxisChange = (term) => {
-    this.setState({ YSelectedValue: term });
+    this.setState({ YSelectedValue: term || '' });
   };
 
   onYAxisChange2 = (term) => {
-    this.setState({ YSelectedValue2: term });
+    this.setState({ YSelectedValue2: term || '' });
   };
 
   onXAxisChange = (term) => {
-    this.setState({ XSelectedValue: term });
+    this.setState({ XSelectedValue: term || '' });
   };
 
   onFunctionChange = (term) => {
-    this.setState({ selectedFunction: term });
+    this.setState({ selectedFunction: term || '' });
   };
 
   onFunctionChange2 = (term) => {
-    this.setState({ selectedFunction2: term });
+    this.setState({ selectedFunction2: term || '' });
   };
 
   onCompareChange = (term) => {
-    this.setState({ compareBy: term, nbOfDim: term === '' ? 2 : 3 });
+    this.setState({ compareBy: term || '', nbOfDim: term === '' ? 2 : 3 });
   };
 
   onTimelapseChange = (term) => {
-    this.setState({ timelapse: term });
+    this.setState({ timelapse: term || '' });
   };
 
   renderBlocks = () => {
@@ -78,6 +76,7 @@ export default class App extends Component {
             options={optionsNumber}
             onYAxisChange={e => this.onYAxisChange2(e)}
             onFunctionChange={e => this.onFunctionChange2(e)}
+            second
           />
         </div>
       );
