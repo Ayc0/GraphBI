@@ -19,7 +19,7 @@ export default ({ data, XSelected, timelapse }) =>
       <YAxis />
       <CartesianGrid strokeDasharray="3 3" />
       <Tooltip labelFormatter={checkTickFormater(XSelected, timelapse)} />
-      {legend}
+      {legend()}
       {Object.keys(data[0] || {})
         .filter(element => element !== 'name')
         .map((element, id) =>
