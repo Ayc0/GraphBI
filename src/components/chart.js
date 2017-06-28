@@ -47,6 +47,7 @@ class RenderGraph extends Component {
 
   componentDidMount() {
     window.addEventListener('onToggleLegend', this.onToggleLegend);
+    window.addEventListener('onDataLoad', this.onDataLoad);
 
     const limitDay = 7;
     const limitTimestamp = limitDay * 1000; //* 24 * 3600 * 1000;
@@ -57,7 +58,7 @@ class RenderGraph extends Component {
         localStorage.removeItem('state');
       } else {
         const event = new CustomEvent('onDataLoad', { detail: state });
-        console.log(state);
+
         window.dispatchEvent(event);
       }
     }
@@ -110,6 +111,7 @@ class RenderGraph extends Component {
 
   componentWillUnmount() {
     window.removeEventListener('onToggleLegend', this.onToggleLegend);
+    window.removeEventListener('onDataLoad', this.onDataLoad);
   }
 
   onToggleLegend = (event) => {
@@ -133,6 +135,18 @@ class RenderGraph extends Component {
         };
       });
     }
+  };
+
+  onDataLoad = (event) => {
+    const { disabled } = event.detail;
+    setTimeout(
+      () =>
+        this.setState(() => ({
+          data: getCorrespondingData(this.props, disabled),
+          disabled,
+        })),
+      100,
+    );
   };
 
   render() {
