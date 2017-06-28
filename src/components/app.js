@@ -8,6 +8,8 @@ import XAxisPicker from './xAxisPicker';
 import ComparePicker from './comparePicker';
 import Chart from './chart';
 
+import '../styles/app.css';
+
 import { values, options, optionsNumber, optionsCategory } from '../data/';
 
 export default class App extends Component {
