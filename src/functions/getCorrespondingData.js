@@ -8,15 +8,18 @@ import composedFunction from '../functions/composedFunction';
 // with name being the label (X axis) and value the value (Y axis)
 
 export default (
-  data,
-  XSelected,
-  compareBy,
-  graphType,
-  YSelected,
-  functionSelected,
-  YSelected2,
-  functionSelected2,
-  timelapse,
+  {
+    data,
+    XSelected,
+    compareBy,
+    graphType,
+    YSelected,
+    functionSelected,
+    YSelected2,
+    functionSelected2,
+    timelapse,
+  },
+  disabled = [],
 ) => {
   if (graphType === 'composed-chart') {
     const newData = filterXAxis(data, XSelected);
@@ -41,6 +44,7 @@ export default (
     total[index] = 0;
 
     if (values.length === 1 && values[0] === 'values') {
+      // si on n'a pas fait de compare, toutes les données sont sous le nom de 'values'
       out[index][XSelected] = correspondingFunction(
         functionSelected,
         field,
@@ -49,14 +53,20 @@ export default (
       );
       total[index] += out[index][XSelected];
     } else {
+      // sinon, il y a plusieurs champs
       values.forEach((value) => {
-        out[index][value] = correspondingFunction(
-          functionSelected,
-          field,
-          YSelected,
-          value,
-        );
-        total[index] += out[index][value];
+        if (disabled.includes(value)) {
+          // si le champ est désactivé
+          out[index][value] = 0;
+        } else {
+          out[index][value] = correspondingFunction(
+            functionSelected,
+            field,
+            YSelected,
+            value,
+          );
+          total[index] += out[index][value];
+        }
       });
     }
 

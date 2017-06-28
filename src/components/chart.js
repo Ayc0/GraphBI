@@ -40,16 +40,7 @@ class RenderGraph extends Component {
     super(props);
 
     this.state = {
-      data: getCorrespondingData(
-        this.props.data,
-        this.props.YSelected,
-        this.props.XSelected,
-        this.props.graphType,
-        this.props.functionSelected,
-        this.props.YSelected2,
-        this.props.functionSelected2,
-        this.props.timelapse,
-      ),
+      data: getCorrespondingData(this.props),
     };
   }
 
@@ -70,17 +61,7 @@ class RenderGraph extends Component {
         nextProps.graphType !== this.props.graphType)
     ) {
       this.setState({
-        data: getCorrespondingData(
-          nextProps.data,
-          nextProps.XSelected,
-          nextProps.compareBy,
-          nextProps.graphType,
-          nextProps.YSelected,
-          nextProps.functionSelected,
-          nextProps.YSelected2,
-          nextProps.functionSelected2,
-          nextProps.timelapse,
-        ),
+        data: getCorrespondingData(nextProps),
       });
     }
   }
