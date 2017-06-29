@@ -6,6 +6,7 @@ const Block = styled.div`
   padding: 0.7em;
   padding-top: 0.58em;
   box-shadow: 0px 0px 0px 0.5px rgba(47, 47, 47, 0.16);
+  align-self: ${({ flexEnd }) => (flexEnd ? 'flex-end' : 'auto')}
 `;
 const BlockTitle = styled.h2`
   color: #00a0ee;

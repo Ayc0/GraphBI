@@ -10,6 +10,7 @@ import YAxisPicker from './yAxisPicker';
 import XAxisPicker from './xAxisPicker';
 import ComparePicker from './comparePicker';
 import Chart from './chart';
+import Favorites from './favorites';
 
 import '../styles/app.css';
 
@@ -124,6 +125,7 @@ export default class App extends Component {
           {this.renderYPickers()}
         </LeftColumn>
         <RightColumn>
+          <Favorites />
           <Chart
             graphType={this.state.graphType}
             data={values}
