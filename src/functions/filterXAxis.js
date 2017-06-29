@@ -39,7 +39,7 @@ const filterXAxis = (json, xAxis, timelapse) => {
   }
   if (dateLabels.includes(xAxis)) {
     return sortBy(
-      out.filter(element => element.name > 2674800000).map(element => ({
+      out.filter(element => element.name > 315529200000).map(element => ({
         name: toNumber(element.name),
         values: element.values,
       })),

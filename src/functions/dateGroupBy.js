@@ -12,7 +12,7 @@ export default (tick, timelapse) => {
   const date = new Date(tick * 1000);
   switch (timelapse) {
     case 'year': {
-      const firstDayOfYear = new Date(date.getFullYear(), 0);
+      const firstDayOfYear = new Date(date.getFullYear(), 6);
       return firstDayOfYear.getTime();
     }
     case 'semester': {
