@@ -14,6 +14,13 @@ const Star = ({ active, onSubscribe, onUnsubscribe }) =>
     ? <Fa name="star" onClick={onUnsubscribe} />
     : <Fa name="star-o" onClick={onSubscribe} />;
 
+const saveFavorites = (favorites) => {
+  window.localStorage.setItem('favorites', JSON.stringify(favorites));
+};
+
+const restoreFavorites = () =>
+  JSON.parse(window.localStorage.getItem('favorites')) || [];
+
 export default class extends Component {
   constructor(props) {
     super(props);
@@ -24,6 +31,10 @@ export default class extends Component {
       isModalOpen: false,
       term: '',
     };
+  }
+
+  componentWillMount() {
+    this.setState(() => ({ favorites: restoreFavorites() }));
   }
 
   componentDidMount() {
@@ -37,27 +48,47 @@ export default class extends Component {
   onGraphStateChange = event =>
     this.setState(() => ({ currentHash: event.detail }));
 
-  onSubscribe = (hash) => {
-    this.setState(prevState => ({
-      favorites: [...prevState.favorites, hash],
-    }));
+  onSubscribe = (hash, description) => {
+    this.setState((prevState) => {
+      const favorites = [...prevState.favorites, { hash, description }];
+      saveFavorites(favorites);
+      return {
+        favorites,
+      };
+    });
   };
 
   onUnsubscribe = (hash) => {
-    this.setState(prevState => ({
-      favorites: [...prevState.favorites].filter(favorite => favorite !== hash),
-    }));
+    this.setState((prevState) => {
+      const favorites = [...prevState.favorites].filter(
+        favorite => favorite.hash !== hash,
+      );
+      saveFavorites(favorites);
+      return {
+        favorites,
+      };
+    });
   };
 
   onChangeTerm = (event) => {
     this.setState({ term: event.target.value });
   };
 
+  onSubmit = (event) => {
+    event.preventDefault();
+
+    const term = this.state.term;
+    this.onSubscribe(this.state.currentHash, term);
+    this.setState(() => ({ isModalOpen: false, term: '' }));
+  };
+
   render() {
     return (
       <Block flexEnd>
         <Star
-          active={this.state.favorites.includes(this.state.currentHash)}
+          active={this.state.favorites
+            .map(favorite => favorite.hash)
+            .includes(this.state.currentHash)}
           onSubscribe={() =>
             this.setState(() => ({ isModalOpen: true, term: '' }))}
           onUnsubscribe={() => this.onUnsubscribe(this.state.currentHash)}
@@ -70,7 +101,7 @@ export default class extends Component {
             Add to favorites
           </ModalTitle>
           <div style={{ width: '20em' }}>
-            <form onSubmit={event => event.preventDefault()}>
+            <form onSubmit={this.onSubmit}>
               <Row
                 style={{
                   alignItems: 'center',
@@ -84,10 +115,13 @@ export default class extends Component {
                 </div>
               </Row>
               <Row>
-                <Button color="secondary">
+                <Button
+                  color="secondary"
+                  onClick={() => this.setState(() => ({ isModalOpen: false }))}
+                >
                   Cancel
                 </Button>
-                <Button color="primary">
+                <Button color="primary" onClick={this.onSubmit}>
                   Confirm
                 </Button>
               </Row>
