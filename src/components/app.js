@@ -61,7 +61,7 @@ export default class App extends Component {
     this.setState({ timelapse: term || '' });
   };
 
-  renderBlocks = () => {
+  renderYPickers = () => {
     if (this.state.graphType === 'composed-chart') {
       return (
         <div>
@@ -117,7 +117,7 @@ export default class App extends Component {
             onTimelapseChange={e => this.onTimelapseChange(e)}
           />
           {this.renderComparePicker()}
-          {this.renderBlocks()}
+          {this.renderYPickers()}
         </LeftColumn>
         <RightColumn>
           <Chart
