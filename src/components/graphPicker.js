@@ -5,7 +5,7 @@ import { Block, BlockTitle } from '../styles/block';
 import Img from '../styles/img';
 
 // Graph types
-import { categories } from './charts/';
+import { categories, findMaxDim } from './charts/';
 
 const Graph = ({ src, onClick, active, alt }) =>
   <Img src={src} alt={alt} onClick={onClick} active={active === alt} />;
@@ -32,9 +32,7 @@ class GraphPicker extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.nbOfDim !== this.props.nbOfDim) {
-      const alt = (categories[this.state.selectedCategory].charts[
-        nextProps.nbOfDim
-      ][0] || {}).alt;
+      const alt = (categories[this.state.selectedCategory].charts[nextProps.nbOfDim][0] || {}).alt;
       this.onSelectGraph(alt);
     }
   }
@@ -76,6 +74,9 @@ class GraphPicker extends PureComponent {
       selectedCategory: alt,
     });
     this.onSelectGraph(graphAlt);
+    if (findMaxDim(alt) < 3) {
+      this.props.onGraphTypeChange(`${alt}-chart`);
+    }
   };
 
   render() {
@@ -94,9 +95,7 @@ class GraphPicker extends PureComponent {
           )}
         </Line>
         <Line>
-          {categories[this.state.selectedCategory].charts[
-            this.props.nbOfDim
-          ].map(chart =>
+          {categories[this.state.selectedCategory].charts[this.props.nbOfDim].map(chart =>
             (<Graph
               key={chart.alt}
               src={chart.src}

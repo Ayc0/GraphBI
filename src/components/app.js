@@ -10,6 +10,7 @@ import Chart from './chart';
 
 import '../styles/app.css';
 
+import { findMaxDim } from './charts/index';
 import { values, options, optionsNumber, optionsCategory } from '../data/';
 
 export default class App extends Component {
@@ -92,7 +93,7 @@ export default class App extends Component {
   };
 
   renderComparePicker = () => {
-    if (this.state.graphType === 'composed-chart') {
+    if (findMaxDim(this.state.graphType) !== 3) {
       return null;
     }
     return (
