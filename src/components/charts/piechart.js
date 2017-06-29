@@ -43,7 +43,7 @@ export default class extends Component {
         textAnchor="middle"
         dominantBaseline="central"
       >
-        {parseInt(percent * 100, 10)}%
+        {(percent || null) && `${parseInt(percent * 100, 10)}%`}
       </text>
     );
   };
