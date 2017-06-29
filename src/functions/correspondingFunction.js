@@ -15,7 +15,7 @@ const findRightFunction = (func) => {
 export default (func, field, key, value = 'values') => {
   const rightFunction = findRightFunction(func);
   return rightFunction(field[value], (element) => {
-    const elementInt = parseInt(element[key], 10);
+    const elementInt = parseFloat(element[key]);
     return isNaN(elementInt) ? 0 : elementInt;
   });
 };
