@@ -11,7 +11,7 @@ export default (
     verticalAlign="top"
     iconType="circle"
     iconSize={12}
-    height={28}
+    wrapperStyle={{ paddingBottom: '12px' }}
     onClick={event => onClick(event.value)}
   />
 );

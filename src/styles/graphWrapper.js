@@ -7,4 +7,5 @@ export default styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 3em;
 `;
