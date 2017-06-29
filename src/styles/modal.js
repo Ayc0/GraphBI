@@ -45,15 +45,4 @@ const ModalTitle = styled.h2`
   font-weight: bold;
 `;
 
-const ModalBody = styled.div`
-  padding: 0.6em;
-`;
-
-export {
-  Modal,
-  ModalDialog,
-  ModalContent,
-  ModalBackdrop,
-  ModalTitle,
-  ModalBody,
-};
+export { Modal, ModalDialog, ModalContent, ModalBackdrop, ModalTitle };
