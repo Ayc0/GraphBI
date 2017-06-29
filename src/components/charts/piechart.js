@@ -49,7 +49,6 @@ export default class extends Component {
   };
 
   render() {
-    console.log(this.props);
     const label = Object.keys(this.props.data[0]).filter(
       element => element !== 'name',
     )[0];

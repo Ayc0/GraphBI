@@ -28,8 +28,8 @@ export default ({ data, XSelected, timelapse }) =>
             key={element}
             type="monotone"
             dataKey={element}
-            stroke={color[id]}
-            fill={color[id]}
+            stroke={color[id % color.length]}
+            fill={color[id % color.length]}
           />),
         )}
 

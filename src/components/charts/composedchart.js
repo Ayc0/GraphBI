@@ -49,8 +49,8 @@ export default ({
             (<Bar
               key={`bar${element}`}
               dataKey={label1}
-              fill={color[id]}
-              stroke={color[id]}
+              fill={color[id % color.length]}
+              stroke={color[id % color.length]}
               yAxisId="left"
             />),
           )}

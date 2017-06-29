@@ -27,7 +27,7 @@ export default ({ data, XSelected, timelapse }) =>
             type="monotone"
             key={element}
             dataKey={element}
-            stroke={color[id]}
+            stroke={color[id % color.length]}
             activeDot={{ r: 8 }}
           />),
         )}

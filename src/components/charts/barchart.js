@@ -26,8 +26,8 @@ export default ({ data, XSelected, timelapse }) =>
           (<Bar
             key={element}
             dataKey={element}
-            fill={color[id]}
-            stroke={color[id]}
+            fill={color[id % color.length]}
+            stroke={color[id % color.length]}
           />),
         )}
     </BarChart>
