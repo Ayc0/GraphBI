@@ -14,7 +14,9 @@ const Line = Row.extend`
   };
 `;
 
-const Container = Row;
+const Container = Row.extend`
+  min-height: 90vh;
+`;
 
 const LeftColumn = styled.div`
   display: flex;

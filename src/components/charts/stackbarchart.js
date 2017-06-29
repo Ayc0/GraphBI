@@ -13,7 +13,7 @@ import legend from './legend';
 import color from './colors';
 
 export default ({ data, XSelected, timelapse }) =>
-  (<ResponsiveContainer>
+  (<ResponsiveContainer aspect={16 / 9}>
     <BarChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
       {xAxis(XSelected)}
       <YAxis />

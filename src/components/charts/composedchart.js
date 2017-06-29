@@ -30,7 +30,7 @@ export default ({
     ? 'number'
     : `${functionSelected2}_${YSelected2}`;
   return (
-    <ResponsiveContainer>
+    <ResponsiveContainer aspect={16 / 9}>
       <ComposedChart
         width={600}
         height={400}

@@ -50,7 +50,7 @@ export default class extends Component {
 
   render() {
     return (
-      <ResponsiveContainer width="70%">
+      <ResponsiveContainer aspect={16 / 9}>
         <PieChart>
           <Pie
             dataKey={
