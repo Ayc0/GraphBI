@@ -11,9 +11,7 @@ const Modal = styled.div`
 
 const ModalDialog = styled.div`
   position: relative;
-  width: auto;
   margin: 10px;
-  transition: transform 0.3s ease-out;
 `;
 
 const ModalContent = styled.div`
@@ -21,10 +19,8 @@ const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.2);
   outline: 0;
-  padding: 0.4em;
+  bow-shadow: 20px 0 15px rgba(0, 0, 0, 0.15);
 `;
 
 const ModalBackdrop = styled.div`
@@ -39,4 +35,25 @@ const ModalBackdrop = styled.div`
   display: ${({ show }) => (show ? 'block' : 'none')};
 `;
 
-export { Modal, ModalDialog, ModalContent, ModalBackdrop };
+const ModalTitle = styled.h2`
+  background-color: #dddddd;
+  font-size: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  margin: 0;
+  font-weight: bold;
+`;
+
+const ModalBody = styled.div`
+  padding: 0.6em;
+`;
+
+export {
+  Modal,
+  ModalDialog,
+  ModalContent,
+  ModalBackdrop,
+  ModalTitle,
+  ModalBody,
+};
