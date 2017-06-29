@@ -34,7 +34,7 @@ const getGraph = (
       />
     );
   }
-  return <ErrorMessage />;
+  return null;
 };
 
 class RenderGraph extends Component {
@@ -167,7 +167,10 @@ class RenderGraph extends Component {
         </GraphWrapper>
       );
     }
-    return <ErrorMessage info={(this.state.data[0] || { value: 'unknown' }).value} />;
+    if (this.state.data.length > 0) {
+      return <ErrorMessage info={(this.state.data[0] || { value: 'unknown' }).value} />;
+    }
+    return <p>Loading...</p>;
   }
 }
 

@@ -15,7 +15,7 @@ import color from './colors';
 export default ({ data, XSelected, timelapse, disabled }) =>
   (<ResponsiveContainer aspect={16 / 9}>
     <BarChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
-      {xAxis(XSelected)}
+      {xAxis(XSelected, timelapse)}
       <YAxis />
       <CartesianGrid strokeDasharray="3 3" />
       <Tooltip labelFormatter={checkTickFormater(XSelected, timelapse)} />
