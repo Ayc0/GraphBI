@@ -78,7 +78,7 @@ export default (
       values.forEach((value) => {
         out[index][value] = total[index] === 0
           ? 0
-          : out[index][value] * 100 / total[index];
+          : Math.floor(out[index][value] * 10000 / total[index]) / 100;
       });
     }
   });
