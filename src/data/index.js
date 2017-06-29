@@ -8,7 +8,7 @@ export const values = json[1];
 
 const columns = json[0];
 
-export const options = columns.map(column => ({
+export const options = columns.filter(column => column.type !== 'number').map(column => ({
   label: column.title,
   value: column.title,
 }));
