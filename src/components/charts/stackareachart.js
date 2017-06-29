@@ -1,11 +1,11 @@
 import React from 'react';
-import { AreaChart, Area, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Brush } from 'recharts';
 
 import xAxis, { checkTickFormater } from './xAxis';
 import legend from './legend';
 import color from './colors';
 
-export default ({ data, XSelected, timelapse, disabled, graphType }) =>
+export default ({ data, XSelected, timelapse, disabled, graphType, brush }) =>
   (<ResponsiveContainer aspect={16 / 9}>
     <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
       {xAxis(XSelected, timelapse, graphType)}
@@ -25,6 +25,6 @@ export default ({ data, XSelected, timelapse, disabled, graphType }) =>
             stroke={disabled.includes(element) ? 'rgba(170,170,170,0.3)' : color[id % color.length]}
           />),
         )}
-
+      {(brush) ? <Brush /> : null}
     </AreaChart>
   </ResponsiveContainer>);

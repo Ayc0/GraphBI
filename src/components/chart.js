@@ -21,6 +21,7 @@ const getGraph = (
   functionSelected2,
   timelapse,
   disabled,
+  brush,
 ) => {
   const out = Object.values(graphs).filter(({ alt }) => alt === graphType);
   if (out.length > 0) {
@@ -36,6 +37,7 @@ const getGraph = (
         functionSelected2={functionSelected2}
         timelapse={timelapse}
         disabled={disabled}
+        brush={brush}
       />
     );
   }
@@ -158,6 +160,7 @@ class RenderGraph extends Component {
             this.props.functionSelected2,
             this.props.timelapse,
             this.state.disabled,
+            this.props.brush,
           )}
         </GraphWrapper>
       );

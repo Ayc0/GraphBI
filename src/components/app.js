@@ -31,6 +31,7 @@ export default class App extends Component {
       nbOfDim: 2,
       compareBy: '',
       timelapse: 'month',
+      brush: false,
     };
   }
 
@@ -100,22 +101,14 @@ export default class App extends Component {
     if (findMaxDim(this.state.graphType) !== 3) {
       return null;
     }
-    return (
-      <ComparePicker
-        onCompareChange={this.onCompareChange}
-        options={optionsCategory}
-      />
-    );
+    return <ComparePicker onCompareChange={this.onCompareChange} options={optionsCategory} />;
   };
 
   render() {
     return (
       <Container>
         <LeftColumn>
-          <GraphPicker
-            onGraphTypeChange={this.onGraphTypeChange}
-            nbOfDim={this.state.nbOfDim}
-          />
+          <GraphPicker onGraphTypeChange={this.onGraphTypeChange} nbOfDim={this.state.nbOfDim} />
           <XAxisPicker
             options={options}
             onXAxisChange={this.onXAxisChange}
@@ -123,6 +116,13 @@ export default class App extends Component {
           />
           {this.renderComparePicker()}
           {this.renderYPickers()}
+          <a
+            onClick={() => {
+              this.setState({ brush: !this.state.brush });
+            }}
+          >
+            Brush {this.state.brush}
+          </a>
         </LeftColumn>
         <RightColumn>
           <Favorites />
@@ -136,6 +136,7 @@ export default class App extends Component {
             functionSelected2={this.state.selectedFunction2}
             compareBy={this.state.compareBy}
             timelapse={this.state.timelapse}
+            brush={this.state.brush}
           />
         </RightColumn>
       </Container>

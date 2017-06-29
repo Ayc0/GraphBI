@@ -6,13 +6,14 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Brush,
 } from 'recharts';
 
 import xAxis, { checkTickFormater } from './xAxis';
 import legend from './legend';
 import color from './colors';
 
-export default ({ data, XSelected, timelapse, disabled, graphType }) =>
+export default ({ data, XSelected, timelapse, disabled, graphType, brush }) =>
   (<ResponsiveContainer aspect={16 / 9}>
     <LineChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
       {xAxis(XSelected, timelapse, graphType)}
@@ -35,5 +36,6 @@ export default ({ data, XSelected, timelapse, disabled, graphType }) =>
             activeDot={{ r: 8 }}
           />
           ))}
+      {(brush) ? <Brush /> : null}
     </LineChart>
   </ResponsiveContainer>);

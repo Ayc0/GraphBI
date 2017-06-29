@@ -8,6 +8,7 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Brush,
 } from 'recharts';
 
 import xAxis, { checkTickFormater } from './xAxis';
@@ -24,6 +25,7 @@ export default ({
   timelapse,
   disabled,
   graphType,
+  brush,
 }) => {
   const label1 = functionSelected === 'number'
     ? 'number'
@@ -70,6 +72,7 @@ export default ({
               yAxisId="right"
             />),
           )}
+        {(brush) ? <Brush /> : null}
       </ComposedChart>
     </ResponsiveContainer>
   );
