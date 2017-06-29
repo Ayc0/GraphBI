@@ -71,7 +71,7 @@ const categories = {
     icon: lineChart,
     charts: {
       2: [graphs.lineChart],
-      3: [],
+      3: [graphs.lineChart],
     },
   },
   bar: {

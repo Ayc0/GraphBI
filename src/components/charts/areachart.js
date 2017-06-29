@@ -12,7 +12,7 @@ import xAxis, { checkTickFormater } from './xAxis';
 import legend from './legend';
 import color from './colors';
 
-export default ({ data, XSelected, timelapse }) =>
+export default ({ data, XSelected, timelapse, disabled }) =>
   (<ResponsiveContainer aspect={16 / 9}>
     <AreaChart data={data} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
       {xAxis(XSelected, timelapse)}
@@ -28,8 +28,16 @@ export default ({ data, XSelected, timelapse }) =>
             key={element}
             type="monotone"
             dataKey={element}
-            stroke={color[id % color.length]}
-            fill={color[id % color.length]}
+            fill={
+              disabled.includes(element)
+                ? 'rgba(170,170,170,0.3)'
+                : color[id % color.length]
+            }
+            stroke={
+              disabled.includes(element)
+                ? 'rgba(170,170,170,0.3)'
+                : color[id % color.length]
+            }
           />),
         )}
 

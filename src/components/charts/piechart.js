@@ -65,8 +65,8 @@ export default class extends Component {
               (<Cell
                 key={entry}
                 fill={
-                  entry[label] === 0
-                    ? 'rgba(255,255,255,0)'
+                  this.props.disabled.includes(entry.name)
+                    ? 'rgba(170,170,170,0.3)'
                     : color[index % color.length]
                 }
               />),

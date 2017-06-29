@@ -22,6 +22,7 @@ export default ({
   YSelected2,
   functionSelected2,
   timelapse,
+  disabled,
 }) => {
   const label1 = functionSelected === 'number'
     ? 'number'
@@ -49,8 +50,11 @@ export default ({
             (<Bar
               key={`bar${element}`}
               dataKey={label1}
-              fill={color[id % color.length]}
-              stroke={color[id % color.length]}
+              fill={
+                disabled.includes(element)
+                  ? 'rgba(170,170,170,0.3)'
+                  : color[id % color.length]
+              }
               yAxisId="left"
             />),
           )}
@@ -61,7 +65,7 @@ export default ({
               type="monotone"
               key={`line${element}`}
               dataKey={label2}
-              stroke={color[id + 2]}
+              stroke={color[(id + 2) / color.length]}
               yAxisId="right"
             />),
           )}
