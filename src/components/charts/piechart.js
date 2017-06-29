@@ -49,21 +49,28 @@ export default class extends Component {
   };
 
   render() {
+    console.log(this.props);
+    const label = Object.keys(this.props.data[0]).filter(
+      element => element !== 'name',
+    )[0];
     return (
       <ResponsiveContainer aspect={16 / 9}>
         <PieChart>
           <Pie
-            dataKey={
-              Object.keys(this.props.data[0]).filter(
-                element => element !== 'name',
-              )[0]
-            }
+            dataKey={label}
             data={this.props.data}
             labelLine={false}
             label={this.renderCustomizedLabel}
           >
             {this.props.data.map((entry, index) =>
-              <Cell key={entry} fill={color[index % color.length]} />,
+              (<Cell
+                key={entry}
+                fill={
+                  entry[label] === 0
+                    ? 'rgba(255,255,255,0)'
+                    : color[index % color.length]
+                }
+              />),
             )}
           </Pie>
           <Tooltip content={<CustomTooltip />} />
