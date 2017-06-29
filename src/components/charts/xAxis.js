@@ -9,11 +9,11 @@ const checkType = xAxis =>
     ? 'number'
     : 'category';
 
-const checkDomain = (xAxis, timelapse) => {
+const checkDomain = (xAxis, timelapse, graphType) => {
   if (numberLabels.includes(xAxis)) {
     return ['dataMin', 'dataMax'];
   }
-  if (dateLabels.includes(xAxis)) {
+  if ((dateLabels.includes(xAxis)) && (graphType.includes('bar'))) {
     // fix padding left and right for dates
     switch (timelapse) {
       case 'year': {
@@ -53,10 +53,10 @@ const checkTickFormater = (xAxis, timelapse) =>
 
 export { checkType, checkDomain, checkTickFormater };
 
-export default (xAxis, timelapse) =>
+export default (xAxis, timelapse, graphType) =>
   (<XAxis
     dataKey="name"
     type={checkType(xAxis)}
-    domain={checkDomain(xAxis, timelapse)}
+    domain={checkDomain(xAxis, timelapse, graphType)}
     tickFormatter={checkTickFormater(xAxis, timelapse)}
   />);

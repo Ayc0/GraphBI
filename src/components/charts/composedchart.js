@@ -23,6 +23,7 @@ export default ({
   functionSelected2,
   timelapse,
   disabled,
+  graphType,
 }) => {
   const label1 = functionSelected === 'number'
     ? 'number'
@@ -38,7 +39,7 @@ export default ({
         data={data}
         margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
       >
-        {xAxis(XSelected)}
+        {xAxis(XSelected, timelapse, graphType)}
         <YAxis yAxisId="left" dataKey={label1} />
         <YAxis yAxisId="right" dataKey={label2} orientation="right" />
         <Tooltip labelFormatter={checkTickFormater(XSelected, timelapse)} />

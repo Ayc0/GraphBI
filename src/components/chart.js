@@ -23,6 +23,7 @@ const getGraph = (
     const Graph = out[0].component;
     return (
       <Graph
+        graphType={graphType}
         data={data}
         XSelected={XSelected}
         YSelected={YSelected}
