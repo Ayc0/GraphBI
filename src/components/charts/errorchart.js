@@ -1,4 +1,4 @@
 import React from 'react';
 
-export default () =>
-  <h2>Sorry, the chart selected isn&quot;t available yet</h2>;
+export default ({ info }) =>
+  <div><h2>The selected chart could not be rendered</h2><h3>Cause : {info}</h3></div>;

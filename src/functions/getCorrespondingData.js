@@ -23,18 +23,12 @@ export default (
 ) => {
   if (graphType === 'composed-chart') {
     const newData = filterXAxis(data, XSelected);
-    return composedFunction(
-      newData,
-      YSelected,
-      functionSelected,
-      YSelected2,
-      functionSelected2,
-    );
+    return composedFunction(newData, YSelected, functionSelected, YSelected2, functionSelected2);
   }
-  const [newData, values] = compareData(
-    filterXAxis(data, XSelected, timelapse),
-    compareBy,
-  );
+  const [newData, values] = compareData(filterXAxis(data, XSelected, timelapse), compareBy);
+  if (values.length > 50) {
+    return [{ name: 'error', value: 'too many values to compare' }];
+  }
   const out = [];
   const total = {};
   newData.forEach((field, index) => {
@@ -48,12 +42,7 @@ export default (
       if (disabled.includes(out[index].name)) {
         out[index][XSelected] = 0;
       } else {
-        out[index][XSelected] = correspondingFunction(
-          functionSelected,
-          field,
-          YSelected,
-          'values',
-        );
+        out[index][XSelected] = correspondingFunction(functionSelected, field, YSelected, 'values');
         total[index] += out[index][XSelected];
       }
     } else {
@@ -63,12 +52,7 @@ export default (
           // si le champ est désactivé
           out[index][value] = 0;
         } else {
-          out[index][value] = correspondingFunction(
-            functionSelected,
-            field,
-            YSelected,
-            value,
-          );
+          out[index][value] = correspondingFunction(functionSelected, field, YSelected, value);
           total[index] += out[index][value];
         }
       });

@@ -120,9 +120,7 @@ class RenderGraph extends Component {
     const detail = event.detail;
     if (this.state.disabled.includes(detail)) {
       this.setState((prevState) => {
-        const disabled = prevState.disabled.filter(
-          element => element !== detail,
-        );
+        const disabled = prevState.disabled.filter(element => element !== detail);
         return {
           data: getCorrespondingData(this.props, disabled),
           disabled,
@@ -152,29 +150,23 @@ class RenderGraph extends Component {
   };
 
   render() {
-    const projetOrYValue = this.props.functionSelected === 'number'
-      ? 'projects'
-      : this.props.YSelected;
-
-    return (
-      <GraphWrapper>
-        <h1>
-          {this.props.functionSelected} of {projetOrYValue} by
-          {' '}{this.props.XSelected}
-        </h1>
-        {getGraph(
-          this.props.graphType,
-          this.state.data,
-          this.props.XSelected,
-          this.props.YSelected,
-          this.props.functionSelected,
-          this.props.YSelected2,
-          this.props.functionSelected2,
-          this.props.timelapse,
-          this.state.disabled,
-        )}
-      </GraphWrapper>
-    );
+    if ((this.state.data[0] || { name: 'error' }).name !== 'error') {
+      return (
+        <GraphWrapper>
+          {getGraph(
+            this.props.graphType,
+            this.state.data,
+            this.props.XSelected,
+            this.props.YSelected,
+            this.props.functionSelected,
+            this.props.YSelected2,
+            this.props.functionSelected2,
+            this.props.timelapse,
+          )}
+        </GraphWrapper>
+      );
+    }
+    return <ErrorMessage info={(this.state.data[0] || { value: 'unknown' }).value} />;
   }
 }
 
