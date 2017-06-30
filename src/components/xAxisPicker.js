@@ -3,7 +3,7 @@ import Select from 'react-select';
 
 import { Block, BlockTitle } from '../styles/block';
 
-import { dateLabels } from '../data';
+import { dateLabels, isValidColumn } from '../data';
 
 const dateOptions = [
   { label: 'group by year', value: 'year' },
@@ -39,7 +39,9 @@ class XAxisPicker extends Component {
 
   onDataLoad = (event) => {
     const { XSelected, timelapse } = event.detail;
-    this.onSelectChange(XSelected);
+    if (isValidColumn(XSelected)) {
+      this.onSelectChange(XSelected);
+    }
     this.onDateChange(timelapse);
   };
 

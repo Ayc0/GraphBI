@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 
 import { Block, BlockTitle } from '../styles/block';
+import { isValidColumn } from '../data/';
 
 const funcOptions = [
   { label: 'Number of projects', value: 'number' },
@@ -39,7 +40,12 @@ class YAxisPicker extends Component {
     this.onFunctionChange(
       this.props.second ? functionSelected2 : functionSelected,
     );
-    this.onValueChange(this.props.second ? YSelected2 : YSelected);
+    if (this.props.second && isValidColumn(YSelected2)) {
+      this.onValueChange(YSelected2);
+    }
+    if (!this.props.second && isValidColumn(YSelected)) {
+      this.onValueChange(YSelected);
+    }
   };
 
   onValueChange = (term) => {
@@ -68,6 +74,9 @@ class YAxisPicker extends Component {
   };
 
   render() {
+    if (this.props.hide === true) {
+      return null;
+    }
     return (
       <Block>
         <BlockTitle>{this.props.title}:</BlockTitle>

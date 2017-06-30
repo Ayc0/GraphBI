@@ -14,7 +14,7 @@ import Favorites from './favorites';
 
 import '../styles/app.css';
 
-import { findMaxDim } from './charts/index';
+import { findMaxDim } from './charts/';
 import { values, options, optionsNumber, optionsCategory } from '../data/';
 
 export default class App extends Component {
@@ -67,12 +67,30 @@ export default class App extends Component {
     this.setState({ timelapse: term || '' });
   };
 
-  renderYPickers = () => {
-    if (this.state.graphType === 'composed-chart') {
-      return (
-        <div>
+  render() {
+    return (
+      <Container>
+        <LeftColumn>
+          <GraphPicker
+            onGraphTypeChange={this.onGraphTypeChange}
+            nbOfDim={this.state.nbOfDim}
+          />
+          <XAxisPicker
+            options={options}
+            onXAxisChange={this.onXAxisChange}
+            onTimelapseChange={e => this.onTimelapseChange(e)}
+          />
+          <ComparePicker
+            onCompareChange={this.onCompareChange}
+            options={optionsCategory}
+            hide={findMaxDim(this.state.graphType) !== 3}
+          />
           <YAxisPicker
-            title="First set of data"
+            title={
+              this.state.graphType === 'composed-chart'
+                ? 'First set of data'
+                : 'Y Axis'
+            }
             options={optionsNumber}
             onYAxisChange={e => this.onYAxisChange(e)}
             onFunctionChange={e => this.onFunctionChange(e)}
@@ -83,39 +101,8 @@ export default class App extends Component {
             onYAxisChange={e => this.onYAxisChange2(e)}
             onFunctionChange={e => this.onFunctionChange2(e)}
             second
+            hide={this.state.graphType !== 'composed-chart'}
           />
-        </div>
-      );
-    }
-    return (
-      <YAxisPicker
-        title="Y Axis"
-        options={optionsNumber}
-        onYAxisChange={e => this.onYAxisChange(e)}
-        onFunctionChange={e => this.onFunctionChange(e)}
-      />
-    );
-  };
-
-  renderComparePicker = () => {
-    if (findMaxDim(this.state.graphType) !== 3) {
-      return null;
-    }
-    return <ComparePicker onCompareChange={this.onCompareChange} options={optionsCategory} />;
-  };
-
-  render() {
-    return (
-      <Container>
-        <LeftColumn>
-          <GraphPicker onGraphTypeChange={this.onGraphTypeChange} nbOfDim={this.state.nbOfDim} />
-          <XAxisPicker
-            options={options}
-            onXAxisChange={this.onXAxisChange}
-            onTimelapseChange={e => this.onTimelapseChange(e)}
-          />
-          {this.renderComparePicker()}
-          {this.renderYPickers()}
           <a
             onClick={() => {
               this.setState({ brush: !this.state.brush });

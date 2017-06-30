@@ -8,10 +8,15 @@ export const values = json[1];
 
 const columns = json[0];
 
-export const options = columns.filter(column => column.type !== 'number').map(column => ({
-  label: column.title,
-  value: column.title,
-}));
+export const isValidColumn = param =>
+  columns.map(column => column.title).includes(param);
+
+export const options = columns
+  .filter(column => column.type !== 'number')
+  .map(column => ({
+    label: column.title,
+    value: column.title,
+  }));
 
 export const numberLabels = columns
   .filter(column => column.type === 'number')

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Select from 'react-select';
 
 import { Block, BlockTitle } from '../styles/block';
+import { isValidColumn } from '../data/';
 
 class ComparePicker extends Component {
   constructor(props) {
@@ -29,11 +30,16 @@ class ComparePicker extends Component {
   };
 
   onSelectChange = (term) => {
-    this.setState({ selectedValue: term });
-    this.props.onCompareChange(term);
+    if (isValidColumn(term) || term === '') {
+      this.setState({ selectedValue: term });
+      this.props.onCompareChange(term);
+    }
   };
 
   render() {
+    if (this.props.hide === true) {
+      return null;
+    }
     return (
       <Block>
         <BlockTitle>Compare which data?</BlockTitle>

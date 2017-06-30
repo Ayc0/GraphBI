@@ -75,7 +75,6 @@ export default class extends Component {
   };
 
   onSubmit = (event) => {
-    console.log('ok');
     event.preventDefault();
 
     const term = this.state.term;

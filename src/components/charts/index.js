@@ -79,7 +79,11 @@ const categories = {
     icon: barsChart,
     charts: {
       2: [graphs.barsChart],
-      3: [graphs.multiBarsChart, graphs.stackBarsChart, graphs.percentBarsChart],
+      3: [
+        graphs.multiBarsChart,
+        graphs.stackBarsChart,
+        graphs.percentBarsChart,
+      ],
     },
   },
   area: {
@@ -101,10 +105,10 @@ const categories = {
 };
 
 const findMaxDim = (chart) => {
-  const category = (chart) ? chart.split('-')[0] : '';
+  const category = chart ? chart.split('-')[0] : '';
   if (category in categories) {
     const numberOf3DGraphs = categories[category].charts[3].length;
-    return (numberOf3DGraphs > 0) ? 3 : 2;
+    return numberOf3DGraphs > 0 ? 3 : 2;
   }
   return 3;
 };

@@ -46,7 +46,7 @@ class GraphPicker extends PureComponent {
   onDataLoad = (event) => {
     const { graphType, compareBy } = event.detail;
     let selectedCategory = '';
-    if (compareBy === '') {
+    if (findMaxDim(graphType) === 2 || compareBy === '') {
       selectedCategory = Object.values(categories).filter(category =>
         category.charts[2].map(chart => chart.alt).includes(graphType),
       )[0].name;
@@ -55,8 +55,10 @@ class GraphPicker extends PureComponent {
         category.charts[3].map(chart => chart.alt).includes(graphType),
       )[0] || {}).name;
     }
-    this.setState(() => ({ selectedCategory }));
-    setTimeout(() => this.onSelectGraph(graphType), 10); // delay to avoid problem when loading
+    this.setState(
+      () => ({ selectedCategory }),
+      () => this.onSelectGraph(graphType),
+    );
   };
 
   onSelectGraph = (alt) => {
@@ -71,17 +73,20 @@ class GraphPicker extends PureComponent {
 
   onCategorySelect = (event) => {
     const alt = event.target.alt;
-    const graphAlt = (categories[alt].charts[this.props.nbOfDim][0] || {}).alt;
     this.setState({
       selectedCategory: alt,
     });
-    this.onSelectGraph(graphAlt);
-    if (findMaxDim(alt) < 3) {
+    const graphAlt = (categories[alt].charts[this.props.nbOfDim][0] || {}).alt;
+    if (graphAlt !== undefined) {
+      this.onSelectGraph(graphAlt);
       this.props.onGraphTypeChange(`${alt}-chart`);
     }
   };
 
   render() {
+    if (this.props.hide === true) {
+      return null;
+    }
     return (
       <Block>
         <BlockTitle>Graph type :</BlockTitle>
