@@ -72,7 +72,7 @@ export default ({
               yAxisId="right"
             />),
           )}
-        {(brush) ? <Brush /> : null}
+        {(brush) ? <Brush stroke={color[3]} height={20} /> : null}
       </ComposedChart>
     </ResponsiveContainer>
   );

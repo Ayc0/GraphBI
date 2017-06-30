@@ -36,6 +36,6 @@ export default ({ data, XSelected, timelapse, disabled, graphType, brush }) =>
             activeDot={{ r: 8 }}
           />
           ))}
-      {(brush) ? <Brush /> : null}
+      {(brush) ? <Brush stroke={color[3]} height={20} /> : null}
     </LineChart>
   </ResponsiveContainer>);

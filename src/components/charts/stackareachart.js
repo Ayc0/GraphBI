@@ -25,6 +25,6 @@ export default ({ data, XSelected, timelapse, disabled, graphType, brush }) =>
             stroke={disabled.includes(element) ? 'rgba(170,170,170,0.3)' : color[id % color.length]}
           />),
         )}
-      {(brush) ? <Brush /> : null}
+      {(brush) ? <Brush stroke={color[3]} height={20} /> : null}
     </AreaChart>
   </ResponsiveContainer>);
