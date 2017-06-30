@@ -10,9 +10,9 @@ import { Row } from '../styles/layout';
 import Modal from './modal';
 
 const Star = ({ active, onSubscribe, onUnsubscribe }) =>
-  active
-    ? <Fa name="star" onClick={onUnsubscribe} />
-    : <Fa name="star-o" onClick={onSubscribe} />;
+  (<Block onClick={active ? onUnsubscribe : onSubscribe}>
+    {active ? <Fa name="star" /> : <Fa name="star-o" />}
+  </Block>);
 
 const saveFavorites = (favorites) => {
   window.localStorage.setItem('favorites', JSON.stringify(favorites));
@@ -75,6 +75,7 @@ export default class extends Component {
   };
 
   onSubmit = (event) => {
+    console.log('ok');
     event.preventDefault();
 
     const term = this.state.term;
@@ -84,7 +85,7 @@ export default class extends Component {
 
   render() {
     return (
-      <Block flexEnd>
+      <span style={{ alignSelf: 'flex-end' }}>
         <Star
           active={this.state.favorites
             .map(favorite => favorite.hash)
@@ -117,18 +118,19 @@ export default class extends Component {
               <Row>
                 <Button
                   color="secondary"
+                  type="button"
                   onClick={() => this.setState(() => ({ isModalOpen: false }))}
                 >
                   Cancel
                 </Button>
-                <Button color="primary" onClick={this.onSubmit}>
+                <Button color="primary" type="submit" onClick={this.onSubmit}>
                   Confirm
                 </Button>
               </Row>
             </form>
           </div>
         </Modal>
-      </Block>
+      </span>
     );
   }
 }
