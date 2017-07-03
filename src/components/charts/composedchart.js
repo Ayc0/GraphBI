@@ -14,6 +14,7 @@ import {
 import xAxis, { checkTickFormater } from './xAxis';
 import legend from './legend';
 import color from './colors';
+import aspect from '../../functions/aspect';
 
 export default ({
   data,
@@ -36,7 +37,7 @@ export default ({
       ? 'number'
       : `${functionSelected2}_${YSelected2}`;
   return (
-    <ResponsiveContainer aspect={16 / 9}>
+    <ResponsiveContainer aspect={aspect()}>
       <ComposedChart
         width={600}
         height={400}

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import legend from './legend';
 import color from './colors';
+import aspect from '../../functions/aspect';
 
 const RADIAN = Math.PI / 180;
 
@@ -19,8 +20,7 @@ const CustomTooltip = ({ payload }) =>
     {
       (payload[0] || { payload: { payload: { name: '' } } }).payload.payload
         .name
-    } :
-    {' '}{(payload[0] || {}).value}
+    } : {(payload[0] || {}).value}
   </ToolTip>);
 
 export default class extends Component {
@@ -53,7 +53,7 @@ export default class extends Component {
       element => element !== 'name',
     )[0];
     return (
-      <ResponsiveContainer aspect={16 / 9}>
+      <ResponsiveContainer aspect={aspect()}>
         <PieChart>
           <Pie
             dataKey={label}

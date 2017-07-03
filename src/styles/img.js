@@ -9,19 +9,19 @@ const Img = styled.img`
   :hover {
     cursor: pointer;
     background-color: #edf0f2;
-  };
+  }
 
   height: calc(20% - 12px);
   width: calc(20% - 12px);
 
-  @media (max-width: 576px) {
+  /*@media (max-width: 576px) {
     height: calc(50% - 12px);
     width: calc(50% - 12px);
   };
   @media (min-width: 577px) and (max-width: 750px) {
     height: calc(33% - 12px);
     width: calc(33% - 12px);
-  };
+  };*/
 `;
 
 Img.defaultProps = {
