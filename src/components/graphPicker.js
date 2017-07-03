@@ -77,7 +77,7 @@ class GraphPicker extends PureComponent {
       selectedCategory: alt,
     });
     const graphAlt = (categories[alt].charts[this.props.nbOfDim][0] || {}).alt;
-    if (graphAlt !== undefined) {
+    if (alt !== undefined) {
       this.onSelectGraph(graphAlt);
       this.props.onGraphTypeChange(`${alt}-chart`);
     }
