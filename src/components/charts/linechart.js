@@ -23,19 +23,19 @@ export default ({ data, XSelected, timelapse, disabled, graphType, brush }) =>
       {legend}
       {Object.keys(data[0] || {})
         .filter(element => element !== 'name')
-        .map((element, id) => (
-          <Line
+        .map((element, id) =>
+          (<Line
             type="monotone"
             key={element}
             dataKey={element}
             stroke={
-                disabled.includes(element)
-                  ? 'rgba(170,170,170,0.3)'
-                  : color[id % color.length]
-              }
+              disabled.includes(element)
+                ? 'rgba(170,170,170,0.3)'
+                : color[id % color.length]
+            }
             activeDot={{ r: 8 }}
-          />
-          ))}
-      {(brush) ? <Brush stroke={color[3]} height={20} /> : null}
+          />),
+        )}
+      {brush && <Brush stroke={color[3]} height={20} />}
     </LineChart>
   </ResponsiveContainer>);

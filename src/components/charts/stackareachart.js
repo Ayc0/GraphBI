@@ -1,5 +1,13 @@
 import React from 'react';
-import { AreaChart, Area, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Brush } from 'recharts';
+import {
+  AreaChart,
+  Area,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Brush,
+} from 'recharts';
 
 import xAxis, { checkTickFormater } from './xAxis';
 import legend from './legend';
@@ -21,10 +29,18 @@ export default ({ data, XSelected, timelapse, disabled, graphType, brush }) =>
             key={element}
             type="monotone"
             dataKey={element}
-            fill={disabled.includes(element) ? 'rgba(170,170,170,0.3)' : color[id % color.length]}
-            stroke={disabled.includes(element) ? 'rgba(170,170,170,0.3)' : color[id % color.length]}
+            fill={
+              disabled.includes(element)
+                ? 'rgba(170,170,170,0.3)'
+                : color[id % color.length]
+            }
+            stroke={
+              disabled.includes(element)
+                ? 'rgba(170,170,170,0.3)'
+                : color[id % color.length]
+            }
           />),
         )}
-      {(brush) ? <Brush stroke={color[3]} height={20} /> : null}
+      {brush && <Brush stroke={color[3]} height={20} />}
     </AreaChart>
   </ResponsiveContainer>);

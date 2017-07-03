@@ -41,6 +41,6 @@ export default ({ data, XSelected, timelapse, disabled, graphType, brush }) =>
             }
           />),
         )}
-      {(brush) ? <Brush stroke={color[3]} height={20} /> : null}
+      {brush && <Brush stroke={color[3]} height={20} />}
     </AreaChart>
   </ResponsiveContainer>);

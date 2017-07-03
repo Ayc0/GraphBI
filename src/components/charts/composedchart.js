@@ -27,12 +27,14 @@ export default ({
   graphType,
   brush,
 }) => {
-  const label1 = functionSelected === 'number'
-    ? 'number'
-    : `${functionSelected}_${YSelected}`;
-  const label2 = functionSelected2 === 'number'
-    ? 'number'
-    : `${functionSelected2}_${YSelected2}`;
+  const label1 =
+    functionSelected === 'number'
+      ? 'number'
+      : `${functionSelected}_${YSelected}`;
+  const label2 =
+    functionSelected2 === 'number'
+      ? 'number'
+      : `${functionSelected2}_${YSelected2}`;
   return (
     <ResponsiveContainer aspect={16 / 9}>
       <ComposedChart
@@ -72,7 +74,7 @@ export default ({
               yAxisId="right"
             />),
           )}
-        {(brush) ? <Brush stroke={color[3]} height={20} /> : null}
+        {brush && <Brush stroke={color[3]} height={20} />}
       </ComposedChart>
     </ResponsiveContainer>
   );
