@@ -4,6 +4,8 @@ import compareData from '../functions/compareData';
 import correspondingFunction from '../functions/correspondingFunction';
 import composedFunction from '../functions/composedFunction';
 
+import { dateLabels } from '../data/';
+
 // data should be a list of {name: string, value: number} elements
 // with name being the label (X axis) and value the value (Y axis)
 
@@ -23,20 +25,14 @@ export default (
 ) => {
   if (graphType === 'composed-chart') {
     const newData = filterXAxis(data, XSelected);
-    return composedFunction(
-      newData,
-      YSelected,
-      functionSelected,
-      YSelected2,
-      functionSelected2,
-    );
+    return composedFunction(newData, YSelected, functionSelected, YSelected2, functionSelected2);
   }
-  const [newData, values] = compareData(
-    filterXAxis(data, XSelected, timelapse),
-    compareBy,
-  );
+  const [newData, values] = compareData(filterXAxis(data, XSelected, timelapse), compareBy);
   if (values.length > 50) {
-    return [{ name: 'error', value: 'too many values to compare' }];
+    return [{ name: 'error', value: `too many values to compare (${values.length} values)` }];
+  }
+  if (newData.length > 1000 && !dateLabels.includes(XSelected)) {
+    return [{ name: 'error', value: `too many values to plot on X axis (${newData.length} values)` }];
   }
   const out = [];
   const total = {};
@@ -51,12 +47,7 @@ export default (
       if (disabled.includes(out[index].name)) {
         out[index][XSelected] = 0;
       } else {
-        out[index][XSelected] = correspondingFunction(
-          functionSelected,
-          field,
-          YSelected,
-          'values',
-        );
+        out[index][XSelected] = correspondingFunction(functionSelected, field, YSelected, 'values');
         total[index] += out[index][XSelected];
       }
     } else {
@@ -66,12 +57,7 @@ export default (
           // si le champ est désactivé
           out[index][value] = 0;
         } else {
-          out[index][value] = correspondingFunction(
-            functionSelected,
-            field,
-            YSelected,
-            value,
-          );
+          out[index][value] = correspondingFunction(functionSelected, field, YSelected, value);
           total[index] += out[index][value];
         }
       });
@@ -79,9 +65,8 @@ export default (
 
     if (graphType.includes('percent')) {
       values.forEach((value) => {
-        out[index][value] = total[index] === 0
-          ? 0
-          : Math.floor(out[index][value] * 10000 / total[index]) / 100;
+        out[index][value] =
+          total[index] === 0 ? 0 : Math.floor(out[index][value] * 10000 / total[index]) / 100;
       });
     }
   });

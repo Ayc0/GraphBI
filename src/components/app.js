@@ -11,6 +11,7 @@ import XAxisPicker from './xAxisPicker';
 import ComparePicker from './comparePicker';
 import Chart from './chart';
 import Favorites from './favorites';
+import Brush from './brush';
 
 import '../styles/app.css';
 
@@ -71,10 +72,7 @@ export default class App extends Component {
     return (
       <Container>
         <LeftColumn>
-          <GraphPicker
-            onGraphTypeChange={this.onGraphTypeChange}
-            nbOfDim={this.state.nbOfDim}
-          />
+          <GraphPicker onGraphTypeChange={this.onGraphTypeChange} nbOfDim={this.state.nbOfDim} />
           <XAxisPicker
             options={options}
             onXAxisChange={this.onXAxisChange}
@@ -86,11 +84,7 @@ export default class App extends Component {
             hide={findMaxDim(this.state.graphType) !== 3}
           />
           <YAxisPicker
-            title={
-              this.state.graphType === 'composed-chart'
-                ? 'First set of data'
-                : 'Y Axis'
-            }
+            title={this.state.graphType === 'composed-chart' ? 'First set of data' : 'Y Axis'}
             options={optionsNumber}
             onYAxisChange={e => this.onYAxisChange(e)}
             onFunctionChange={e => this.onFunctionChange(e)}
@@ -103,13 +97,6 @@ export default class App extends Component {
             second
             hide={this.state.graphType !== 'composed-chart'}
           />
-          <a
-            onClick={() => {
-              this.setState({ brush: !this.state.brush });
-            }}
-          >
-            Brush {this.state.brush}
-          </a>
         </LeftColumn>
         <RightColumn>
           <Favorites />
@@ -124,6 +111,12 @@ export default class App extends Component {
             compareBy={this.state.compareBy}
             timelapse={this.state.timelapse}
             brush={this.state.brush}
+          />
+          <Brush
+            onChangeBrush={() => {
+              this.setState({ brush: !this.state.brush });
+            }}
+            active={this.state.brush}
           />
         </RightColumn>
       </Container>
