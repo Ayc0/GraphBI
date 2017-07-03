@@ -71,7 +71,8 @@ class RenderGraph extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // Don't actualize data if the type of chart change without changing the dimension
+    // Don't actualize data if the type of chart change without changing the dimension,
+    // or if we go from percent to non percent
     const nextTypeOfChartSplit = nextProps.graphType.split('-');
     const actualTypeOfChartSplit = this.props.graphType.split('-');
     const nextTypeOfChart = nextTypeOfChartSplit[nextTypeOfChartSplit.length - 2];
@@ -79,7 +80,8 @@ class RenderGraph extends Component {
     if (
       !(
         nextTypeOfChart !== actualTypeOfChart &&
-        findMaxDim(nextProps.graphType) === findMaxDim(this.props.graphType)
+        findMaxDim(nextProps.graphType) === findMaxDim(this.props.graphType) &&
+        nextProps.graphType.includes('percent') === this.props.graphType.includes('percent')
       )
     ) {
       this.setState({
