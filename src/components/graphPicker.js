@@ -31,7 +31,10 @@ class GraphPicker extends PureComponent {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.nbOfDim !== this.props.nbOfDim) {
+    if (
+      nextProps.nbOfDim !== this.props.nbOfDim &&
+      nextProps.selectedCategory !== this.props.selectedCategory
+    ) {
       const alt = (categories[this.state.selectedCategory].charts[
         nextProps.nbOfDim
       ][0] || {}).alt;
@@ -77,8 +80,10 @@ class GraphPicker extends PureComponent {
       selectedCategory: alt,
     });
     const graphAlt = (categories[alt].charts[this.props.nbOfDim][0] || {}).alt;
-    if (alt !== undefined) {
+    if (graphAlt !== undefined) {
       this.onSelectGraph(graphAlt);
+    } else {
+      this.onSelectGraph(`${alt}-chart`);
     }
   };
 
@@ -87,11 +92,11 @@ class GraphPicker extends PureComponent {
       <Block>
         <BlockTitle>Graph type :</BlockTitle>
         <Line>
-          {Object.keys(categories).map(category =>
+          {Object.values(categories).map(category =>
             (<Graph
-              key={categories[category].name}
-              src={categories[category].icon}
-              alt={categories[category].name}
+              key={category.name}
+              src={category.icon}
+              alt={category.name}
               onClick={this.onCategorySelect}
               active={this.state.selectedCategory}
             />),

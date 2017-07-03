@@ -36,7 +36,23 @@ export default class App extends Component {
     };
   }
 
+  componentDidMount() {
+    window.addEventListener('onDataLoad', this.onDataLoad);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('onDataLoad', this.onDataLoad);
+  }
+
+  onDataLoad = (event) => {
+    const { compareBy } = event.detail;
+    this.setState(() => ({ compareBy }));
+  };
+
   onGraphTypeChange = (term) => {
+    if (findMaxDim(term) === 2 && this.state.nbOfDim === 3) {
+      this.onCompareChange('');
+    }
     this.setState({ graphType: term || '' });
   };
 
@@ -72,7 +88,10 @@ export default class App extends Component {
     return (
       <Container>
         <LeftColumn>
-          <GraphPicker onGraphTypeChange={this.onGraphTypeChange} nbOfDim={this.state.nbOfDim} />
+          <GraphPicker
+            onGraphTypeChange={this.onGraphTypeChange}
+            nbOfDim={this.state.nbOfDim}
+          />
           <XAxisPicker
             options={options}
             onXAxisChange={this.onXAxisChange}
@@ -81,19 +100,24 @@ export default class App extends Component {
           <ComparePicker
             onCompareChange={this.onCompareChange}
             options={optionsCategory}
-            hide={findMaxDim(this.state.graphType) !== 3}
+            value={this.state.compareBy}
+            hide={findMaxDim(this.state.graphType) === 2}
           />
           <YAxisPicker
-            title={this.state.graphType === 'composed-chart' ? 'First set of data' : 'Y Axis'}
+            title={
+              this.state.graphType === 'composed-chart'
+                ? 'First set of data'
+                : 'Y Axis'
+            }
             options={optionsNumber}
-            onYAxisChange={e => this.onYAxisChange(e)}
-            onFunctionChange={e => this.onFunctionChange(e)}
+            onYAxisChange={this.onYAxisChange}
+            onFunctionChange={this.onFunctionChange}
           />
           <YAxisPicker
             title="Second set of data"
             options={optionsNumber}
-            onYAxisChange={e => this.onYAxisChange2(e)}
-            onFunctionChange={e => this.onFunctionChange2(e)}
+            onYAxisChange={this.onYAxisChange2}
+            onFunctionChange={this.onFunctionChange2}
             second
             hide={this.state.graphType !== 'composed-chart'}
           />

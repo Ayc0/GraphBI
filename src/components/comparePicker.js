@@ -1,64 +1,37 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Select from 'react-select';
 
 import { Block, BlockTitle } from '../styles/block';
-import { isValidColumn } from '../data/';
 
-class ComparePicker extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedValue: '',
-    };
+const ComparePicker = ({ value, options, hide, onCompareChange }) => {
+  if (hide === true) {
+    return null;
   }
+  return (
+    <Block>
+      <BlockTitle>Compare which data?</BlockTitle>
+      <Select
+        clearable={false}
+        name="Compare which data?"
+        value={value}
+        options={[
+          {
+            label: 'none',
+            value: '',
+          },
+          ...options,
+        ]}
+        onChange={event => onCompareChange(event.value)}
+      />
+    </Block>
+  );
+};
 
-  componentWillMount() {
-    this.props.onCompareChange(this.state.selectedValue);
-  }
-
-  componentDidMount() {
-    window.addEventListener('onDataLoad', this.onDataLoad);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('onDataLoad', this.onDataLoad);
-  }
-
-  onDataLoad = (event) => {
-    const { compareBy } = event.detail;
-    this.onSelectChange(compareBy);
-  };
-
-  onSelectChange = (term) => {
-    if (isValidColumn(term) || term === '') {
-      this.setState({ selectedValue: term });
-      this.props.onCompareChange(term);
-    }
-  };
-
-  render() {
-    if (this.props.hide === true) {
-      return null;
-    }
-    return (
-      <Block>
-        <BlockTitle>Compare which data?</BlockTitle>
-        <Select
-          clearable={false}
-          name="Compare which data?"
-          value={this.state.selectedValue}
-          options={[
-            {
-              label: 'none',
-              value: '',
-            },
-            ...this.props.options,
-          ]}
-          onChange={event => this.onSelectChange(event.value)}
-        />
-      </Block>
-    );
-  }
-}
+ComparePicker.defaultProps = {
+  value: '',
+  options: [],
+  hide: false,
+  onCompareChange: () => {},
+};
 
 export default ComparePicker;
