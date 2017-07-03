@@ -4,10 +4,7 @@ import { graphs, findMaxDim } from './charts/index';
 import ErrorMessage from './charts/errorchart';
 
 import getCorrespondingData from '../functions/getCorrespondingData';
-import {
-  convertDataToHash,
-  convertDataToHashWithDate,
-} from '../functions/convertDataToHash';
+import { convertDataToHash, convertDataToHashWithDate } from '../functions/convertDataToHash';
 
 import GraphWrapper from '../styles/graphWrapper';
 
@@ -74,8 +71,16 @@ class RenderGraph extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    // Don't actualize data if the type of chart change without changing the dimension
+    const nextTypeOfChartSplit = nextProps.graphType.split('-');
+    const actualTypeOfChartSplit = this.props.graphType.split('-');
+    const nextTypeOfChart = nextTypeOfChartSplit[nextTypeOfChartSplit.length - 2];
+    const actualTypeOfChart = actualTypeOfChartSplit[actualTypeOfChartSplit.length - 2];
     if (
-      findMaxDim(nextProps.graphType) !== findMaxDim(this.props.graphType)
+      !(
+        nextTypeOfChart !== actualTypeOfChart &&
+        findMaxDim(nextProps.graphType) === findMaxDim(this.props.graphType)
+      )
     ) {
       this.setState({
         data: getCorrespondingData(nextProps),
@@ -103,9 +108,7 @@ class RenderGraph extends Component {
     const detail = event.detail;
     if (this.state.disabled.includes(detail)) {
       this.setState((prevState) => {
-        const disabled = prevState.disabled.filter(
-          element => element !== detail,
-        );
+        const disabled = prevState.disabled.filter(element => element !== detail);
         return {
           data: getCorrespondingData(this.props, disabled),
           disabled,
@@ -154,11 +157,7 @@ class RenderGraph extends Component {
       );
     }
     if (this.state.data.length > 0) {
-      return (
-        <ErrorMessage
-          info={(this.state.data[0] || { value: 'unknown' }).value}
-        />
-      );
+      return <ErrorMessage info={(this.state.data[0] || { value: 'unknown' }).value} />;
     }
     return <p>Loading...</p>;
   }

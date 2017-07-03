@@ -23,7 +23,7 @@ import ComposedChart from './composedchart';
 const graphs = {
   pieChart: { src: pieChart, alt: 'pie-chart', component: PieChart },
   lineChart: { src: lineChart, alt: 'line-chart', component: LineChart },
-  barsChart: { src: barsChart, alt: 'bar-chart', component: BarChart },
+  barsChart: { src: barsChart, alt: 'bars-chart', component: BarChart },
   areaChart: { src: areaChart, alt: 'area-chart', component: AreaChart },
   composedChart: {
     src: composedChart,
@@ -74,8 +74,8 @@ const categories = {
       3: [graphs.lineChart],
     },
   },
-  bar: {
-    name: 'bar',
+  bars: {
+    name: 'bars',
     icon: barsChart,
     charts: {
       2: [graphs.barsChart],
