@@ -27,7 +27,8 @@ export default (
     const newData = filterXAxis(data, XSelected);
     return composedFunction(newData, YSelected, functionSelected, YSelected2, functionSelected2);
   }
-  const [newData, values] = compareData(filterXAxis(data, XSelected, timelapse), compareBy);
+  const newCompareBy = (graphType.includes('pie') || graphType.includes('composed')) ? '' : compareBy;
+  const [newData, values] = compareData(filterXAxis(data, XSelected, timelapse), newCompareBy);
   if (values.length > 50) {
     return [{ name: 'error', value: `too many values to compare (${values.length} values)` }];
   }

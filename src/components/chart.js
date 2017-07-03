@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { graphs } from './charts/index';
+import { graphs, findMaxDim } from './charts/index';
 import ErrorMessage from './charts/errorchart';
 
 import getCorrespondingData from '../functions/getCorrespondingData';
@@ -75,19 +75,7 @@ class RenderGraph extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (
-      nextProps.data !== this.props.data ||
-      nextProps.YSelected !== this.props.YSelected ||
-      nextProps.XSelected !== this.props.XSelected ||
-      nextProps.functionSelected !== this.props.functionSelected ||
-      nextProps.YSelected2 !== this.props.YSelected2 ||
-      nextProps.functionSelected2 !== this.props.functionSelected2 ||
-      nextProps.compareBy !== this.props.compareBy ||
-      nextProps.timelapse !== this.props.timelapse ||
-      ((nextProps.graphType === 'composed-chart' ||
-        this.props.graphType === 'composed-chart' ||
-        this.props.graphType.includes('percent') ||
-        nextProps.graphType.includes('percent')) &&
-        nextProps.graphType !== this.props.graphType)
+      findMaxDim(nextProps.graphType) !== findMaxDim(this.props.graphType)
     ) {
       this.setState({
         data: getCorrespondingData(nextProps),
