@@ -32,7 +32,9 @@ class GraphPicker extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.nbOfDim !== this.props.nbOfDim) {
-      const alt = (categories[this.state.selectedCategory].charts[nextProps.nbOfDim][0] || {}).alt;
+      const alt = (categories[this.state.selectedCategory].charts[
+        nextProps.nbOfDim
+      ][0] || {}).alt;
       this.onSelectGraph(alt);
     }
   }
@@ -53,7 +55,10 @@ class GraphPicker extends PureComponent {
         category.charts[3].map(chart => chart.alt).includes(graphType),
       )[0] || {}).name;
     }
-    this.setState(() => ({ selectedCategory }), () => this.onSelectGraph(graphType));
+    this.setState(
+      () => ({ selectedCategory }),
+      () => this.onSelectGraph(graphType),
+    );
   };
 
   onSelectGraph = (alt) => {
@@ -74,14 +79,10 @@ class GraphPicker extends PureComponent {
     const graphAlt = (categories[alt].charts[this.props.nbOfDim][0] || {}).alt;
     if (alt !== undefined) {
       this.onSelectGraph(graphAlt);
-      this.props.onGraphTypeChange(`${alt}-chart`);
     }
   };
 
   render() {
-    if (this.props.hide === true) {
-      return null;
-    }
     return (
       <Block>
         <BlockTitle>Graph type :</BlockTitle>
@@ -98,14 +99,16 @@ class GraphPicker extends PureComponent {
         </Line>
         <Line>
           {categories[this.state.selectedCategory]
-            ? categories[this.state.selectedCategory].charts[this.props.nbOfDim].map(chart =>
-              (<Graph
-                key={chart.alt}
-                src={chart.src}
-                alt={chart.alt}
-                onClick={this.onSelect}
-                active={this.state.selectedValue}
-              />),
+            ? categories[this.state.selectedCategory].charts[
+                this.props.nbOfDim
+              ].map(chart =>
+                (<Graph
+                  key={chart.alt}
+                  src={chart.src}
+                  alt={chart.alt}
+                  onClick={this.onSelect}
+                  active={this.state.selectedValue}
+                />),
               )
             : null}
         </Line>
