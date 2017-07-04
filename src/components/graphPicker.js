@@ -30,12 +30,9 @@ class GraphPicker extends PureComponent {
     window.addEventListener('onDataLoad', this.onDataLoad);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (
-      nextProps.nbOfDim !== this.props.nbOfDim &&
-      nextProps.selectedCategory !== this.props.selectedCategory
-    ) {
-      const alt = (categories[this.state.selectedCategory].charts[
+  componentWillUpdate(nextProps, nextState) {
+    if (nextProps.nbOfDim !== this.props.nbOfDim) {
+      const alt = (categories[nextState.selectedCategory].charts[
         nextProps.nbOfDim
       ][0] || {}).alt;
       this.onSelectGraph(alt);
@@ -103,19 +100,18 @@ class GraphPicker extends PureComponent {
           )}
         </Line>
         <Line>
-          {categories[this.state.selectedCategory]
-            ? categories[this.state.selectedCategory].charts[
-                this.props.nbOfDim
-              ].map(chart =>
-                (<Graph
-                  key={chart.alt}
-                  src={chart.src}
-                  alt={chart.alt}
-                  onClick={this.onSelect}
-                  active={this.state.selectedValue}
-                />),
-              )
-            : null}
+          {categories[this.state.selectedCategory] &&
+            categories[this.state.selectedCategory].charts[
+              this.props.nbOfDim
+            ].map(chart =>
+              (<Graph
+                key={chart.alt}
+                src={chart.src}
+                alt={chart.alt}
+                onClick={this.onSelect}
+                active={this.state.selectedValue}
+              />),
+            )}
         </Line>
       </Block>
     );

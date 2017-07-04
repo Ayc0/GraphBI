@@ -129,14 +129,10 @@ class RenderGraph extends Component {
 
   onDataLoad = (event) => {
     const { disabled } = event.detail;
-    setTimeout(
-      () =>
-        this.setState(() => ({
-          data: getCorrespondingData(this.props, disabled),
-          disabled,
-        })),
-      100,
-    );
+    this.setState(() => ({
+      data: getCorrespondingData(this.props, disabled),
+      disabled,
+    }));
   };
 
   render() {

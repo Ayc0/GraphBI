@@ -36,7 +36,7 @@ export default class App extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     window.addEventListener('onDataLoad', this.onDataLoad);
   }
 
@@ -46,7 +46,7 @@ export default class App extends Component {
 
   onDataLoad = (event) => {
     const { compareBy } = event.detail;
-    this.setState(() => ({ compareBy }));
+    this.onCompareChange(compareBy);
   };
 
   onGraphTypeChange = (term) => {
